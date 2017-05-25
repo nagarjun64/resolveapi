@@ -24,7 +24,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -38,7 +38,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" class="navigator-link" panel-name="suite-SuiteFB">
-              <span class="suite-name border-failed">SuiteFB</span>
+              <span class="suite-name border-skipped">SuiteFB</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -91,21 +91,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">6 methods, 1 failed,  5 skipped,  </span>
-                  </li>
-                  <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-SuiteFB" class="hide-methods failed suite-SuiteFB"> (hide)</a> <!-- hide-methods failed suite-SuiteFB -->
-                      <a href="#" panel-name="suite-SuiteFB" class="show-methods failed suite-SuiteFB"> (show)</a> <!-- show-methods failed suite-SuiteFB -->
-                    </span>
-                    <div class="method-list-content failed suite-SuiteFB">
-                      <span>
-                        <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-SuiteFB" title="tcAutoPost.TCAutoFanPost" hash-for-method="verifyPostinFirstPostToFastCarTest">verifyPostinFirstPostToFastCarTest</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                    </div> <!-- method-list-content failed suite-SuiteFB -->
+                    <span class="method-stats">6 methods,  6 skipped,  </span>
                   </li>
                   <li>
                     <span class="method-list-title skipped">Skipped methods</span>
@@ -114,6 +100,11 @@
                       <a href="#" panel-name="suite-SuiteFB" class="show-methods skipped suite-SuiteFB"> (show)</a> <!-- show-methods skipped suite-SuiteFB -->
                     </span>
                     <div class="method-list-content skipped suite-SuiteFB">
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-SuiteFB" title="tcAutoPost.TCAutoFanPost" hash-for-method="verifyPostinFirstPostToFastCarTest">verifyPostinFirstPostToFastCarTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
                       <span>
                         <img width="3%" src="skipped.png"/>
                         <a href="#" class="method navigator-link" panel-name="suite-SuiteFB" title="tcAutoPost.TCAutoFanPost" hash-for-method="verifyPostinFirstPostToGetStarted">verifyPostinFirstPostToGetStarted</a> <!-- method navigator-link -->
@@ -151,9 +142,9 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-SuiteFB" class="panel SuiteFB">
-          <div class="suite-SuiteFB-class-failed">
+          <div class="suite-SuiteFB-class-skipped">
             <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
+              <img src="skipped.png"/>
               <span class="class-name">tcAutoPost.TCAutoFanPost</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
@@ -162,32 +153,8 @@
                   <a name="verifyPostinFirstPostToFastCarTest">
                   </a> <!-- verifyPostinFirstPostToFastCarTest -->
                   <span class="method-name">verifyPostinFirstPostToFastCarTest</span>
-                  <div class="stack-trace">org.openqa.selenium.WebDriverException: Failed to decode response from marionette
-Build info: version: &apos;3.4.0&apos;, revision: &apos;unknown&apos;, time: &apos;unknown&apos;
-System info: host: &apos;nagarjunaMBP.local&apos;, ip: &apos;fe80:0:0:0:1091:7b48:cb5a:156b%en0&apos;, os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;10.12.4&apos;, java.version: &apos;1.8.0_60&apos;
-Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities [{moz:profile=/var/folders/g4/dylg4g7s7wbdtg_f6mtzj8m00000gn/T/rust_mozprofile.R06tVUuqOAiw, rotatable=false, timeouts={implicit=0.0, pageLoad=300000.0, script=30000.0}, pageLoadStrategy=normal, platform=ANY, specificationLevel=0.0, moz:accessibilityChecks=false, acceptInsecureCerts=false, browserVersion=53.0.3, platformVersion=16.5.0, moz:processID=74125.0, browserName=firefox, javascriptEnabled=true, platformName=darwin}]
-Session ID: b82fc64c-3bcf-604a-bf6b-32a1b630b466
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:150)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:115)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:45)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:82)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:637)
-	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:364)
-	at tcAutoPost.TCAutoFanPost.verifyPostinFirstPostToFastCarTest(TCAutoFanPost.java:94)
-... Removed 31 stack frames
-</div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-SuiteFB-class-failed -->
-          <div class="suite-SuiteFB-class-skipped">
-            <div class="main-panel-header rounded-window-top">
-              <img src="skipped.png"/>
-              <span class="class-name">tcAutoPost.TCAutoFanPost</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
                   <a name="verifyPostinFirstPostToGetStarted">
@@ -281,17 +248,17 @@ data.addRows(6);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'verifyPostinFirstPostToFastCarTest')
 data.setCell(0, 2, 'tcAutoPost.TCAutoFanPost')
-data.setCell(0, 3, 9306);
+data.setCell(0, 3, 1);
 data.setCell(1, 0, 1)
 data.setCell(1, 1, 'verifyPostinFirstPostToGetStarted')
 data.setCell(1, 2, 'tcAutoPost.TCAutoFanPost')
 data.setCell(1, 3, 1);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'verifyPostinSecondPostToRHTestPage')
+data.setCell(2, 1, 'verifyPostinSecondPostToFastCarTest')
 data.setCell(2, 2, 'tcAutoPost.TCAutoFanPost')
-data.setCell(2, 3, 1);
+data.setCell(2, 3, 0);
 data.setCell(3, 0, 3)
-data.setCell(3, 1, 'verifyPostinSecondPostToFastCarTest')
+data.setCell(3, 1, 'verifyPostinSecondPostToRHTestPage')
 data.setCell(3, 2, 'tcAutoPost.TCAutoFanPost')
 data.setCell(3, 3, 0);
 data.setCell(4, 0, 4)
@@ -306,7 +273,7 @@ window.suiteTableData['SuiteFB']= { tableData: data, tableDiv: 'times-div-SuiteF
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 9 seconds</span>
+              <span class="suite-total-time">Total running time: 2 ms</span>
               <div id="times-div-SuiteFB">
               </div> <!-- times-div-SuiteFB -->
             </div> <!-- times-div -->
@@ -334,44 +301,34 @@ return data;
             <div class="chronological-class">
               <div class="chronological-class-name">tcAutoPost.TCAutoFanPost</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
+                <img src="failed.png">
+                </img>
                 <span class="method-name">LaunchBrowser</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
                 <span class="method-name">verifyPostinFirstPostToFastCarTest</span>
-                <span class="method-start">6790 ms</span>
+                <span class="method-start">46 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">QuitBrowser</span>
-                <span class="method-start">16110 ms</span>
-              </div> <!-- configuration-method after -->
-              <div class="configuration-method before">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">LaunchBrowser</span>
-                <span class="method-start">16129 ms</span>
-              </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">verifyPostinFirstPostToGetStarted</span>
-                <span class="method-start">21388 ms</span>
+                <span class="method-start">54 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">verifyPostinFirstPostToRHTestPage</span>
-                <span class="method-start">21390 ms</span>
+                <span class="method-start">55 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">verifyPostinSecondPostToFastCarTest</span>
-                <span class="method-start">21392 ms</span>
+                <span class="method-start">56 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">verifyPostinSecondPostToGetStarted</span>
-                <span class="method-start">21395 ms</span>
+                <span class="method-start">57 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">verifyPostinSecondPostToRHTestPage</span>
-                <span class="method-start">21396 ms</span>
+                <span class="method-start">58 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

@@ -5,7 +5,7 @@
     <classes>
       <class name="tcAutoPost.TCAutoFanPost">
         <methods>
-          <include name="verifyPostinFirstPostToFastCarTest"/>
+          <include name="verifyPostinFirstPostToGetStarted"/>
         </methods>
       </class> <!-- tcAutoPost.TCAutoFanPost -->
     </classes>
@@ -14,9 +14,8 @@
     <classes>
       <class name="tcAutoPost.TCAutoFanPost">
         <methods>
-          <include name="verifyPostinFirstPostToFastCarTest"/>
+          <include name="verifyPostinFirstPostToGetStarted"/>
           <include name="LaunchBrowser"/>
-          <include name="QuitBrowser"/>
         </methods>
       </class> <!-- tcAutoPost.TCAutoFanPost -->
     </classes>

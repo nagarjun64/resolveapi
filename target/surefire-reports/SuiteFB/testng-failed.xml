@@ -16,7 +16,6 @@
           <include name="verifyPostinSecondPostToRHTestPage"/>
           <include name="verifyPostinSecondPostToFastCarTest"/>
           <include name="LaunchBrowser"/>
-          <include name="QuitBrowser"/>
           <include name="verifyPostinSecondPostToGetStarted"/>
         </methods>
       </class> <!-- tcAutoPost.TCAutoFanPost -->

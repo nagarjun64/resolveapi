@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="TestSuite" time="432.295" tests="6" errors="0" skipped="0" failures="1">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="TestSuite" time="1.24" tests="18" errors="0" skipped="17" failures="1">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib"/>
@@ -25,7 +25,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="os.name" value="Mac OS X"/>
-    <property name="classworlds.conf" value="/Users/nagarjunareddy/Documents/projectworkspace/eclipse/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf6283915638558370355.tmp"/>
+    <property name="classworlds.conf" value="/Users/nagarjunareddy/Documents/projectworkspace/eclipse/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf3306367646370508754.tmp"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/Users/nagarjunareddy/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -62,45 +62,65 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="verifyPostinFirstPostToFastCarTest" classname="tcAutoPost.TCAutoFanPost" time="74.908"/>
-  <testcase name="verifyPostinFirstPostToGetStarted" classname="tcAutoPost.TCAutoFanPost" time="76.184">
-    <failure message="Unable to locate element: //*[@id=&apos;PageComposerPagelet_&apos;]//button[contains(., &apos;Post&apos;)]&#10;For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html&#10;Build info: version: &apos;3.4.0&apos;, revision: &apos;unknown&apos;, time: &apos;unknown&apos;&#10;System info: host: &apos;nagarjunaMBP.local&apos;, ip: &apos;fe80:0:0:0:1091:7b48:cb5a:156b%en0&apos;, os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;10.12.4&apos;, java.version: &apos;1.8.0_60&apos;&#10;Driver info: org.openqa.selenium.firefox.FirefoxDriver&#10;Capabilities [{moz:profile=/var/folders/g4/dylg4g7s7wbdtg_f6mtzj8m00000gn/T/rust_mozprofile.GQFPFqhdOWOO, rotatable=false, timeouts={implicit=0.0, pageLoad=300000.0, script=30000.0}, pageLoadStrategy=normal, platform=ANY, specificationLevel=0.0, moz:accessibilityChecks=false, acceptInsecureCerts=false, browserVersion=53.0.3, platformVersion=16.5.0, moz:processID=72818.0, browserName=firefox, javascriptEnabled=true, platformName=darwin}]&#10;Session ID: 783e85af-ca60-ae47-b668-a3c0dd75252b&#10;*** Element info: {Using=xpath, value=//*[@id=&apos;PageComposerPagelet_&apos;]//button[contains(., &apos;Post&apos;)]}" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: 
-Unable to locate element: //*[@id='PageComposerPagelet_']//button[contains(., 'Post')]
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.4.0', revision: 'unknown', time: 'unknown'
-System info: host: 'nagarjunaMBP.local', ip: 'fe80:0:0:0:1091:7b48:cb5a:156b%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_60'
-Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities [{moz:profile=/var/folders/g4/dylg4g7s7wbdtg_f6mtzj8m00000gn/T/rust_mozprofile.GQFPFqhdOWOO, rotatable=false, timeouts={implicit=0.0, pageLoad=300000.0, script=30000.0}, pageLoadStrategy=normal, platform=ANY, specificationLevel=0.0, moz:accessibilityChecks=false, acceptInsecureCerts=false, browserVersion=53.0.3, platformVersion=16.5.0, moz:processID=72818.0, browserName=firefox, javascriptEnabled=true, platformName=darwin}]
-Session ID: 783e85af-ca60-ae47-b668-a3c0dd75252b
-*** Element info: {Using=xpath, value=//*[@id='PageComposerPagelet_']//button[contains(., 'Post')]}
-	at tcAutoPost.TCAutoFanPost.verifyPostinFirstPostToGetStarted(TCAutoFanPost.java:50)
+  <testcase name="LaunchBrowser" classname="tcAutoPost.TCAutoFanPost" time="0.794">
+    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
 </failure>
-    <system-out><![CDATA[Called openBrowser
-2017-05-25 14:58:22 INFO  TCAutoFanPost:36 - logged in to facebok
-2017-05-25 14:58:36 INFO  TCAutoFanPost:42 - Opening the page ==> https://www.facebook.com/GetStartedAlex/
-2017-05-25 14:58:39 INFO  FBSearchHome:58 - Generated the responseio.restassured.internal.RestAssuredResponseImpl@70abf9b0
-2017-05-25 14:58:44 INFO  TCAutoFanPost:48 - Posting the message ==> Fox News crew ‘watched in disbelief’ as Montana’s Greg Gianforte ‘slammed’ and ‘punched’ reporter
-2017-05-25 14:58:49 INFO  FBSearchHome:28 - inside Post Message Method
-2017-05-25 14:58:54 INFO  FBSearchHome:36 - Clicked on Post Link on the facebook page
-2017-05-25 14:58:59 INFO  FBSearchHome:40 - Posting this message ==>Fox News crew ‘watched in disbelief’ as Montana’s Greg Gianforte ‘slammed’ and ‘punched’ reporter
+    <system-out><![CDATA[2017-05-25 21:35:33 INFO  BrowserLauncher:117 - BROWSER CALLED
 ]]></system-out>
-    <system-err><![CDATA[OS is + mac os x
-firefox
-1495704493543	geckodriver	INFO	Listening on 127.0.0.1:27852
-1495704493790	geckodriver::marionette	INFO	Starting browser /Applications/Firefox.app/Contents/MacOS/firefox-bin with args ["-marionette"]
-1495704496191	Marionette	INFO	Listening on port 62593
-May 25, 2017 2:58:16 PM org.openqa.selenium.remote.ProtocolHandshake createSession
-INFO: Detected dialect: W3C
-2017-05-25 14:58:16.868 plugin-container[72819:1511910] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x962f, name = 'com.apple.tsm.portname'
-See /usr/include/servers/bootstrap_defs.h for the error codes.
-2017-05-25 14:58:16.870 plugin-container[72819:1511910] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x9a03, name = 'com.apple.CFPasteboardClient'
-See /usr/include/servers/bootstrap_defs.h for the error codes.
-JavaScript warning: https://www.facebook.com/rsrc.php/v3iarK4/yV/l/en_US/bBGd_k-V0lZ.js, line 332: unreachable code after return statement
-JavaScript warning: https://www.facebook.com/rsrc.php/v3iarK4/yV/l/en_US/bBGd_k-V0lZ.js, line 597: unreachable code after return statement
+    <system-err><![CDATA[log4j:ERROR Could not find value for key log4j.appender.ERROR
+log4j:ERROR Could not instantiate appender named "ERROR".
+OS is + mac os x
 ]]></system-err>
   </testcase>
-  <testcase name="verifyPostinFirstPostToRHTestPage" classname="tcAutoPost.TCAutoFanPost" time="68.101"/>
-  <testcase name="verifyPostinSecondPostToFastCarTest" classname="tcAutoPost.TCAutoFanPost" time="58.257"/>
-  <testcase name="verifyPostinSecondPostToGetStarted" classname="tcAutoPost.TCAutoFanPost" time="57.123"/>
-  <testcase name="verifyPostinSecondPostToRHTestPage" classname="tcAutoPost.TCAutoFanPost" time="55.878"/>
+  <testcase name="LaunchBrowser" classname="tcAutoPost.TCAutoFanPost" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="LaunchBrowser" classname="tcAutoPost.TCAutoFanPost" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="LaunchBrowser" classname="tcAutoPost.TCAutoFanPost" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="LaunchBrowser" classname="tcAutoPost.TCAutoFanPost" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="LaunchBrowser" classname="tcAutoPost.TCAutoFanPost" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="verifyPostinFirstPostToFastCarTest" classname="tcAutoPost.TCAutoFanPost" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="QuitBrowser" classname="tcAutoPost.TCAutoFanPost" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="QuitBrowser" classname="tcAutoPost.TCAutoFanPost" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="QuitBrowser" classname="tcAutoPost.TCAutoFanPost" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="QuitBrowser" classname="tcAutoPost.TCAutoFanPost" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="QuitBrowser" classname="tcAutoPost.TCAutoFanPost" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="QuitBrowser" classname="tcAutoPost.TCAutoFanPost" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="verifyPostinFirstPostToGetStarted" classname="tcAutoPost.TCAutoFanPost" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="verifyPostinFirstPostToRHTestPage" classname="tcAutoPost.TCAutoFanPost" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="verifyPostinSecondPostToFastCarTest" classname="tcAutoPost.TCAutoFanPost" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="verifyPostinSecondPostToGetStarted" classname="tcAutoPost.TCAutoFanPost" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="verifyPostinSecondPostToRHTestPage" classname="tcAutoPost.TCAutoFanPost" time="0">
+    <skipped/>
+  </testcase>
 </testsuite>
