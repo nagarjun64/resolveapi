@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [SuiteFB]">
+  <test name="PostingToFacebook">
+    <classes>
+      <class name="tcAutoPost.TCAutoFanPost"/>
+    </classes>
+  </test> <!-- PostingToFacebook -->
+  <test name="PostingToFacebook(failed)">
+    <classes>
+      <class name="tcAutoPost.TCAutoFanPost">
+        <methods>
+          <include name="LaunchBrowser"/>
+          <include name="QuitBrowser"/>
+          <include name="verifyPostinToFacebookPage1"/>
+        </methods>
+      </class> <!-- tcAutoPost.TCAutoFanPost -->
+    </classes>
+  </test> <!-- PostingToFacebook(failed) -->
+</suite> <!-- Failed suite [SuiteFB] -->

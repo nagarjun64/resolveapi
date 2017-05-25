@@ -1,0 +1,8 @@
+baseHelper/BrowserLauncher.class
+actions/listen/FBSearchHome.class
+baseHelper/ReadPropertiesFile.class
+baseHelper/SimplifyUtils.class
+baseHelper/SimplifyUtils$1.class
+uiMap/login/UIFacebook.class
+actions/LoginToApplication.class
+tcAutoPost/TCAutoFanPost.class

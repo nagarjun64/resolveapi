@@ -1,0 +1,5 @@
+<h2>Methods that were not run</h2><table>
+<tr><td>tcAutoPost.TCAutoFanPost.verifyPostinFirstPostToFastCarTest</td></tr>
+<tr><td>tcAutoPost.TCAutoFanPost.verifyPostinSecondPostToFastCarTest</td></tr>
+<tr><td>tcAutoPost.TCAutoFanPost.verifyPostinSecondPostToGetStarted</td></tr>
+</table>

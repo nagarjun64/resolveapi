@@ -1,0 +1,118 @@
+package tcAutoPost;
+
+
+import static io.restassured.RestAssured.given;
+import io.restassured.response.Response;
+
+import org.openqa.selenium.By;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import uiMap.login.UIFacebook;
+import actions.LoginToApplication;
+import actions.listen.FBSearchHome;
+import baseHelper.BrowserLauncher;
+import baseHelper.ReadPropertiesFile;
+import baseHelper.SimplifyUtils;
+
+public class TCAutoFanPost extends BrowserLauncher {
+
+	//================================General Related Test cases=========//
+
+	@Test
+	public void verifyPostinFirstPostToGetStarted(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		FBSearchHome fbSearchHome = new FBSearchHome();
+
+		UIFacebook uiFacebook = new UIFacebook(driver);
+		
+		loginToApplication.loginAsFan();
+		
+		SimplifyUtils.s360sleep(5000);
+		
+		driver.get(ReadPropertiesFile.getStartedPageLink);
+		
+		String messagetoPost = fbSearchHome.generateMessage().jsonPath().get("articles[0].title");
+		
+		SimplifyUtils.s360sleep(5000);
+		
+		fbSearchHome.postMessage(messagetoPost);
+		
+		SimplifyUtils.s360sleep(5000);
+		
+	}
+	
+	@Test
+	public void verifyPostinSecondPostToGetStarted(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		FBSearchHome fbSearchHome = new FBSearchHome();
+
+		UIFacebook uiFacebook = new UIFacebook(driver);
+		
+		loginToApplication.loginAsFan();
+		
+		SimplifyUtils.s360sleep(5000);
+		
+		driver.get(ReadPropertiesFile.getStartedPageLink);
+		
+		String messagetoPost = fbSearchHome.generateMessage().jsonPath().get("articles[1].title");
+		
+		SimplifyUtils.s360sleep(5000);
+		
+		fbSearchHome.postMessage(messagetoPost);
+		
+		SimplifyUtils.s360sleep(5000);
+		
+	}
+	
+	@Test
+	public void verifyPostinFirstPostToFastCarTest(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		FBSearchHome fbSearchHome = new FBSearchHome();
+
+		UIFacebook uiFacebook = new UIFacebook(driver);
+		
+		loginToApplication.loginAsFan();
+		
+		SimplifyUtils.s360sleep(5000);
+		
+		driver.get(ReadPropertiesFile.fastCarTestPageLink);
+		
+		String messagetoPost = fbSearchHome.generateMessage().jsonPath().get("articles[2].title");
+		
+		SimplifyUtils.s360sleep(5000);
+		
+		fbSearchHome.postMessage(messagetoPost);
+		
+		SimplifyUtils.s360sleep(5000);
+		
+	}
+	
+	@Test
+	public void verifyPostinSecondPostToFastCarTest(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		FBSearchHome fbSearchHome = new FBSearchHome();
+
+		UIFacebook uiFacebook = new UIFacebook(driver);
+		
+		loginToApplication.loginAsFan();
+		
+		SimplifyUtils.s360sleep(5000);
+		
+		driver.get(ReadPropertiesFile.fastCarTestPageLink);
+		
+		String messagetoPost = fbSearchHome.generateMessage().jsonPath().get("articles[3].title");
+		
+		SimplifyUtils.s360sleep(5000);
+		
+		fbSearchHome.postMessage(messagetoPost);
+		
+		SimplifyUtils.s360sleep(5000);
+		
+	}
+
+}

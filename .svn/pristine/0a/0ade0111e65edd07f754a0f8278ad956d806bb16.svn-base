@@ -1,0 +1,361 @@
+package actions.publish;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+
+import uiMap.publish.UIPublish;
+import baseHelper.BrowserLauncher;
+import baseHelper.SimplifyUtils;
+
+public class Publish extends BrowserLauncher {
+
+
+	public Boolean checkMessageIsScheduled(String message, String channelNameToCheck, String channelTypeToCheck){
+
+		UIPublish uiPublish = new UIPublish(driver);
+
+		Boolean isMessageScheduled = null;
+
+		SimplifyUtils.pageRefresh();
+		
+		SimplifyUtils.waitTillElementFound(uiPublish.scheduledMessages, 60);
+
+		uiPublish.scheduledMessages.click();
+
+		SimplifyUtils.s360sleep(5000);
+
+		int pageCount = Integer.parseInt( uiPublish.totalPages.getText());// pages present in scheduled section
+
+		int messageRow = 0;  
+
+		String currentChannel = null;
+
+		String currentChannelType = null;
+
+		int messagesCount = uiPublish.listOfTextInMessages.size(); //count of messages in current page
+
+		for (int j = 0; j < pageCount; j++) 
+		{
+
+			for (int i = 0; i < messagesCount; i++)
+
+			{
+				//getting message text from each messages present in this module and matching with the message required
+				
+				if (uiPublish.listOfTextInMessages.get(i).getText().contains(message)) {
+					
+					messageRow = i;
+
+					messageRow++;
+
+					break;
+				}
+
+			}
+			
+			if (messageRow == 0 && pageCount > 1 && j < pageCount) //if the message is not present in first page
+			
+			{
+
+				uiPublish.navigateToNextPage.click();
+				
+				SimplifyUtils.s360sleep(3000);
+
+				messagesCount = uiPublish.listOfTextInMessages.size();
+				
+				isMessageScheduled = false;
+				
+			}
+			
+			else if(messageRow>0) 
+			
+			{
+				isMessageScheduled = false;
+				
+				break; // if the message is present in the page come out of the second for loop
+			}
+
+		}
+
+		if (messageRow > 0) 
+		{
+
+			currentChannel = driver.findElement(By.xpath("//*[@id='inbox-wrapper']//tr[" + messageRow+ "]//td[2]//div[@class='profile-pic']")).getAttribute("data-original-title");
+
+			currentChannelType = driver.findElement(By.xpath("//*[@id='inbox-wrapper']//tr[" + messageRow+ "]//td[2]//span")).getAttribute("class");
+
+			if(currentChannel.equalsIgnoreCase(channelNameToCheck) && currentChannelType.contains(channelTypeToCheck))
+			{
+
+				isMessageScheduled = true;
+
+			}
+			else
+			{
+
+				isMessageScheduled = false;
+
+			}
+		}
+
+		return isMessageScheduled;
+	}
+
+	/*	public Boolean checkMessageIsSent(String message, String channelNameToCheck, String channelTypeToCheck){
+
+		UIPublish uiPublish = new UIPublish(driver);
+
+		Boolean isMessageSent = null;
+
+		uiPublish.sentMessages.click();
+
+		SimplifyUtils.waitTillElementFound(uiPublish.currentPageNumber, 60);
+
+		int pageCount = Integer.parseInt( uiPublish.totalPages.getText());
+
+		for (int j=1; j< pageCount;j++)
+		{
+
+			int messagesCount = uiPublish.listOfTextInMessages.size();
+
+			for (int i = 0; i < messagesCount; i++) 
+			{
+
+				//matching the text of the required message sent with the messages present in the sent messages
+
+				if (uiPublish.listOfTextInMessages.get(i).getText().equalsIgnoreCase(message)) 
+				{
+					String currentChannel = driver.findElements(By.xpath("//*[@id='inbox-wrapper']//tr["+ (i + 1)+ "]//td[2]//div[@class='profile-pic']")).get(i).getAttribute("data-original-title");
+
+					SimplifyUtils.s360sleep(2000);
+
+					if (currentChannel.equalsIgnoreCase(channelNameToCheck)) 
+					{
+						String currentChannelType = driver.findElements(By.xpath("//*[@id='inbox-wrapper']//tr["+ (i + 1) + "]//td[2]//span")).get(i).getAttribute("class");
+
+						SimplifyUtils.s360sleep(2000);
+
+						if (currentChannelType.contains(channelTypeToCheck)) 
+						{
+							isMessageSent = true;
+
+							break;
+
+						}
+
+					}
+				}
+				else
+				{
+					isMessageSent = false;
+
+				}
+
+			}
+
+			if (isMessageSent == false) 
+			{
+				//navigating to naxt page if the condition is not matched
+
+				uiPublish.navigateToNextPage.click();
+
+				messagesCount = uiPublish.listOfTextInMessages.size();
+
+			}
+			else if(isMessageSent == true)
+			{
+				break;
+			}
+
+		}
+		return isMessageSent;		
+	}
+	 */
+
+	public Boolean checkMessageIsSent(String message, String channelNameToCheck, String channelTypeToCheck){
+
+		UIPublish uiPublish = new UIPublish(driver);
+
+		Boolean isMessageSent = null;
+
+		SimplifyUtils.pageRefresh();
+		
+		SimplifyUtils.waitTillElementFound(uiPublish.sentMessages, 60);
+		
+		uiPublish.sentMessages.click();
+
+		SimplifyUtils.s360sleep(3000);
+
+		int pageCount = Integer.parseInt( uiPublish.totalPages.getText());
+
+		int messageRow = 0;
+
+		String currentChannel = null;
+
+		String currentChannelType = null;
+
+		int messagesCount = uiPublish.listOfTextInMessages.size();
+
+		for (int j = 0; j < pageCount; j++) 
+		
+		{
+
+			for (int i = 0; i < messagesCount; i++)
+
+			{
+System.err.println(j+"page count" +pageCount+"==> "+uiPublish.listOfTextInMessages.get(i).getText()+"==> "+uiPublish.listOfTextInMessages.get(i).getText().contains(message));
+				
+				//getting message text from each messages present in this module and matching with the message required
+				if (uiPublish.listOfTextInMessages.get(i).getText().contains(message)) 
+				
+				{
+					messageRow = i;
+
+					messageRow++;
+
+					break;
+				}
+
+			}
+			
+			if (messageRow == 0 && pageCount > 1 && j < pageCount)
+			
+			{
+				
+				uiPublish.navigateToNextPage.click();
+				
+				SimplifyUtils.s360sleep(3000);
+
+				messagesCount = uiPublish.listOfTextInMessages.size();
+				
+				isMessageSent = false;
+			}
+			
+			else
+				
+			{
+				isMessageSent = false;
+				
+				break;
+			}
+
+		}
+
+		if (messageRow > 0) 
+		{
+
+			currentChannel = driver.findElement(By.xpath("//*[@id='inbox-wrapper']//tr[" + messageRow+ "]//td[2]//div[@class='profile-pic']")).getAttribute("data-original-title");
+
+			currentChannelType = driver.findElement(By.xpath("//*[@id='inbox-wrapper']//tr[" + messageRow+ "]//td[2]//span")).getAttribute("class");
+
+			if(currentChannel.equalsIgnoreCase(channelNameToCheck) && currentChannelType.contains(channelTypeToCheck))
+			{
+
+				isMessageSent = true;
+
+			}
+			
+			else
+				
+			{
+
+				isMessageSent = false;
+
+			}
+		}
+
+		return isMessageSent;
+
+	}
+
+	public Boolean checkMessageIsFailed(String message, String channelNameToCheck, String channelTypeToCheck){
+
+		UIPublish uiPublish = new UIPublish(driver);
+
+		Boolean isMessageFailed = null;
+
+		SimplifyUtils.pageRefresh();
+		
+		SimplifyUtils.waitTillElementFound(uiPublish.FailedMessages, 60);
+
+		uiPublish.FailedMessages.click();
+
+		SimplifyUtils.s360sleep(5000);
+
+		int pageCount = Integer.parseInt( uiPublish.totalPages.getText());
+
+		int messageRow = 0;
+
+		String currentChannel = null;
+
+		String currentChannelType = null;
+
+		int messagesCount = uiPublish.listOfTextInMessages.size();
+
+		for (int j = 0; j < pageCount; j++) {
+
+			for (int i = 0; i < messagesCount; i++)
+
+			{
+
+				//getting message text from each messages present in this module and matching with the message required
+				if (uiPublish.listOfTextInMessages.get(i).getText().contains(message)) 
+				
+				{
+					messageRow = i;
+
+					messageRow++;
+
+					break;
+				}
+
+			}
+			if (messageRow == 0 && pageCount > 1 && j < pageCount)
+			
+			{
+				uiPublish.navigateToNextPage.click();
+				
+				SimplifyUtils.s360sleep(3000);
+
+				messagesCount = uiPublish.listOfTextInMessages.size();
+				
+				isMessageFailed = false;
+			}
+			
+			else
+				
+			{
+				isMessageFailed = false;
+				
+				break;
+			}
+
+		}
+
+		if (messageRow > 0) 
+		{
+
+			currentChannel = driver.findElement(By.xpath("//*[@id='inbox-wrapper']//tr[" + messageRow+ "]//td[2]//div[@class='profile-pic']")).getAttribute("data-original-title");
+
+			currentChannelType = driver.findElement(By.xpath("//*[@id='inbox-wrapper']//tr[" + messageRow+ "]//td[2]//span")).getAttribute("class");
+
+			if(currentChannel.equalsIgnoreCase(channelNameToCheck) && currentChannelType.contains(channelTypeToCheck))
+			{
+				
+				isMessageFailed = true;
+
+			}
+			
+			else
+			
+			{
+
+				isMessageFailed = false;
+
+			}
+		}
+
+		return isMessageFailed;	
+	}
+
+}

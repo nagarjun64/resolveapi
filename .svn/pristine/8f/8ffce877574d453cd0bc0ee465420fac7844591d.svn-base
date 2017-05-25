@@ -1,0 +1,345 @@
+package actions.listen;
+
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+
+import uiMap.admin.UIAdminChannels;
+import uiMap.listen.UIListenHome;
+import uiMap.listen.UIProfileMgmt;
+import actions.LoginToApplication;
+import actions.OpenModule;
+import baseHelper.BrowserLauncher;
+import baseHelper.Config;
+import baseHelper.SimplifyUtils;
+
+public class ProfileMgmt extends BrowserLauncher {
+
+	UIProfileMgmt uiProfileMgmt = new UIProfileMgmt(driver);
+
+	public void openProfileCreationScreen(){
+
+		UIListenHome uiListenHome = new UIListenHome(driver);
+		UIProfileMgmt uiProfileMgmt = new UIProfileMgmt(driver);
+
+		uiListenHome.createNewProfile.click();
+
+		SimplifyUtils.waitForElementToBeClickable(uiProfileMgmt.createProfile, 30);
+
+	}
+
+	//===============================Profile Settings ================//
+	public void turnCaseAssociationOn(){
+
+		UIProfileMgmt uiProfileMgmt = new UIProfileMgmt(driver);
+
+		SimplifyUtils.waitTillElementFound(uiProfileMgmt.caseAssociation, 60);
+
+		if(uiProfileMgmt.caseAssociationDisabled.isDisplayed())
+		{
+			uiProfileMgmt.caseAssociation.click();
+		}
+
+	}
+
+	public void turnCaseAssociationOff(){
+
+		UIProfileMgmt uiProfileMgmt = new UIProfileMgmt(driver);
+
+		SimplifyUtils.waitTillElementFound(uiProfileMgmt.caseAssociation, 60);
+
+		if(uiProfileMgmt.caseAssociationEnabled.isDisplayed())
+		{
+			uiProfileMgmt.caseAssociation.click();
+		}
+
+	}
+
+	public void setCaseAssociationDuration(String durationforAssociation){
+
+		UIProfileMgmt uiProfileMgmt = new UIProfileMgmt(driver);
+
+		SimplifyUtils.waitTillElementFound(uiProfileMgmt.caseAssociation, 60);
+
+		SimplifyUtils.selectElementByValue(uiProfileMgmt.caseAssociationDuration, durationforAssociation);
+
+	}
+
+	public void setReplyOption(String replyOption) {
+
+		UIProfileMgmt uiProfileMgmt = new UIProfileMgmt(driver);
+
+		SimplifyUtils.waitTillElementFound(uiProfileMgmt.caseAssociation, 60);
+
+		SimplifyUtils.selectElementByValue(uiProfileMgmt.replySetting, replyOption );
+
+	}
+
+	//===============================Keyword Combination ================//
+	
+	public void fillFirstSubqueryDetails(){
+
+		UIProfileMgmt uiProfileMgmt = new UIProfileMgmt(driver);
+
+		SimplifyUtils.waitTillElementFound(uiProfileMgmt.firstSubqueryName, 60);
+
+		uiProfileMgmt.firstSubqueryName.sendKeys("qqw");
+
+		uiProfileMgmt.firstSetUpWordToTrack.sendKeys("qwq");
+
+		uiProfileMgmt.firstSetUpAllWords.sendKeys("w");
+
+		uiProfileMgmt.firstSetUpAnyWords.sendKeys("qw");
+
+		uiProfileMgmt.firstSetUpNoneWords.sendKeys("qw");
+
+		((JavascriptExecutor) driver).executeScript("scroll(0,1000)");
+
+		SimplifyUtils.selectElementByValue(uiProfileMgmt.firstSetUpSelectCountry, "India");
+
+		SimplifyUtils.s360sleep(1000);
+
+		SimplifyUtils.scrolltoElementUsingCoordinates(uiProfileMgmt.firstSetUpInvertLocation);
+
+		SimplifyUtils.turnOnIosSwitch(uiProfileMgmt.firstSetUpInvertLocationDisabled, uiProfileMgmt.firstSetUpInvertLocation);
+
+		SimplifyUtils.s360sleep(1000);
+
+		SimplifyUtils.scrolltoElementUsingCoordinates(uiProfileMgmt.firstSetUpApplyLocation);
+
+		SimplifyUtils.turnOnIosSwitch(uiProfileMgmt.firstSetUpApplyLocationDisabled, uiProfileMgmt.firstSetUpApplyLocation);
+
+		SimplifyUtils.s360sleep(1000);
+
+		SimplifyUtils.turnOffIosSwitch(uiProfileMgmt.firstSetUpPublicTwitterEnabled, uiProfileMgmt.firstSetUpPublicTwitter);
+
+	}
+
+	//===============================Social Channels ================//
+	public String addAdminFacebookPage(){
+
+		UIProfileMgmt uiProfileMgmt = new UIProfileMgmt(driver);
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		String pageadded = null;
+
+		uiProfileMgmt.addSocialChannels.click();
+
+		uiProfileMgmt.fbPageAccordion.click();
+
+		SimplifyUtils.waitForElementToBeClickable(uiProfileMgmt.addAdminFbpage,30);
+
+		String Parent_Window = driver.getWindowHandle();
+
+		uiProfileMgmt.addAdminFbpage.click();
+
+		SimplifyUtils.switchToNewWindow();
+
+		SimplifyUtils.waitForElementToBeClickable(uiAdminChannels.facebookLoginButton, 30);
+
+		uiAdminChannels.facebookLoginEmail.sendKeys(Config.fbAccount);
+
+		uiAdminChannels.facebookLoginPassword.sendKeys(Config.fbAccountPassword);
+
+		SimplifyUtils.s360sleep(2000);
+
+		uiAdminChannels.facebookLoginButton.click();
+
+		SimplifyUtils.waitForElementToBeClickable(uiAdminChannels.finishAddingFbAdminpage,30);
+
+		if (uiAdminChannels.facebookPageAdd.isDisplayed()) 
+		{
+			((JavascriptExecutor) driver).executeScript("scroll(0,-500)");
+
+			pageadded = uiAdminChannels.facebookPageBeingAdded.getText();
+
+			uiAdminChannels.facebookPageAdd.click();
+
+			SimplifyUtils.s360sleep(2000);
+
+			driver.close();
+
+			driver.switchTo().window(Parent_Window);
+
+		}
+		else
+		{
+			uiAdminChannels.finishAddingFbAdminpage.click();
+		}
+
+		return pageadded;
+
+	}
+
+	public String addNonAdminFacebookPage(){
+
+		UIProfileMgmt uiProfileMgmt = new UIProfileMgmt(driver);
+
+		String pageadded = null;
+
+		uiProfileMgmt.addSocialChannels.click();
+
+		uiProfileMgmt.fbPageAccordion.click();
+
+		SimplifyUtils.waitForElementToBeClickable(uiProfileMgmt.addNonAdminFbpage,30);
+
+		uiProfileMgmt.addNonAdminFbpage.click();
+
+		uiProfileMgmt.nonAdminFbPageSearchBox.sendKeys("simplify360");
+
+		uiProfileMgmt.nonAdminFbSearchButton.click();
+
+		SimplifyUtils.waitForElementToBeClickable(uiProfileMgmt.addNonAdminFirstFbPageFromSearch,30);
+
+		if (uiProfileMgmt.addNonAdminFirstFbPageFromSearch.isDisplayed())
+		{
+
+			pageadded = uiProfileMgmt.nonAdminFirstFbPageFromSearch.getText();
+
+			uiProfileMgmt.addNonAdminFirstFbPageFromSearch.click();
+
+			SimplifyUtils.s360sleep(3000);
+
+			uiProfileMgmt.fbPageNonAdminAdditionDone.click();
+
+		}
+
+		return pageadded;
+
+	}
+
+	public String importFacebookPage(){
+
+		UIProfileMgmt uiProfileMgmt = new UIProfileMgmt(driver);
+
+		String pageadded = null;
+
+		uiProfileMgmt.addSocialChannels.click();
+
+		uiProfileMgmt.fbPageAccordion.click();
+
+		SimplifyUtils.waitForElementToBeClickable(uiProfileMgmt.importFbpage,30);
+
+		uiProfileMgmt.importFbpage.click();
+
+		SimplifyUtils.s360sleep(2000);
+
+		if (uiProfileMgmt.importFirstFbPage.isDisplayed())
+		{
+
+			pageadded = uiProfileMgmt.firstFbPageToImport.getText();
+
+			uiProfileMgmt.importFirstFbPage.click();
+
+			SimplifyUtils.s360sleep(2000);
+
+			((JavascriptExecutor) driver).executeScript("scroll(0,1200)");
+
+			SimplifyUtils.s360sleep(2000);
+
+			uiProfileMgmt.fbPageImportDone.click();
+
+		}
+
+		return pageadded;
+
+	}
+
+	public Boolean isFbPageAddedToProfile(String fbPageNameToCheck){
+
+		UIProfileMgmt uiProfileMgmt = new UIProfileMgmt(driver);
+
+		Boolean isPageAdded = null ;
+
+		uiProfileMgmt.addSocialChannels.click();
+
+		//	uiProfileMgmt.fbPageAccordion.click();
+
+		if (uiProfileMgmt.fbPagesAddedForProfile.size() > 0) {
+
+			for (int i = 0; i < uiProfileMgmt.fbPagesAddedForProfile.size(); i++) 
+			{
+
+				String currentFbPageName = uiProfileMgmt.fbPagesAddedForProfile.get(i).getText();
+
+				if(currentFbPageName.equalsIgnoreCase(fbPageNameToCheck))
+				{
+					isPageAdded = true;
+
+					break;
+				}
+				else
+				{
+					isPageAdded = false;
+				}
+
+			}
+
+		}
+
+		return isPageAdded;
+
+	}
+
+
+	//===============================Share Profile================//
+	
+	public void shareProfile(String emailIdToShare){
+
+		UIProfileMgmt uiProfileMgmt = new UIProfileMgmt(driver);
+
+		SimplifyUtils.waitForElementToBeClickable(uiProfileMgmt.shareProfileWith, 30);
+
+		uiProfileMgmt.shareProfileWith.click();
+
+		uiProfileMgmt.userSearch.clear();
+
+		uiProfileMgmt.userSearch.sendKeys(emailIdToShare);
+
+		if(uiProfileMgmt.firstUserEmail.getText().equalsIgnoreCase(emailIdToShare))
+		{
+			SimplifyUtils.s360sleep(500);
+
+			SimplifyUtils.checkbox_Checking(uiProfileMgmt.firstUserShareCheckBox);
+
+			SimplifyUtils.selectElementByValue(uiProfileMgmt.firstUserRoleDropDown, "7");
+		}
+
+	}
+
+	public Boolean isProfileShared(String emailIdToCheck){
+
+		UIProfileMgmt uiProfileMgmt = new UIProfileMgmt(driver);
+
+		Boolean isProfileShared = null ;
+
+		SimplifyUtils.waitForElementToBeClickable(uiProfileMgmt.shareProfileWith, 30);
+
+		uiProfileMgmt.shareProfileWith.click();
+
+		uiProfileMgmt.userSearch.clear();
+
+		uiProfileMgmt.userSearch.sendKeys(emailIdToCheck);
+
+		SimplifyUtils.s360sleep(1000);
+
+		if(uiProfileMgmt.firstUserShareCheckBox.isSelected())
+		{
+			isProfileShared = true;
+
+		}
+		else
+		{
+			isProfileShared = false;
+		}
+
+		return isProfileShared;
+
+
+	}
+	
+}

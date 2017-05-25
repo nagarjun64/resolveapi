@@ -1,0 +1,40 @@
+package uiMap.login;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class UILoginHome {
+
+	public UILoginHome (WebDriver driver) {
+
+		PageFactory.initElements(driver, this);
+
+	}
+
+	//UserName
+	@FindBy(id = "username")
+	public WebElement userName;
+
+	//Password
+	@FindBy(id = "login_password")
+	public WebElement userPassword;
+
+	//LoginButton
+	@FindBy(className="submit")
+	public WebElement oldloginButton;
+
+	//LoginButton
+	@FindBy(id="rp")
+	public WebElement loginButton;
+
+
+	//ForgotPasswordLink
+	@FindBy(linkText="Forgot")
+	public WebElement forgotPasswordLink;
+
+	@FindBy(className="recaptcha-checkbox-checkmark")
+	public WebElement captcha;
+
+}

@@ -1,0 +1,106 @@
+package uiMap.listen;
+
+import java.util.List;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
+
+public class UIListenHome {
+
+	public UIListenHome (WebDriver driver) {
+
+		PageFactory.initElements(driver, this);
+
+	}
+
+	//Create New Profile
+	@FindBy(xpath = "//button[contains(@onclick,'createNewProfile();')]")
+	public WebElement createNewProfile;
+
+	//Compare Profile 
+	@FindBy(xpath = "//button[@onclick='compareProfiles();']")
+	public WebElement compareProfiles;
+
+	//Search Profile 
+	@FindBy(id = "s2id_profile_combo")
+	public WebElement searchProfiles;
+
+	//Filter profile by status running, paused, Active 
+	@FindBy(id = "profileType")
+	public WebElement profileStatus;
+
+	//Total Page Number
+	@FindBy(xpath = "//*[@id='totalPages']")
+	public WebElement totalPages;
+
+	//Current Page Number
+	@FindBy(xpath = "//*[@id='currentPage']")
+	public WebElement currentPageNumber;
+
+	//Navigate to Next Page
+	@FindBy(xpath = "//li[@class='pagination-arrow' and @data-original-title='Go to next page'] ")
+	public WebElement navigateToNextPage;
+
+	//Grid View is selected in Listen Home
+	@FindAll(@FindBy(how = How.CSS, using = "a.btn.newbtn.btn-white.gridview.selected.fancyToolTip"))
+	public List<WebElement> gridViewIsSelected;
+
+	//Choose Grid View
+	@FindBy(xpath = "//a[@data-view='GRID']")
+	public WebElement chooseGridView;
+
+	//List View is selected in Listen Home
+	@FindAll(@FindBy(how = How.CSS, using = "a.btn.newbtn.btn-white.listview.selected.fancyToolTip"))
+	public List<WebElement> listViewIsSelected;
+
+	//Choose List View
+	@FindBy(xpath = "//a[@data-view='LIST']")
+	public WebElement chooseListView;
+
+	//Profile Name
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[@id='dashboardDiv']//div[starts-with(@class,'comment')]//a/span"))
+	public List<WebElement> profileNames;
+
+	//Profile dashboard button for the profiles in the listen home page
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[@id='dashboardDiv']//a[@title='Dashboard']"))
+	public List<WebElement> profileDashboard;
+
+	//Profile messages button for the profiles in the listen home page
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[@id='dashboardDiv']//a[@title='Messages']"))
+	public List<WebElement> profileMessages;
+
+	//Profile influencer button for the profiles in the listen home page
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[@id='dashboardDiv']//a[@title='Influencer']"))
+	public List<WebElement> profileInfluencer;
+
+	//Profile settings button for the profiles in the listen home page
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[@id='dashboardDiv']//a[@title='Settings']"))
+	public List<WebElement> profileSettings;
+
+	//Profile drop down to see the edit, delete, pause/play button
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[@id='dashboardDiv']//div[starts-with(@class,'btn-group')]"))
+	public List<WebElement> profileOptionDropDown;
+
+	//Profile Keyword Performance button
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[@id='dashboardDiv']//div[starts-with(@class,'btn-group')]//a[contains(text(), 'Performance')]/@href"))
+	public List<WebElement> profileKeyWordPerformance;
+
+	//Profile Edit button
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[@id='dashboardDiv']//div[starts-with(@class,'btn-group')]//a[@rel='createNewProfile']"))
+	public List<WebElement> profileEdit;
+
+	//Profile Delete button
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[@id='dashboardDiv']//div[starts-with(@class,'btn-group')]//a[contains(text(), 'Delete Profile')]/@href"))
+	public List<WebElement> profileDelete;
+
+	//Profile Pause button
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[@id='dashboardDiv']//div[starts-with(@class,'btn-group')]//a[contains(text(), 'Pause Profile')]/@href"))
+	public List<WebElement> profilePause;
+
+
+
+}

@@ -1,0 +1,287 @@
+package uiMap.publish;
+
+import java.util.List;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
+
+public class UINewMessage {
+
+	public UINewMessage (WebDriver driver) {
+
+		PageFactory.initElements(driver, this);
+
+	}
+
+	//===========================================Channels in New Screen===========================================//
+
+	//new message button
+	@FindBy(xpath = "//a[contains(.,'COMPOSE')]")
+	public WebElement newMessageFromPublish;
+
+	//Select Channels Div
+	@FindBy(xpath = "//*[@id='fromContent']")
+	public WebElement selectChannelsDiv;
+
+	//div[div[span[contains(@class, "social-icon-twitter")]]]/div[contains(@class, "checkbox")]
+
+	//listOfChannels Present
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[@id='fromContent']//*[starts-with(@class,'social-icon-div')]"))
+	public List <WebElement> listOfAdminChannelsToPost;
+
+	//listOf twitter Channels Present to post
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[starts-with(@id,'1Id')]//label"))
+	public List <WebElement> listOfAdminTwitterChannelsToPost;
+
+	//listOf twitter channesl to select
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[starts-with(@id,'1Id')]//*[@class='social-profile-pic']"))
+	public List <WebElement> twtChannelName;
+
+	//listOf Facebook Account Present to post
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[starts-with(@id,'2Id')]//label"))
+	public List <WebElement> listOfFacebookAccountToPost;
+
+	//listOf Facebook Page Present to post
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[starts-with(@id,'6Id')]//label"))
+	public List <WebElement> listOfAdminFacebookPageToPost;
+
+	//listOf Facebook Page Present to post
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[starts-with(@id,'6Id')]//*[@class='social-profile-pic']"))
+	public List <WebElement> fbPageName;
+
+	//listOf Facebook Group Present to post
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[starts-with(@id,'40Id')]//label"))
+	public List <WebElement> listOfFacebookGroupToPost;
+
+	//listOf Linkedin Account Page Present to post
+	@FindAll(@FindBy(how = How.XPATH, using = "//div[div[span[contains(@class, 'social-icon-linkedin')]]]/div[contains(@class, 'checkbox')]"))
+	public List <WebElement> listOfLinkedinAccountToPost;
+
+	//listOf Linkedin Company Page Present to post
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[starts-with(@id,'16Id')]//label"))
+	public List <WebElement> listOfLinkedinCompToPost;
+
+	//listOf YouTube Channels Present to post
+	@FindAll(@FindBy(how = How.XPATH, using = "//div[div[div[contains(@class, 'social-icon-youtube')]]]/div[contains(@class, 'checkbox')]"))
+	public List <WebElement> listOfYouTubeChannelsToPost;
+
+	//listOf Google Plus Pages Present to post
+	@FindAll(@FindBy(how = How.XPATH, using = "//div[div[div[contains(@class, 'social-icon-googleplus')]]]/div[contains(@class, 'checkbox')]"))
+	public List <WebElement> listOfGooglePlusToPost;
+
+	//listOf Tumblr Present to post
+	@FindAll(@FindBy(how = How.XPATH, using = "//div[div[div[contains(@class, 'social-icon-tumblr')]]]/div[contains(@class, 'checkbox')]"))
+	public List <WebElement> listOfTumblrBlogs;
+
+	//Check boxes for social channels
+	@FindBy(xpath = "//*[@id='fromContent']//label[@for='checkbox1']")
+	public WebElement selectAllChannelsToPublish;
+
+	//Check boxes for social channels
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[@id='fromContent']//*[@for='checkbox1']"))
+	public List <WebElement> selectAllChannelsToPublishList;
+
+	//*[@id='fromContent']//label[@for='checkbox1']
+
+	//===========================================New message===========================================//
+
+	//Title of the message to Be published
+	@FindBy(xpath = "//input[@id='msgTitle']")
+	public WebElement messageTitle;
+
+	//Message to be published
+	@FindBy(xpath = "//textarea[@id='msg']")
+	public WebElement messageToPublish;
+
+	//URL to be shrinked
+	@FindBy(xpath = "//*[@id='url']")
+	public WebElement urlToShrink;
+
+	//Click to shrink button
+	@FindBy(xpath = "//input[@onclick='shrinkIt();']")
+	public WebElement shrinkURL;
+
+	//Twitter Message Length Counter
+	@FindBy(xpath = "//*[@id='twCount']")
+	public WebElement TwitterCharacterCounter;
+
+	//===========================================Pictures / Videos ===========================================//
+
+	//Pictue video upload tab
+	@FindBy(linkText = "Pictures/videos")
+	public WebElement pictureVideoTab;
+
+	//Pictue upload button
+	@FindBy(xpath = "//input[@data-original-title='Upload image']")
+	public WebElement uploadPicture;
+
+	//Image Uploaded Thumbnail
+	@FindBy(xpath = "//*[@id='uploadingFiles']//img")
+	public WebElement imageUploadedDefaultThumbnail;
+
+	//Video upload button
+	@FindBy(xpath = "//input[@data-original-title='Upload video']")
+	public WebElement uploadVideo;
+
+	//videoUploadedDefaultThumbnail
+	@FindBy(xpath = "//*[@id='uploadingFilesVideo']/img")
+	public WebElement videoUploadedDefaultThumbnail;
+
+	//Create New Facebook Album
+	@FindBy(xpath = "//a[@id='createAlbum']")
+	public WebElement createFbPageAlbum;
+
+	//Album Name
+	@FindBy(xpath = "//input[@id='albumName']")
+	public WebElement FbPageAlbumName;
+
+	//Album Description
+	@FindBy(xpath = "//input[contains(@id,'albumDescription')]")
+	public WebElement FbPageAlbumNameDescription;
+
+	//Save Album Details
+	@FindBy(xpath = "//input[@onclick='saveAlbum()']")
+	public WebElement saveFbAlbum;
+
+	//Cancel Album Creation
+	@FindBy(xpath = "//input[@onclick='cancelAlbum()']")
+	public WebElement cancelFbAlbumCreation;
+
+	//Change Album for facebook
+	@FindBy(id = "itemsDropdown")
+	public WebElement changeAlbum;
+
+	//album select drop down for facebook pages
+	@FindBy(xpath = "//span[@id='albumsDiv']")
+	public WebElement albumSelect;
+
+	//List of facebook page album
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[@id='albumsDiv']//label"))
+	public List <WebElement> albumsList;
+
+
+
+	//===========================================Add Target===========================================//
+
+	//Add Target Tab
+	@FindBy(xpath = "//a[contains(.,'Add target')]")
+	public WebElement targetTab;
+
+	//Target Block
+	@FindBy(xpath = "//*[@id='block-target']")
+	public WebElement targetBlock;
+
+	//===========================================Add Facebook Page Target===========================================//
+
+	//Target Drop Down Facebook page
+	@FindBy(xpath = "//*[@id='targetSelect']")
+	public WebElement targetDropDownFBPage;
+
+	//Target fbPageTargetOptionGender
+	@FindBy(xpath = "//*[@id='genders']")
+	public WebElement fbPageTargetOptionGender;
+
+	//Target fbPageTargetOptionSelectInterests 
+	@FindBy(xpath = "//*[@id='selectInterests']")
+	public WebElement fbPageTargetOptionSelectInterests;
+
+	//Target enterFbPageargetInterests
+	@FindBy(xpath = "//*[@id='interestsAuto']")
+	public WebElement enterFbPageTargetInterests;
+
+	//Target fbPageTargetOptionSelectInterests 
+	@FindBy(xpath = "//*[@id='interestsInputSpan']/div/span")
+	public WebElement searchFbPageInterests;
+
+	//list fb interest search results
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[@id='intOut']//input"))
+	public List <WebElement> listOfFbPageInterests;
+
+	//Save facebook page interests after search 
+	@FindBy(xpath = "//*[@id='targetModal']//button[@onclick='saveTarget();']")
+	public WebElement saveFbPageTargetInterests;
+
+	//Target option selected in the first level targeting
+	@FindAll(@FindBy(how = How.XPATH, using = "//div[@id='targetList']/div[contains(@class,targetRow)]"))
+	public List <WebElement>  selectedFbPageTargetedOptions;
+
+
+	//===========================================Add Linkedin Company Target===========================================//
+
+	//Target Drop Down linkedin Compage page
+	@FindBy(xpath = "//*[@id='targetSelectLNC']")
+	public WebElement targetDropDownLinkedinComp;
+
+	//Target option selected in the first level targeting
+	@FindAll(@FindBy(how = How.XPATH, using = "//div[@id='targetListLNC']/div[contains(@class,targetRow)]"))
+	public List <WebElement>  selectedLkCompTargetedOptions;
+
+	//Target option selected in the second level after selecting the values from the first level target options
+	@FindAll(@FindBy(how = How.XPATH, using = "//div[@id='targetListLNC']//li[contains(@class, 'select2-search-choice')]"))
+	public List <WebElement>  selectedLkCompTargetedSubOptions;
+
+	//Target Drop Down option industry Linkedin company page
+	@FindBy(xpath = "//*[@id='industry']")
+	public WebElement lkCompTargetOptionIndustry;
+
+	//Target Drop Down option JobFunction Linkedin company page
+	@FindBy(xpath = "//*[@id='JobFunction']")
+	public WebElement lkCompTargetOptionJobFunction;
+
+	//Target Drop Down option seniority Linkedin company page
+	@FindBy(xpath = "//*[@id='seniority']")
+	public WebElement lkCompTargetOptionSeniority;
+
+	//Target Drop Down option geography Linkedin company page
+	@FindBy(xpath = "//*[@id='geography']")
+	public WebElement lkCompTargetOptionGeography;
+
+
+	//===========================================Thumb Nail Option===========================================//
+
+	//ChooseThumbNailText
+	@FindBy(id = "thumbnailSelect")
+	public WebElement chooseThumbNailText;
+
+
+	//===========================================Schedule Options===========================================//
+
+	//Schedule options tab
+	@FindBy(xpath = "//a[contains(.,'Scheduling options')]")
+	public WebElement schedulingOptions;
+
+	//Schedule Now option ////input[contains(@id,'advanced_schedule_for_later')]
+	@FindBy(xpath = "//label[contains(.,'Now')]")
+	public WebElement sendNowOption;
+
+	//sendNowButton
+	@FindBy(xpath = "//*[@id='sentNow']")
+	public WebElement sendNowButton;
+
+	//Schedule Later option
+	@FindBy(xpath = "//label[contains(.,'Later')]")
+	//@FindBy(id = "advanced_schedule_for_later")
+	public WebElement scheduleLater;
+
+	//schedule Timer
+	@FindBy(xpath = "//*[@id='daterange']")
+	public WebElement scheduleTimer;
+
+	//schedule Button
+	@FindBy(xpath = "//*[@id='schedule']")
+	public WebElement scheduleButton;
+
+
+
+
+
+
+
+
+
+}
+

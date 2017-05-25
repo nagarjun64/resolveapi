@@ -1,0 +1,184 @@
+package actions.listen;
+
+import uiMap.listen.UIListenHome;
+import uiMap.listen.UIProfileMgmt;
+import actions.OpenModule;
+import baseHelper.BrowserLauncher;
+import baseHelper.SimplifyUtils;
+
+public class ProfileHome extends BrowserLauncher{
+
+	public void editProfile(String profileToEdit){
+
+		OpenModule openModule = new  OpenModule();
+		UIProfileMgmt uiProfileMgmt = new UIProfileMgmt(driver);
+		UIListenHome uiListenHome = new UIListenHome(driver);
+
+		String profileId = null;
+
+		SimplifyUtils.waitForElementToBeClickable(uiListenHome.createNewProfile, 30);
+
+		uiListenHome.profileNames.size();
+
+		int pageCount;
+
+		pageCount = Integer.parseInt(uiListenHome.totalPages.getText());
+
+		breakloop:
+
+			for (int j = 1; j < pageCount;j++) 
+			{
+				SimplifyUtils.s360sleep(500);
+
+				// To check if the profile is present in the current page
+
+				for (int i = 0; i < uiListenHome.profileNames.size(); i++) 
+				{
+					SimplifyUtils.s360sleep(500);
+
+					String profileToMatch = uiListenHome.profileNames.get(i).getText();
+
+					if (profileToMatch.equalsIgnoreCase(profileToEdit)) 
+					{
+						SimplifyUtils.s360sleep(500);
+
+						profileId = uiListenHome.profileNames.get(i).getAttribute("id");
+
+						profileId = profileId.substring(5);
+
+						break breakloop;
+
+					}
+				}
+
+				if(j <= pageCount )
+				{
+					uiListenHome.navigateToNextPage.click();
+
+					SimplifyUtils.s360sleep(500);
+				}
+				else
+				{
+					break;
+				}
+			}
+
+		if(profileId != null)
+		{
+
+			for (int i = 0; i < uiListenHome.profileOptionDropDown.size(); i++) 
+			{
+				SimplifyUtils.s360sleep(500);
+
+				if(i>2)
+				{
+					SimplifyUtils.scrolltoElementByLocator(uiListenHome.profileOptionDropDown.get(i));
+				}
+
+				SimplifyUtils.s360sleep(500);
+
+				uiListenHome.profileOptionDropDown.get(i).click();
+
+				if (uiListenHome.profileEdit.get(i).getAttribute("href").contains(profileId)) 
+				{
+					SimplifyUtils.waitForElementToBeClickable(uiListenHome.profileEdit.get(i), 30);
+
+					SimplifyUtils.s360sleep(500);
+
+					uiListenHome.profileEdit.get(i).click();
+
+					break;
+
+				}
+
+			}
+		}
+
+	}
+
+	public void openMessagesOfProfile(String profileName){
+
+		OpenModule openModule = new  OpenModule();
+		UIProfileMgmt uiProfileMgmt = new UIProfileMgmt(driver);
+		UIListenHome uiListenHome = new UIListenHome(driver);
+
+		String profileId = null;
+
+		SimplifyUtils.waitForElementToBeClickable(uiListenHome.createNewProfile, 30);
+
+		uiListenHome.profileNames.size();
+
+		int pageCount;
+
+		pageCount = Integer.parseInt(uiListenHome.totalPages.getText());
+
+		breakloop:
+
+			for (int j = 1; j < pageCount;j++) 
+			{
+				SimplifyUtils.s360sleep(500);
+
+				// To check if the profile is present in the current page
+
+				for (int i = 0; i < uiListenHome.profileNames.size(); i++) 
+				{
+					SimplifyUtils.s360sleep(500);
+
+					String profileToMatch = uiListenHome.profileNames.get(i).getText();
+
+					if (profileToMatch.equalsIgnoreCase(profileName)) 
+					{
+						SimplifyUtils.s360sleep(500);
+
+						profileId = uiListenHome.profileNames.get(i).getAttribute("id");
+
+						profileId = profileId.substring(5);
+
+						System.err.println(uiListenHome.profileMessages.size());
+
+						break breakloop;
+
+					}
+				}
+
+				if(j <= pageCount )
+				{
+					uiListenHome.navigateToNextPage.click();
+
+					SimplifyUtils.s360sleep(500);
+				}
+				else
+				{
+					break;
+				}
+			}
+
+		if(profileId != null)
+		{
+			for (int i = 0; i < uiListenHome.profileMessages.size(); i++) 
+			{
+				SimplifyUtils.s360sleep(500);
+
+				if(i>2)
+				{
+					SimplifyUtils.scrolltoElementByLocator(uiListenHome.profileMessages.get(i));
+				}
+
+				if (uiListenHome.profileMessages.get(i).getAttribute("href").contains(profileId)) 
+				{
+					SimplifyUtils.waitForElementToBeClickable(uiListenHome.profileMessages.get(i), 30);
+
+					SimplifyUtils.s360sleep(500);
+
+					uiListenHome.profileMessages.get(i).click();
+
+					break;
+
+				}
+
+			}
+		}
+
+	}
+
+}

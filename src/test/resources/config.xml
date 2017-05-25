@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<baseURL>http://facebook.com/</baseURL>
+
+
+	<localLoginOwnerEmail>nagarjun.reddy@in-rev.com</localLoginOwnerEmail>
+	<localLoginOwnerPassword>India123$%</localLoginOwnerPassword>
+	<localLoginAdminEmail>nagarjun.reddy@in-rev.com</localLoginAdminEmail>
+	<localLoginAdminPassword>Protected@123</localLoginAdminPassword>
+
+
+	<betaLoginOwnerEmail>nagarjun.reddy@in-rev.com</betaLoginOwnerEmail>
+	<betaLoginOwnerPassword>simplify360</betaLoginOwnerPassword>
+	<betaLoginAdminEmail>nagarjun.reddy@in-rev.com</betaLoginAdminEmail>
+	<betaLoginAdminPassword>Protected@123</betaLoginAdminPassword>
+
+
+	<suiteLoginOwnerEmail>nagarjun.reddy@in-rev.com</suiteLoginOwnerEmail>
+	<suiteLoginOwnerPassword>simplify360</suiteLoginOwnerPassword>
+	<suiteLoginAdminEmail>nagarjun.reddy@in-rev.com</suiteLoginAdminEmail>
+	<suiteLoginAdminPassword>Protected@123</suiteLoginAdminPassword>
+
+
+	<!-- ================= Environment Config========================= -->
+	<browser>firefox</browser> <!-- values would be chrome,firefox,headless -->
+	<os>linux</os> <!-- values would be mac, windows, linux-->
+
+
+	<dbdriver>com.mysql.jdbc.Driver</dbdriver>
+	<dbuserName>dbuser</dbuserName>
+	<dbPassword>dbpassword</dbPassword>
+
+	<!-- ================= Twitter Channel Credentials========================= -->
+	<twitterAccount>galloway360</twitterAccount>
+	<twitterAccountPassword>Simplify360</twitterAccountPassword>
+
+	<secondTwitterAccount>jheller360</secondTwitterAccount>
+	<secondTwitterAccountPassword>Simplify360
+	</secondTwitterAccountPassword>
+
+	<!-- ================= Facebook page Channel Credentials========================= -->
+
+	<fbAccount>nagarjun64@hotmail.com</fbAccount>
+	<fbAccountPassword>Analytics</fbAccountPassword>
+	<fbFanAccount>gallowayin360@gmail.com</fbFanAccount>
+	<fbFanPassword>Simplify360</fbFanPassword>
+
+	<fbPage>GetStarted</fbPage>
+
+
+	<!-- ================= SocialChannel Identifiers========================= -->
+	<twitterIdentifier>twitter</twitterIdentifier>
+	<fbPageIdentifier>facebookpage</fbPageIdentifier>
+
+
+
+	<!-- ======================== File Upload Path MAC ========================= -->
+
+	<imageToUpload>/Users/nagarjunareddy/Documents/projectworkspace/eclipse/s360_v8/src/test/resources/twt_Pic.jpg
+	</imageToUpload>
+
+	<twtVideoPath>/Users/nagarjunareddy/Documents/projectworkspace/eclipse/s360_v8/src/test/resources/twt_Video.mp4
+	</twtVideoPath>
+
+	<FileUploadPath>/home/fileupload/</FileUploadPath>
+
+	<!-- =========================== File Upload Path Windows ================== -->
+
+	<!-- <imageToUpload>/Users/nagarjunareddy/Documents/projectworkspace/eclipse/s360_v8/src/test/resources/twt_Pic.jpg</imageToUpload> 
+		<twtVideoPath>/Users/nagarjunareddy/Documents/projectworkspace/eclipse/s360_v8/src/test/resources/twt_Video.mp4</twtVideoPath> 
+		<FileUploadPath>/home/fileupload/</FileUploadPath> -->
+
+
+	<supportEmail></supportEmail>
+	<supportEmailPassword></supportEmailPassword>
+	<dbconnecturl>jdbc:mysql://10.0.0.240:3306/</dbconnecturl>
+	<dbName>mongrel</dbName>
+
+	<socioProductionOBIEEURL>https://sociomis.vodafone.co.in:9804/analytics
+	</socioProductionOBIEEURL>
+	<socioTestOBIEEURL>http://10.77.17.90:9704/analytics/saw.dll?bieehome&amp;startPage=1;
+	</socioTestOBIEEURL>
+</config>
+
+
+
+
+
+

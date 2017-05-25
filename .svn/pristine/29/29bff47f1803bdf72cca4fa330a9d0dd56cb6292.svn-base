@@ -1,0 +1,19 @@
+package tc.login;
+
+import org.testng.annotations.Test;
+
+import baseHelper.BrowserLauncher;
+import actions.LoginToApplication;
+
+public class TcLogin extends BrowserLauncher {
+	
+	LoginToApplication loginToApplication = new LoginToApplication();
+	
+	 @Test(priority = 0)
+		public void login(){
+	    	
+		 loginToApplication.loginAsOwner();
+		 
+		}
+	 
+}

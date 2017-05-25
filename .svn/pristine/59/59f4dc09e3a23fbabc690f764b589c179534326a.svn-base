@@ -1,0 +1,281 @@
+package tc.admin.manageChannels;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import uiMap.admin.UIAdminChannels;
+import uiMap.publish.UINewMessage;
+import baseHelper.BrowserLauncher;
+import baseHelper.Config;
+import baseHelper.SimplifyUtils;
+import actions.LoginToApplication;
+import actions.OpenModule;
+import actions.admin.ManageAdminTwitterChannels;
+
+public class TCManageAdminTwitterChannels extends BrowserLauncher{
+
+	@Test
+	public void verifyAddAdminTwitterChannelInManageAdminChannels(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		ManageAdminTwitterChannels manageAdminTwitterChannels = new ManageAdminTwitterChannels();
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openManageAdminChannels();
+
+		manageAdminTwitterChannels.addAdminTwitterAccount(Config.twitterAccount, Config.twitterAccountPassword);
+
+		//Assert.assertEquals(manageAdminTwitterChannels.checkTwitterChannelIsAlreadyAdded(Config.twitterAccount), true);
+
+		SimplifyUtils.s360sleep(5000);
+
+		Assert.assertTrue(manageAdminTwitterChannels.checkTwitterChannelIsAlreadyAdded(Config.twitterAccount));
+
+
+	}
+
+	@Test
+	public void verifySuccessfullReAssociateTwitterAccount(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		ManageAdminTwitterChannels manageAdminTwitterChannels = new ManageAdminTwitterChannels();
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openManageAdminChannels();
+
+		manageAdminTwitterChannels.reAssociateTwitterAccount(Config.twitterAccount, Config.twitterAccount, Config.twitterAccountPassword);
+
+		SimplifyUtils.s360sleep(5000);
+
+		Assert.assertTrue(uiAdminChannels.successReAssocAdminTwitterAccountNotification.getText().contains("Congratulations")); 
+
+	}
+
+	@Test
+	public void verifyUnSuccessfullReAssociateTwitterAccount(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		ManageAdminTwitterChannels manageAdminTwitterChannels = new ManageAdminTwitterChannels();
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openManageAdminChannels();
+
+		manageAdminTwitterChannels.reAssociateTwitterAccount(Config.twitterAccount,Config.secondTwitterAccount, Config.secondTwitterAccountPassword);
+
+		SimplifyUtils.s360sleep(4000);
+
+		Assert.assertTrue(uiAdminChannels.unSuccessReAssocAdminTwitterAccountNotification.getText().contains("Re-Association Failed")); 
+
+	}
+
+	@Test
+	public void verifyDeleteAdminTwitterAccount(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		ManageAdminTwitterChannels manageAdminTwitterChannels = new ManageAdminTwitterChannels();
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openManageAdminChannels();
+
+		if (manageAdminTwitterChannels.checkTwitterChannelIsAlreadyAdded(Config.twitterAccount) == false){
+
+			manageAdminTwitterChannels.addAdminTwitterAccount(Config.twitterAccount, Config.twitterAccountPassword);
+
+		}
+
+		manageAdminTwitterChannels.deleteTwitterAccount(Config.twitterAccount);
+
+		Assert.assertFalse(manageAdminTwitterChannels.checkTwitterChannelIsAlreadyAdded(Config.twitterAccount));
+
+
+	}
+
+	@Test
+	public void verifyActivateTwitterAccount(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		ManageAdminTwitterChannels manageAdminTwitterChannels = new ManageAdminTwitterChannels();
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openManageAdminChannels();
+
+		//if channels is not added, adding the account
+		if (manageAdminTwitterChannels.checkTwitterChannelIsAlreadyAdded(Config.twitterAccount) == false)
+
+		{
+
+			manageAdminTwitterChannels.addAdminTwitterAccount(Config.twitterAccount, Config.twitterAccountPassword);
+
+			SimplifyUtils.pageRefresh();
+
+		}
+
+		if (manageAdminTwitterChannels.checkTwitterChannelIsActive(Config.twitterAccount) == true) //checking if the channel is active
+		{
+
+			manageAdminTwitterChannels.deactivateAdminTwitterAccount(Config.twitterAccount);
+
+			SimplifyUtils.s360sleep(3000);
+
+		};
+
+		manageAdminTwitterChannels.activateAdminTwitterAccount(Config.twitterAccount);
+
+		Assert.assertTrue(manageAdminTwitterChannels.checkTwitterChannelIsActive(Config.twitterAccount));
+
+	}
+
+	@Test
+	public void verifyDeActivateTwitterAccount(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		ManageAdminTwitterChannels manageAdminTwitterChannels = new ManageAdminTwitterChannels();
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openManageAdminChannels();
+
+		//if channels is not added, adding the account
+		if (manageAdminTwitterChannels.checkTwitterChannelIsAlreadyAdded(Config.twitterAccount) == false)
+
+		{
+
+			manageAdminTwitterChannels.addAdminTwitterAccount(Config.twitterAccount, Config.twitterAccountPassword);
+
+			SimplifyUtils.pageRefresh();
+
+		}
+
+		if (manageAdminTwitterChannels.checkTwitterChannelIsActive(Config.twitterAccount) == true) //checking if the channel is active
+		{
+
+			manageAdminTwitterChannels.activateAdminTwitterAccount(Config.twitterAccount);
+
+			SimplifyUtils.s360sleep(3000);
+
+		};
+
+		manageAdminTwitterChannels.deactivateAdminTwitterAccount(Config.twitterAccount);
+
+		Assert.assertFalse(manageAdminTwitterChannels.checkTwitterChannelIsActive(Config.twitterAccount));
+
+	}
+
+	@Test
+	public void verifySharingAdminTwitterChannel()
+	{
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		ManageAdminTwitterChannels manageAdminTwitterChannels = new ManageAdminTwitterChannels();
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openManageAdminChannels();
+
+		manageAdminTwitterChannels.addAdminTwitterAccount(Config.twitterAccount, Config.twitterAccountPassword);
+
+		SimplifyUtils.pageRefresh();
+
+		manageAdminTwitterChannels.clickOnShareChannelOptionAdminTwitter(Config.twitterAccount);
+
+		String validUserToShareAdminTwitterChannel = manageAdminTwitterChannels.getUserEmailToShareChannel();
+
+		manageAdminTwitterChannels.shareChannelWithUser(validUserToShareAdminTwitterChannel);
+
+		SimplifyUtils.waitForElementToBeClickable(uiAdminChannels.addAdminTwitter,30);
+
+		Assert.assertTrue(manageAdminTwitterChannels.checkAdminTwitterChannelIsShared(validUserToShareAdminTwitterChannel,Config.twitterAccount));
+
+	}
+
+	@Test
+	public void verifyAddedByEmailOfAdminTwitterChannel(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		ManageAdminTwitterChannels manageAdminTwitterChannels = new ManageAdminTwitterChannels();
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openManageAdminChannels();
+
+		manageAdminTwitterChannels.addAdminTwitterAccount(Config.twitterAccount, Config.twitterAccountPassword);
+
+		manageAdminTwitterChannels.emailIdOfUserAddedTheChannel(Config.twitterAccount);
+
+		SimplifyUtils.s360sleep(3000);
+
+		Assert.assertEquals(Config.loginOwnerEmail, manageAdminTwitterChannels.emailIdOfUserAddedTheChannel(Config.twitterAccount));
+
+	}
+
+	@Test
+	public void verifyEnableTwtInsightsOfAdminTwitterChannel(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		ManageAdminTwitterChannels manageAdminTwitterChannels = new ManageAdminTwitterChannels();
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openManageAdminChannels();
+
+		manageAdminTwitterChannels.addAdminTwitterAccount(Config.twitterAccount, Config.twitterAccountPassword);
+
+		SimplifyUtils.pageRefresh();
+
+		SimplifyUtils.s360sleep(3000);
+
+		manageAdminTwitterChannels.disableTwitterInsights(Config.twitterAccount);
+
+		manageAdminTwitterChannels.enableTwitterInsights(Config.twitterAccount);
+
+		SimplifyUtils.s360sleep(3000);
+
+		Assert.assertTrue(manageAdminTwitterChannels.checkTwitterInsightsEnabled(Config.twitterAccount));
+
+	}
+
+	@Test
+	public void verifyDisbbleTwtInsightsOfAdminTwitterChannel(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		ManageAdminTwitterChannels manageAdminTwitterChannels = new ManageAdminTwitterChannels();
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openManageAdminChannels();
+
+		manageAdminTwitterChannels.addAdminTwitterAccount(Config.twitterAccount, Config.twitterAccountPassword);
+
+		SimplifyUtils.pageRefresh();
+
+		SimplifyUtils.s360sleep(3000);
+
+		manageAdminTwitterChannels.disableTwitterInsights(Config.twitterAccount);
+
+		SimplifyUtils.s360sleep(3000);
+
+		Assert.assertFalse(manageAdminTwitterChannels.checkTwitterInsightsEnabled(Config.twitterAccount));
+
+	}
+
+}

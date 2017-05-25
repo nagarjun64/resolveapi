@@ -1,0 +1,781 @@
+package tc.Publish;
+
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import uiMap.publish.UINewMessage;
+import uiMap.publish.UIPublish;
+import actions.LoginToApplication;
+import actions.OpenModule;
+import actions.publish.Publish;
+import actions.publish.PublishNewMsg;
+import baseHelper.BrowserLauncher;
+import baseHelper.Config;
+import baseHelper.SimplifyUtils;
+
+public class TCNewMessagePublish extends BrowserLauncher {
+
+	//================================General Related Test cases=========//
+
+	public void verifyNewMessageScreenIsLoading(){
+		
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		PublishNewMsg publishNewMsg = new PublishNewMsg();
+		UIPublish uiPublish = new UIPublish(driver);
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openScheduledMessage();
+
+		publishNewMsg.openNewScheduleWindow();
+		
+		SimplifyUtils.waitTillElementFound(uiPublish.scheduledMessages, 60);
+
+		Assert.assertEquals(SimplifyUtils.getPageTitle(), "Social Update");
+		
+	}
+	
+
+	//================================Twitter Related Test cases=========//
+
+	@Test
+	public void verifySendingTwitterPostWithOnlyText(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		PublishNewMsg publishNewMsg = new PublishNewMsg();
+		Publish publish = new Publish();
+		UIPublish uiScheduledMessages = new UIPublish(driver);
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openScheduledMessage();
+
+		publishNewMsg.openNewScheduleWindow();
+
+		String messageToPublish = publishNewMsg.generateMessageToPublish();
+
+		publishNewMsg.enterMessageToPublish(messageToPublish);
+
+		publishNewMsg.selectTwitterAccountToPublish(Config.twitterAccount);
+
+		publishNewMsg.clickScheduleOptionsTab();
+
+		publishNewMsg.sendMessageNow();
+
+		SimplifyUtils.waitTillElementFound(uiScheduledMessages.scheduledMessages, 60);
+
+		Assert.assertTrue(publish.checkMessageIsSent(messageToPublish, Config.twitterAccount, Config.twitterIdentifier));
+
+	}
+
+	@Test
+	public void verifySchedulingTwitterPostWithOnlyText(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		PublishNewMsg publishNewMsg = new PublishNewMsg();
+		Publish publish = new Publish();
+		UIPublish uiScheduledMessages = new UIPublish(driver);
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openScheduledMessage();
+
+		publishNewMsg.openNewScheduleWindow();
+
+		String messageToPublish = publishNewMsg.generateMessageToPublish();
+
+		publishNewMsg.enterMessageToPublish(messageToPublish);
+
+		publishNewMsg.selectTwitterAccountToPublish(Config.twitterAccount);
+
+		publishNewMsg.clickScheduleOptionsTab();
+
+		publishNewMsg.selectScheduleLaterOptionWithTime();
+
+		publishNewMsg.clickScheduleButton();
+
+		SimplifyUtils.waitTillElementFound(uiScheduledMessages.scheduledMessages, 60);
+
+		Assert.assertTrue(publish.checkMessageIsScheduled(messageToPublish, Config.twitterAccount, Config.twitterIdentifier));
+
+	}
+
+	@Test
+	public void verifySendingTwitterPostWithImage(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		PublishNewMsg publishNewMsg = new PublishNewMsg();
+		Publish publish = new Publish();
+		UIPublish uiScheduledMessages = new UIPublish(driver);
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openScheduledMessage();
+
+		publishNewMsg.openNewScheduleWindow();
+
+		String messageToPublish = publishNewMsg.generateMessageToPublish();
+
+		publishNewMsg.enterMessageToPublish(messageToPublish);
+
+		publishNewMsg.selectTwitterAccountToPublish(Config.twitterAccount);
+
+		publishNewMsg.uploadPicture();
+
+		publishNewMsg.waitForImageUploadToComplete();
+
+		publishNewMsg.clickScheduleOptionsTab();
+
+		publishNewMsg.sendMessageNow();
+
+		SimplifyUtils.waitTillElementFound(uiScheduledMessages.scheduledMessages, 60);
+
+		Assert.assertTrue(publish.checkMessageIsSent(messageToPublish, Config.twitterAccount, Config.twitterIdentifier));
+	}
+
+	@Test
+	public void verifySchedulingTwitterPostWithImage(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		PublishNewMsg publishNewMsg = new PublishNewMsg();
+		Publish publish = new Publish();
+		UIPublish uiScheduledMessages = new UIPublish(driver);
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openScheduledMessage();
+
+		publishNewMsg.openNewScheduleWindow();
+
+		String messageToPublish = publishNewMsg.generateMessageToPublish();
+
+		publishNewMsg.enterMessageToPublish(messageToPublish);
+
+		publishNewMsg.selectTwitterAccountToPublish(Config.twitterAccount);
+
+		publishNewMsg.uploadPicture();
+
+		publishNewMsg.waitForImageUploadToComplete();
+
+		publishNewMsg.clickScheduleOptionsTab();
+
+		publishNewMsg.selectScheduleLaterOptionWithTime();
+
+		publishNewMsg.clickScheduleButton();
+
+		SimplifyUtils.waitTillElementFound(uiScheduledMessages.scheduledMessages, 60);
+
+		Assert.assertTrue(publish.checkMessageIsScheduled(messageToPublish, Config.twitterAccount, Config.twitterIdentifier));
+	}
+
+	@Test
+	public void verifySendingTwitterPostWithVideo(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		PublishNewMsg publishNewMsg = new PublishNewMsg();
+		Publish publish = new Publish();
+		UIPublish uiScheduledMessages = new UIPublish(driver);
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openScheduledMessage();
+
+		publishNewMsg.openNewScheduleWindow();
+		
+		SimplifyUtils.waitTillPageLoad(60);
+		
+		String messageToPublish = publishNewMsg.generateMessageToPublish();
+
+		publishNewMsg.enterMessageToPublish(messageToPublish);
+
+		publishNewMsg.selectTwitterAccountToPublish(Config.twitterAccount);
+
+		publishNewMsg.uploadVideo();
+
+		publishNewMsg.waitForVideoUploadToComplete();
+		
+		publishNewMsg.enterMessageTitle(SimplifyUtils.dateGenerator());
+
+		publishNewMsg.clickScheduleOptionsTab();
+
+		publishNewMsg.sendMessageNow();
+		
+		SimplifyUtils.waitTillElementFound(uiScheduledMessages.sentMessages, 60);
+
+		Assert.assertTrue(publish.checkMessageIsSent(messageToPublish, Config.twitterAccount, Config.twitterIdentifier));
+	}
+
+	@Test
+	public void verifySchedulingTwitterPostWithVideo(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		PublishNewMsg publishNewMsg = new PublishNewMsg();
+		Publish publish = new Publish();
+		UIPublish uiScheduledMessages = new UIPublish(driver);
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openScheduledMessage();
+
+		publishNewMsg.openNewScheduleWindow();
+
+		String messageToPublish = publishNewMsg.generateMessageToPublish();
+
+		publishNewMsg.enterMessageToPublish(messageToPublish);
+
+		publishNewMsg.selectTwitterAccountToPublish(Config.twitterAccount);
+
+		publishNewMsg.uploadVideo();
+
+		publishNewMsg.waitForVideoUploadToComplete();
+		
+		publishNewMsg.enterMessageTitle(SimplifyUtils.dateGenerator());
+
+		publishNewMsg.clickScheduleOptionsTab();
+
+		publishNewMsg.selectScheduleLaterOptionWithTime();
+
+		publishNewMsg.clickScheduleButton();
+
+		SimplifyUtils.waitTillElementFound(uiScheduledMessages.scheduledMessages, 60);
+
+		Assert.assertTrue(publish.checkMessageIsScheduled(messageToPublish, Config.twitterAccount, Config.twitterIdentifier));
+
+	}
+
+	@Test
+	public void verifySendingTwitterPostWithUrl(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		PublishNewMsg publishNewMsg = new PublishNewMsg();
+		Publish publish = new Publish();
+		UIPublish uiScheduledMessages = new UIPublish(driver);
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openScheduledMessage();
+
+		publishNewMsg.openNewScheduleWindow();
+
+		String messageToPublish = publishNewMsg.generateMessageToPublish();
+
+		publishNewMsg.enterMessageToPublish(messageToPublish);
+
+		publishNewMsg.selectTwitterAccountToPublish(Config.twitterAccount);
+
+		publishNewMsg.enterURLToPublish();
+
+		publishNewMsg.shrinkURL();
+
+		publishNewMsg.clickScheduleOptionsTab();
+
+		publishNewMsg.sendMessageNow();
+
+		SimplifyUtils.waitTillElementFound(uiScheduledMessages.scheduledMessages, 60);
+
+		Assert.assertTrue(publish.checkMessageIsSent(messageToPublish, Config.twitterAccount, Config.twitterIdentifier));
+
+	}
+
+	@Test
+	public void verifySchedulingTwitterPostWithUrl(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		PublishNewMsg publishNewMsg = new PublishNewMsg();
+		Publish publish = new Publish();
+		UIPublish uiScheduledMessages = new UIPublish(driver);
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openScheduledMessage();
+
+		publishNewMsg.openNewScheduleWindow();
+
+		String messageToPublish = publishNewMsg.generateMessageToPublish();
+
+		publishNewMsg.enterMessageToPublish(messageToPublish);
+
+		publishNewMsg.selectTwitterAccountToPublish(Config.twitterAccount);
+
+		publishNewMsg.enterURLToPublish();
+
+		publishNewMsg.shrinkURL();
+
+		publishNewMsg.clickScheduleOptionsTab();
+
+		publishNewMsg.selectScheduleLaterOptionWithTime();
+
+		publishNewMsg.clickScheduleButton();
+
+		SimplifyUtils.waitTillElementFound(uiScheduledMessages.scheduledMessages, 60);
+
+		Assert.assertTrue(publish.checkMessageIsScheduled(messageToPublish, Config.twitterAccount, Config.twitterIdentifier));
+
+
+	}
+
+	@Test
+	public void verifyTwitterImageLength(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		PublishNewMsg publishNewMsg = new PublishNewMsg();
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openScheduledMessage();
+
+		publishNewMsg.openNewScheduleWindow();
+
+		String messageToPublish = publishNewMsg.generateMessageToPublish();
+
+		publishNewMsg.enterMessageToPublish(messageToPublish);
+
+
+		publishNewMsg.selectTwitterChannelsToPublish(1);
+
+		int lengthBeforeUploadingImage = publishNewMsg.messageLength(uiNewMessage.TwitterCharacterCounter);
+
+		publishNewMsg.uploadPicture();
+
+		publishNewMsg.waitForImageUploadToComplete();
+
+		int lengthAfterUploadingImage = publishNewMsg.messageLength(uiNewMessage.TwitterCharacterCounter);
+
+		Assert.assertEquals(lengthBeforeUploadingImage, lengthAfterUploadingImage);
+
+	}
+
+	@Test
+	public void verifyTwitterVideoLength(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		PublishNewMsg publishNewMsg = new PublishNewMsg();
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openScheduledMessage();
+
+		publishNewMsg.openNewScheduleWindow();
+
+		String messageToPublish = publishNewMsg.generateMessageToPublish();
+
+		publishNewMsg.enterMessageToPublish(messageToPublish);
+
+
+		publishNewMsg.selectTwitterChannelsToPublish(1);
+
+		int lengthBeforeUploadingVideo = publishNewMsg.messageLength(uiNewMessage.TwitterCharacterCounter);
+
+		publishNewMsg.uploadVideo();
+
+		publishNewMsg.waitForVideoUploadToComplete();
+
+		int lengthAfterUploadingVideo = publishNewMsg.messageLength(uiNewMessage.TwitterCharacterCounter);
+
+		Assert.assertEquals(lengthBeforeUploadingVideo, lengthAfterUploadingVideo);
+
+	}
+
+	@Test
+	public void verifyTwitterUrlLength(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		PublishNewMsg publishNewMsg = new PublishNewMsg();
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openScheduledMessage();
+
+		publishNewMsg.openNewScheduleWindow();
+
+		String messageToPublish = publishNewMsg.generateMessageToPublish();
+
+		publishNewMsg.enterMessageToPublish(messageToPublish);
+
+
+		publishNewMsg.selectTwitterChannelsToPublish(1);
+
+		int lengthBeforeInsertingURL = publishNewMsg.messageLength(uiNewMessage.TwitterCharacterCounter);
+
+		publishNewMsg.enterURLToPublish();
+
+		publishNewMsg.shrinkURL();	
+
+		SimplifyUtils.s360sleep(5000);
+
+		uiNewMessage.messageToPublish.click();
+
+		int lengthAfterInsertingURL = publishNewMsg.messageLength(uiNewMessage.TwitterCharacterCounter);
+
+		Assert.assertEquals(lengthBeforeInsertingURL, (lengthAfterInsertingURL + 24) );
+
+	}
+
+	//================================Facebook Page Related Test cases=========//
+
+	@Test
+	public void verifySendingFacebookPageWithVideo(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		PublishNewMsg publishNewMsg = new PublishNewMsg();
+		Publish publish = new Publish();
+		UIPublish uiScheduledMessages = new UIPublish(driver);
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openScheduledMessage();
+
+		publishNewMsg.openNewScheduleWindow();
+
+		String messageToPublish = publishNewMsg.generateMessageToPublish();
+
+		publishNewMsg.enterMessageToPublish(messageToPublish);
+
+		publishNewMsg.selectFbPageToPublish(Config.fbPage);
+
+		publishNewMsg.uploadVideo();
+
+		publishNewMsg.waitForVideoUploadToComplete();
+		
+		publishNewMsg.enterMessageTitle(SimplifyUtils.dateGenerator());
+
+		publishNewMsg.clickScheduleOptionsTab();
+
+		publishNewMsg.sendMessageNow();
+
+		SimplifyUtils.waitTillElementFound(uiScheduledMessages.scheduledMessages, 60);
+
+		Assert.assertTrue(publish.checkMessageIsSent(messageToPublish, Config.fbPage, Config.fbPageIdentifier));
+	}
+
+	@Test
+	public void verifySchedulingFacebookPageWithVideo(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		PublishNewMsg publishNewMsg = new PublishNewMsg();
+		Publish publish = new Publish();
+		UIPublish uiScheduledMessages = new UIPublish(driver);
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openScheduledMessage();
+
+		publishNewMsg.openNewScheduleWindow();
+
+		String messageToPublish = publishNewMsg.generateMessageToPublish();
+
+		publishNewMsg.enterMessageToPublish(messageToPublish);
+
+		publishNewMsg.selectFbPageToPublish(Config.fbPage);
+
+		publishNewMsg.uploadVideo();
+
+		publishNewMsg.waitForVideoUploadToComplete();
+		
+		publishNewMsg.enterMessageTitle(SimplifyUtils.dateGenerator());
+
+		publishNewMsg.clickScheduleOptionsTab();
+
+		publishNewMsg.selectScheduleLaterOptionWithTime();
+
+		publishNewMsg.clickScheduleButton();
+
+		SimplifyUtils.waitTillElementFound(uiScheduledMessages.scheduledMessages, 60);
+
+		Assert.assertTrue(publish.checkMessageIsScheduled(messageToPublish, Config.fbPage, Config.fbPageIdentifier));
+	}
+	
+	@Test
+	public void verifySendingFacebookPageWithImage(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		PublishNewMsg publishNewMsg = new PublishNewMsg();
+		Publish publish = new Publish();
+		UIPublish uiScheduledMessages = new UIPublish(driver);
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openScheduledMessage();
+
+		publishNewMsg.openNewScheduleWindow();
+
+		String messageToPublish = publishNewMsg.generateMessageToPublish();
+
+		publishNewMsg.enterMessageToPublish(messageToPublish);
+
+		publishNewMsg.selectFbPageToPublish(Config.fbPage);
+
+		publishNewMsg.uploadPicture();
+
+		publishNewMsg.waitForImageUploadToComplete();
+		
+		publishNewMsg.enterMessageTitle(SimplifyUtils.dateGenerator());
+
+		publishNewMsg.clickScheduleOptionsTab();
+
+		publishNewMsg.sendMessageNow();
+
+		SimplifyUtils.waitTillElementFound(uiScheduledMessages.scheduledMessages, 60);
+
+		Assert.assertTrue(publish.checkMessageIsSent(messageToPublish, Config.fbPage, Config.fbPageIdentifier));
+	}
+
+	@Test
+	public void verifySchedulingFacebookPageWithImage(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		PublishNewMsg publishNewMsg = new PublishNewMsg();
+		Publish publish = new Publish();
+		UIPublish uiScheduledMessages = new UIPublish(driver);
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openScheduledMessage();
+
+		publishNewMsg.openNewScheduleWindow();
+
+		String messageToPublish = publishNewMsg.generateMessageToPublish();
+
+		publishNewMsg.enterMessageToPublish(messageToPublish);
+
+		publishNewMsg.selectFbPageToPublish(Config.fbPage);
+
+		publishNewMsg.uploadPicture();
+
+		publishNewMsg.waitForImageUploadToComplete();
+		
+		publishNewMsg.enterMessageTitle(SimplifyUtils.dateGenerator());
+
+		publishNewMsg.clickScheduleOptionsTab();
+
+		publishNewMsg.selectScheduleLaterOptionWithTime();
+
+		publishNewMsg.clickScheduleButton();
+
+		SimplifyUtils.waitTillElementFound(uiScheduledMessages.scheduledMessages, 60);
+
+		Assert.assertTrue(publish.checkMessageIsScheduled(messageToPublish, Config.fbPage, Config.fbPageIdentifier));
+	}
+	
+	@Test
+	public void verifyFbPageAlbumCreation(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		PublishNewMsg publishNewMsg = new PublishNewMsg();
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openScheduledMessage();
+
+		publishNewMsg.openNewScheduleWindow();
+
+		String messageToPublish = publishNewMsg.generateMessageToPublish();
+
+		publishNewMsg.enterMessageToPublish(messageToPublish);
+
+		publishNewMsg.selectFbPageToPublish("RH test");
+
+		//driver.findElement(By.xpath("//*[@id='6Id393419380670509']/div[1]/label")).click(); //select channel
+
+		publishNewMsg.uploadPicture();
+
+		publishNewMsg.waitForImageUploadToComplete();
+
+		String fbAlbumName = "Fb Page Album Name "+ SimplifyUtils.dateGenerator();
+
+		String fbAlbumDescription = "Fb Page Album Description "+ SimplifyUtils.dateGenerator();
+
+		publishNewMsg.createFbPageAlbum(fbAlbumName, fbAlbumDescription);
+
+		SimplifyUtils.s360sleep(3000);
+
+		Assert.assertTrue(publishNewMsg.isFbPageAlbumCreated(fbAlbumName));
+
+	}
+
+	@Test
+	public void verifyCountOfFacebookPageTargetOptions(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		PublishNewMsg publishNewMsg = new PublishNewMsg();
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openScheduledMessage();
+
+		publishNewMsg.openNewScheduleWindow();
+
+		String messageToPublish = publishNewMsg.generateMessageToPublish();
+
+		publishNewMsg.enterMessageToPublish(messageToPublish);
+
+
+		publishNewMsg.selectFacebookPagesToPublish(1);
+
+		publishNewMsg.countOfTargetValuesFbPage();
+
+		Assert.assertEquals(9, publishNewMsg.countOfTargetValuesFbPage());
+
+	}
+
+	@Test
+	public void verifySelectingFacebookPageTargeting(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		PublishNewMsg publishNewMsg = new PublishNewMsg();
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openScheduledMessage();
+
+		publishNewMsg.openNewScheduleWindow();
+
+		String messageToPublish = publishNewMsg.generateMessageToPublish();
+
+		publishNewMsg.enterMessageToPublish(messageToPublish);
+
+		publishNewMsg.selectFacebookPagesToPublish(1);
+
+		publishNewMsg.selectFbPageTargetOptions("Gender");
+
+		publishNewMsg.selectFbPageTargetOptions("Target By Interests");
+
+		publishNewMsg.selectFbPageTargetOptions("Relationship Status");
+
+		publishNewMsg.selectFbPageTargetOptions("Educational Status");
+
+		publishNewMsg.selectFbPageTargetOptions("Interested In");
+
+		publishNewMsg.selectFbPageTargetOptions("Age");
+
+		publishNewMsg.selectFbPageTargetOptions("Location");
+
+		publishNewMsg.selectFbPageTargetOptions("Language");
+
+		Assert.assertEquals(8, uiNewMessage.selectedFbPageTargetedOptions.size());
+
+
+	}
+
+	@Test
+	public void verifyPictureUploadFbPageTimeline(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		PublishNewMsg publishNewMsg = new PublishNewMsg();
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openScheduledMessage();
+
+		publishNewMsg.openNewScheduleWindow();
+
+		String messageToPublish = publishNewMsg.generateMessageToPublish();
+
+		publishNewMsg.enterMessageToPublish(messageToPublish);
+
+		publishNewMsg.selectFacebookPagesToPublish(2);
+
+		uiNewMessage.pictureVideoTab.click();
+
+		SimplifyUtils.s360sleep(3000);
+
+		uiNewMessage.uploadPicture.sendKeys(Config.imageToUpload);
+
+		SimplifyUtils.s360sleep(10000);
+
+		publishNewMsg.sendMessageNow();
+
+
+	}
+
+
+	//================================Linkedin Company Page Related Test cases=========//
+
+	@Test
+	public void verifyCountOfLinkedinCompTargetOptions(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		PublishNewMsg publishNewMsg = new PublishNewMsg();
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openScheduledMessage();
+
+		publishNewMsg.openNewScheduleWindow();
+
+		String messageToPublish = publishNewMsg.generateMessageToPublish();
+
+		publishNewMsg.enterMessageToPublish(messageToPublish);
+
+
+		publishNewMsg.selectLinkedinCompToPublish(1);
+
+		publishNewMsg.countOfTargetValuesLinkedinComp();
+
+		Assert.assertEquals(5, publishNewMsg.countOfTargetValuesLinkedinComp());
+
+	}
+
+	@Test
+	public void verifySelectingLinkedinCompTargeting(){
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		PublishNewMsg publishNewMsg = new PublishNewMsg();
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openScheduledMessage();
+
+		publishNewMsg.openNewScheduleWindow();
+
+		SimplifyUtils.s360sleep(3000);
+
+		String messageToPublish = publishNewMsg.generateMessageToPublish();
+
+		publishNewMsg.enterMessageToPublish(messageToPublish);
+
+		publishNewMsg.selectLinkedinCompToPublish(1);
+
+		publishNewMsg.selectLinkedinCompTargetOption("Industry");
+
+		publishNewMsg.selectLinkedinCompTargetOption("Job Function");
+
+		publishNewMsg.selectLinkedinCompTargetOption("Seniority");
+
+		publishNewMsg.selectLinkedinCompTargetOption("Geography");
+
+		Assert.assertEquals(8, uiNewMessage.selectedLkCompTargetedSubOptions.size());
+
+	}
+
+
+}

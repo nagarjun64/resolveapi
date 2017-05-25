@@ -1,0 +1,110 @@
+package baseHelper;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+
+public class ReadPropertiesFile {
+
+	
+	public static String baseURL;
+	public static String loginOwnerEmail;
+	public static String loginOwnerPassword;
+	public static String loginAdminEmail;
+	public static String loginAdminPassword;
+	public static String browser;
+	public static String os;
+	public static String twitterAccount;
+	public static String fbPage;
+	public static String fbAccount;
+	public static String fbAccountPassword;
+	public static String fbFanAccount;
+	public static String fbFanPassword;
+	public static String getStartedPageLink;
+	public static String fastCarTestPageLink;
+	public static String twitterAccountPassword;
+	public static String secondTwitterAccount;
+	public static String secondTwitterAccountPassword;
+	public static String ytAccountEmail;
+	public static String ytAccount;
+	public static String ytAccountPassword;
+	public static String ytChannelName;
+	public static String dbConnectionDtls;
+	public static String dbName;
+	public static String dbDriver;
+	public static String dbuserName;
+	public static String dbPassword;
+	public static String imageToUpload;
+	public static String twtVideoPath;
+	public static String twitterIdentifier;
+	public static String fbPageIdentifier;
+	public static String invalidLoginErrorText; 
+
+	static 
+	{
+		readConfigurationFromProperties();
+	}
+
+	public static void readConfigurationFromProperties() {
+
+		try 
+		{
+			Properties prop = new Properties();
+			prop.load(new FileInputStream("src/test/resources/config.properties"));
+
+			baseURL = prop.getProperty("baseURL");
+			browser = prop.getProperty("browser");
+			os = prop.getProperty("os");
+
+			if (baseURL.equalsIgnoreCase("http://dev.simplify360.com/")) {
+
+				loginOwnerEmail = prop.getProperty("localLoginOwnerEmail");
+				loginOwnerPassword = prop.getProperty("localLoginOwnerPassword");
+				loginAdminEmail = prop.getProperty("localLoginAdminEmail");
+				loginAdminPassword = prop.getProperty("localLoginAdminPassword");
+
+			}else if (baseURL.equalsIgnoreCase("http://suite.simplify360.com") ) {
+
+				loginOwnerEmail = prop.getProperty("suiteLoginOwnerEmail");
+				loginOwnerPassword = prop.getProperty("suiteLoginOwnerPassword");
+				loginAdminEmail = prop.getProperty("suiteLoginAdminEmail");
+				loginAdminPassword = prop.getProperty("suiteLoginAdminPassword");
+
+			}
+
+			twitterAccount = prop.getProperty("twitterAccount");
+			twitterAccountPassword = prop.getProperty("twitterAccountPassword");
+			fbPage = prop.getProperty("fbPage");
+			fbAccount = prop.getProperty("fbAccount");
+			fbAccountPassword = prop.getProperty("fbAccountPassword");
+			fbFanAccount = prop.getProperty("fbFanAccount");
+			fbFanPassword = prop.getProperty("fbFanPassword");
+			getStartedPageLink = prop.getProperty("getStartedPageLink");
+			fastCarTestPageLink = prop.getProperty("fastCarTestPageLink");
+			secondTwitterAccount = prop.getProperty("secondTwitterAccount");
+			secondTwitterAccountPassword = prop.getProperty("secondTwitterAccountPassword");
+			dbName = prop.getProperty("baseURL");
+			dbDriver = prop.getProperty("dbdriver");
+			dbuserName = prop.getProperty("dbuserName");
+			dbPassword = prop.getProperty("dbPassword");
+			imageToUpload = prop.getProperty("imageToUpload");
+			twtVideoPath = prop.getProperty("twtVideoPath");
+			twitterIdentifier = prop.getProperty("twitterIdentifier");
+			fbPageIdentifier = prop.getProperty("fbPageIdentifier");
+			invalidLoginErrorText = prop.getProperty("invalidLoginErrorText");
+		}
+		catch (FileNotFoundException e) 
+		{
+			e.printStackTrace();
+
+		} catch (IOException e) 
+		{
+			e.printStackTrace();
+
+		}
+	}
+
+
+	
+}

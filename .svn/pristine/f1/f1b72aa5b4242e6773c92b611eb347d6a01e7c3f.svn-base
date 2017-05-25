@@ -1,0 +1,96 @@
+package uiMap.menu;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class UIMenu {
+
+	public UIMenu (WebDriver driver) {
+
+		PageFactory.initElements(driver, this);
+
+	}
+
+	//Listen
+	@FindBy(linkText = "Listen")
+	public WebElement listen;
+
+	//Listen Home
+	@FindBy(linkText = "Listen Home")
+	public WebElement listenHome;
+
+	//Publish
+	@FindBy(linkText = "Publish")
+	public WebElement publish;
+
+	//Scheduled Message 
+	@FindBy(linkText = "Scheduled Message")
+	public WebElement scheduledMessage ;
+
+	//Admin
+	@FindBy(linkText = "Admin")
+	public WebElement admin;
+
+	//Manage Channels
+	@FindBy(linkText = "Manage Channels")
+	public WebElement manageAdminChannels;
+
+	//Manage Competitor Channels
+	@FindBy(linkText = "Manage Competitor Channels")
+	public WebElement manageCompChannels;
+
+	//Manage IP Address
+	@FindBy(linkText = "Manage IP Address")
+	public WebElement manageIPAddress;
+
+	//Manage Sites
+	@FindBy(linkText = "Manage Site")
+	public WebElement manageSite;
+
+	//Manage Publish
+	@FindBy(linkText = "Manage Publish")
+	public WebElement managePublish;
+
+	//Manage Packaging
+	@FindBy(linkText = "Packaging")
+	public WebElement packaging;
+
+	//Manage Contacts
+	@FindBy(linkText = "Manage Contacts")
+	public WebElement manageContacts;
+
+	//Manage Users
+	@FindBy(linkText = "Manage Users")
+	public WebElement manageUsers;
+
+	//Manage Roles And Permissions
+	@FindBy(linkText = "Manage Roles/Permissions")
+	public WebElement manageRolesPermissions;
+
+	//Manage teams
+	@FindBy(linkText = "Manage Teams")
+	public WebElement manageTeams;
+
+	//News Blog Push
+	@FindBy(linkText = "News/Blog Push")
+	public WebElement newsBlogPush;
+
+	//Manage FAQ
+	@FindBy(linkText = "Manage FAQs")
+	public WebElement manageFAQ;
+
+	//Integration
+	@FindBy(linkText = "Integration")
+	public WebElement integration;
+
+
+
+
+
+
+
+
+
+}

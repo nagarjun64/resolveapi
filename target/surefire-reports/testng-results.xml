@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="5" failed="1" total="6" passed="0">
+  <reporter-output>
+  </reporter-output>
+  <suite name="SuiteFB" duration-ms="21415" started-at="2017-05-25T10:09:08Z" finished-at="2017-05-25T10:09:29Z">
+    <groups>
+    </groups>
+    <test name="PostingToFacebook" duration-ms="21415" started-at="2017-05-25T10:09:08Z" finished-at="2017-05-25T10:09:29Z">
+      <class name="tcAutoPost.TCAutoFanPost">
+        <test-method status="PASS" signature="LaunchBrowser()[pri:0, instance:tcAutoPost.TCAutoFanPost@754ba872]" name="LaunchBrowser" is-config="true" duration-ms="6789" started-at="2017-05-25T15:39:08Z" finished-at="2017-05-25T15:39:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LaunchBrowser -->
+        <test-method status="FAIL" signature="verifyPostinFirstPostToFastCarTest()[pri:0, instance:tcAutoPost.TCAutoFanPost@754ba872]" name="verifyPostinFirstPostToFastCarTest" duration-ms="9306" started-at="2017-05-25T15:39:14Z" finished-at="2017-05-25T15:39:24Z">
+          <exception class="org.openqa.selenium.WebDriverException">
+            <message>
+              <![CDATA[Failed to decode response from marionette
+Build info: version: '3.4.0', revision: 'unknown', time: 'unknown'
+System info: host: 'nagarjunaMBP.local', ip: 'fe80:0:0:0:1091:7b48:cb5a:156b%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_60'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=/var/folders/g4/dylg4g7s7wbdtg_f6mtzj8m00000gn/T/rust_mozprofile.R06tVUuqOAiw, rotatable=false, timeouts={implicit=0.0, pageLoad=300000.0, script=30000.0}, pageLoadStrategy=normal, platform=ANY, specificationLevel=0.0, moz:accessibilityChecks=false, acceptInsecureCerts=false, browserVersion=53.0.3, platformVersion=16.5.0, moz:processID=74125.0, browserName=firefox, javascriptEnabled=true, platformName=darwin}]
+Session ID: b82fc64c-3bcf-604a-bf6b-32a1b630b466]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.WebDriverException: Failed to decode response from marionette
+Build info: version: '3.4.0', revision: 'unknown', time: 'unknown'
+System info: host: 'nagarjunaMBP.local', ip: 'fe80:0:0:0:1091:7b48:cb5a:156b%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_60'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=/var/folders/g4/dylg4g7s7wbdtg_f6mtzj8m00000gn/T/rust_mozprofile.R06tVUuqOAiw, rotatable=false, timeouts={implicit=0.0, pageLoad=300000.0, script=30000.0}, pageLoadStrategy=normal, platform=ANY, specificationLevel=0.0, moz:accessibilityChecks=false, acceptInsecureCerts=false, browserVersion=53.0.3, platformVersion=16.5.0, moz:processID=74125.0, browserName=firefox, javascriptEnabled=true, platformName=darwin}]
+Session ID: b82fc64c-3bcf-604a-bf6b-32a1b630b466
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:150)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:115)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:45)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:82)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:637)
+	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:364)
+	at tcAutoPost.TCAutoFanPost.verifyPostinFirstPostToFastCarTest(TCAutoFanPost.java:94)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1128)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:782)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1244)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1169)
+	at org.testng.TestNG.run(TestNG.java:1064)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:281)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:75)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:121)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:290)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.WebDriverException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyPostinFirstPostToFastCarTest -->
+        <test-method status="PASS" signature="QuitBrowser()[pri:0, instance:tcAutoPost.TCAutoFanPost@754ba872]" name="QuitBrowser" is-config="true" duration-ms="19" started-at="2017-05-25T15:39:24Z" finished-at="2017-05-25T15:39:24Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- QuitBrowser -->
+        <test-method status="FAIL" signature="LaunchBrowser()[pri:0, instance:tcAutoPost.TCAutoFanPost@754ba872]" name="LaunchBrowser" is-config="true" duration-ms="0" started-at="2017-05-25T15:39:24Z" finished-at="2017-05-25T15:39:24Z">
+          <exception class="org.openqa.selenium.WebDriverException">
+            <message>
+              <![CDATA[Failed to decode response from marionette
+Build info: version: '3.4.0', revision: 'unknown', time: 'unknown'
+System info: host: 'nagarjunaMBP.local', ip: 'fe80:0:0:0:1091:7b48:cb5a:156b%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_60'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=/var/folders/g4/dylg4g7s7wbdtg_f6mtzj8m00000gn/T/rust_mozprofile.JeYnizeXgRBb, rotatable=false, timeouts={implicit=0.0, pageLoad=300000.0, script=30000.0}, pageLoadStrategy=normal, platform=ANY, specificationLevel=0.0, moz:accessibilityChecks=false, acceptInsecureCerts=false, browserVersion=53.0.3, platformVersion=16.5.0, moz:processID=74134.0, browserName=firefox, javascriptEnabled=true, platformName=darwin}]
+Session ID: abec7c5f-066c-bc48-9346-e39e6bba2912]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.WebDriverException: Failed to decode response from marionette
+Build info: version: '3.4.0', revision: 'unknown', time: 'unknown'
+System info: host: 'nagarjunaMBP.local', ip: 'fe80:0:0:0:1091:7b48:cb5a:156b%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_60'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=/var/folders/g4/dylg4g7s7wbdtg_f6mtzj8m00000gn/T/rust_mozprofile.JeYnizeXgRBb, rotatable=false, timeouts={implicit=0.0, pageLoad=300000.0, script=30000.0}, pageLoadStrategy=normal, platform=ANY, specificationLevel=0.0, moz:accessibilityChecks=false, acceptInsecureCerts=false, browserVersion=53.0.3, platformVersion=16.5.0, moz:processID=74134.0, browserName=firefox, javascriptEnabled=true, platformName=darwin}]
+Session ID: abec7c5f-066c-bc48-9346-e39e6bba2912
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:150)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:115)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:45)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:82)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:637)
+	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:364)
+	at baseHelper.BrowserLauncher.LaunchBrowser(BrowserLauncher.java:119)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:514)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:215)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:589)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1128)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:782)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1244)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1169)
+	at org.testng.TestNG.run(TestNG.java:1064)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:281)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:75)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:121)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:290)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.WebDriverException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LaunchBrowser -->
+        <test-method status="SKIP" signature="verifyPostinFirstPostToGetStarted()[pri:0, instance:tcAutoPost.TCAutoFanPost@754ba872]" name="verifyPostinFirstPostToGetStarted" duration-ms="1" started-at="2017-05-25T15:39:29Z" finished-at="2017-05-25T15:39:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyPostinFirstPostToGetStarted -->
+        <test-method status="SKIP" signature="QuitBrowser()[pri:0, instance:tcAutoPost.TCAutoFanPost@754ba872]" name="QuitBrowser" is-config="true" duration-ms="0" started-at="2017-05-25T15:39:29Z" finished-at="2017-05-25T15:39:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- QuitBrowser -->
+        <test-method status="SKIP" signature="verifyPostinFirstPostToRHTestPage()[pri:0, instance:tcAutoPost.TCAutoFanPost@754ba872]" name="verifyPostinFirstPostToRHTestPage" duration-ms="0" started-at="2017-05-25T15:39:29Z" finished-at="2017-05-25T15:39:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyPostinFirstPostToRHTestPage -->
+        <test-method status="SKIP" signature="QuitBrowser()[pri:0, instance:tcAutoPost.TCAutoFanPost@754ba872]" name="QuitBrowser" is-config="true" duration-ms="0" started-at="2017-05-25T15:39:29Z" finished-at="2017-05-25T15:39:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- QuitBrowser -->
+        <test-method status="SKIP" signature="LaunchBrowser()[pri:0, instance:tcAutoPost.TCAutoFanPost@754ba872]" name="LaunchBrowser" is-config="true" duration-ms="0" started-at="2017-05-25T15:39:29Z" finished-at="2017-05-25T15:39:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LaunchBrowser -->
+        <test-method status="SKIP" signature="LaunchBrowser()[pri:0, instance:tcAutoPost.TCAutoFanPost@754ba872]" name="LaunchBrowser" is-config="true" duration-ms="0" started-at="2017-05-25T15:39:29Z" finished-at="2017-05-25T15:39:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LaunchBrowser -->
+        <test-method status="SKIP" signature="verifyPostinSecondPostToFastCarTest()[pri:0, instance:tcAutoPost.TCAutoFanPost@754ba872]" name="verifyPostinSecondPostToFastCarTest" duration-ms="0" started-at="2017-05-25T15:39:29Z" finished-at="2017-05-25T15:39:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyPostinSecondPostToFastCarTest -->
+        <test-method status="SKIP" signature="QuitBrowser()[pri:0, instance:tcAutoPost.TCAutoFanPost@754ba872]" name="QuitBrowser" is-config="true" duration-ms="0" started-at="2017-05-25T15:39:29Z" finished-at="2017-05-25T15:39:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- QuitBrowser -->
+        <test-method status="SKIP" signature="LaunchBrowser()[pri:0, instance:tcAutoPost.TCAutoFanPost@754ba872]" name="LaunchBrowser" is-config="true" duration-ms="0" started-at="2017-05-25T15:39:29Z" finished-at="2017-05-25T15:39:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LaunchBrowser -->
+        <test-method status="SKIP" signature="QuitBrowser()[pri:0, instance:tcAutoPost.TCAutoFanPost@754ba872]" name="QuitBrowser" is-config="true" duration-ms="0" started-at="2017-05-25T15:39:29Z" finished-at="2017-05-25T15:39:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- QuitBrowser -->
+        <test-method status="SKIP" signature="verifyPostinSecondPostToGetStarted()[pri:0, instance:tcAutoPost.TCAutoFanPost@754ba872]" name="verifyPostinSecondPostToGetStarted" duration-ms="0" started-at="2017-05-25T15:39:29Z" finished-at="2017-05-25T15:39:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyPostinSecondPostToGetStarted -->
+        <test-method status="SKIP" signature="verifyPostinSecondPostToRHTestPage()[pri:0, instance:tcAutoPost.TCAutoFanPost@754ba872]" name="verifyPostinSecondPostToRHTestPage" duration-ms="1" started-at="2017-05-25T15:39:29Z" finished-at="2017-05-25T15:39:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyPostinSecondPostToRHTestPage -->
+        <test-method status="SKIP" signature="LaunchBrowser()[pri:0, instance:tcAutoPost.TCAutoFanPost@754ba872]" name="LaunchBrowser" is-config="true" duration-ms="0" started-at="2017-05-25T15:39:29Z" finished-at="2017-05-25T15:39:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LaunchBrowser -->
+        <test-method status="SKIP" signature="QuitBrowser()[pri:0, instance:tcAutoPost.TCAutoFanPost@754ba872]" name="QuitBrowser" is-config="true" duration-ms="0" started-at="2017-05-25T15:39:29Z" finished-at="2017-05-25T15:39:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- QuitBrowser -->
+      </class> <!-- tcAutoPost.TCAutoFanPost -->
+    </test> <!-- PostingToFacebook -->
+  </suite> <!-- SuiteFB -->
+</testng-results>

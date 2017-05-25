@@ -1,0 +1,502 @@
+package actions.admin;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.Test;
+
+import actions.LoginToApplication;
+import actions.OpenModule;
+import baseHelper.BrowserLauncher;
+import baseHelper.Config;
+import baseHelper.SimplifyUtils;
+import uiMap.admin.UIAdminChannels;
+
+public class ManageAdminTwitterChannels extends BrowserLauncher {
+
+
+	public void addAdminTwitterAccount(String twitterAccount, String twitterPassword){
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		//whether case is closed by system or by user
+
+		if (checkTwitterChannelIsAlreadyAdded(twitterAccount) == false) 
+
+		{
+
+			uiAdminChannels.addAdminTwitter.click();
+
+			SimplifyUtils.switchToNewWindow();
+
+			uiAdminChannels.twitterScreenName.sendKeys(twitterAccount);
+
+			uiAdminChannels.twitterPassword.sendKeys(twitterPassword);
+
+			SimplifyUtils.s360sleep(3000);
+
+			uiAdminChannels.authorizeApp.click();
+
+			SimplifyUtils.switchToOldWindow();
+
+		}
+
+		else if (checkTwitterChannelIsAlreadyAdded(twitterAccount) == true)
+
+		{
+
+			deleteTwitterAccount(twitterAccount);
+
+			uiAdminChannels.addAdminTwitter.click();
+
+			SimplifyUtils.switchToNewWindow();
+
+			SimplifyUtils.s360sleep(3000);
+
+			uiAdminChannels.twitterScreenName.sendKeys(twitterAccount);
+
+			uiAdminChannels.twitterPassword.sendKeys(twitterPassword);
+
+			SimplifyUtils.s360sleep(3000);
+
+			uiAdminChannels.authorizeApp.click();
+
+			SimplifyUtils.switchToOldWindow();
+
+		}
+
+
+
+	}
+
+	public ArrayList<String> getaddedTwitterChannelsName(){
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		ArrayList<String> addedTwitterChannels = new ArrayList<String>();
+
+		for (int i = 1; i <= uiAdminChannels.countOfAddedChannels.size(); i++) {
+
+			addedTwitterChannels.add(driver.findElement(By.xpath("//tr["+i+"]/td[1]//h6")).getText());
+
+		}
+
+		return addedTwitterChannels;
+
+	}
+
+	public void deleteTwitterAccount(String channelName){
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		for (int i = 1; i <= uiAdminChannels.countOfAddedChannels.size(); i++) {
+
+			//Checking if the twitter account is added
+			if(driver.findElement(By.xpath("//tr["+i+"]/td[1]//h6")).getText().equalsIgnoreCase("@ "+channelName))
+			{
+
+				//click on delete button of the twitter account
+				driver.findElement(By.xpath("//tr["+ i +"]/td[5]/div/span[4]")).click();
+
+				SimplifyUtils.s360sleep(3000);
+
+				uiAdminChannels.deleteAdminTwitterChannel.click();
+
+				SimplifyUtils.s360sleep(3000);
+
+				break;
+
+			}
+
+		}
+
+	}
+
+	public boolean checkTwitterChannelIsAlreadyAdded(String twitterAccount){
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		Boolean channelIsPresent = null ; 
+
+		for (int i = 1; i <= uiAdminChannels.countOfAddedChannels.size(); i++) {
+
+			//Checking if the twitter account is added
+			if(driver.findElement(By.xpath("//tr["+i+"]/td[1]//h6")).getText().equalsIgnoreCase("@ "+twitterAccount))
+			{
+
+				channelIsPresent = true ; //return true if added
+
+				break;
+
+			}
+
+			else{
+
+				channelIsPresent = false ; //return false if added
+
+			}
+
+		}
+
+		return channelIsPresent;
+
+	}
+
+	public boolean checkTwitterChannelIsActive(String twitterAccount){
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		Boolean channelIsActive = null ; 
+
+		for (int i = 1; i <= uiAdminChannels.countOfAddedChannels.size(); i++) {
+
+			//Checking if the twitter account is added
+			if(driver.findElement(By.xpath("//tr["+i+"]/td[1]//h6")).getText().equalsIgnoreCase("@ "+twitterAccount))
+
+			{
+
+				//Channel is activated
+				if (driver.findElement(By.xpath("//tr["+ i+"]/td[5]/div/span[3]//span[@data-original-title=\"Deactivate\"]")).isDisplayed()) 
+
+				{
+
+					channelIsActive = true ; //return true if active
+
+					break;
+
+					//If channel is deactivated
+				}else if (driver.findElement(By.xpath("//tr["+ i+"]/td[5]/div/span[3]//span[@data-original-title=\"Activate\"]")).isDisplayed()) 
+
+				{
+
+					channelIsActive = false ; //return true if not active
+
+					break;
+
+				}
+			}
+
+		}
+
+		return channelIsActive;
+
+	}
+
+	public void reAssociateTwitterAccount(String accountToReAssociate, String twitterAccount, String twitterPassword)
+	{
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		for (int i = 1; i <= uiAdminChannels.countOfAddedChannels.size(); i++) 
+		{
+
+			//Checking if the twitter account is added, if added then re-associate
+			if(driver.findElement(By.xpath("//tr["+i+"]/td[1]//h6")).getText().equalsIgnoreCase("@ "+accountToReAssociate))
+
+			{
+
+				//click on re-associate button of the required twitter ccount
+				driver.findElement(By.xpath("//tr["+ i +"]/td[5]/div/span[1]")).click();
+
+				SimplifyUtils.s360sleep(3000);
+
+				break;
+
+			}
+
+		}
+
+		SimplifyUtils.switchToNewWindow();
+
+		SimplifyUtils.s360sleep(3000);
+
+		uiAdminChannels.twitterScreenName.sendKeys(twitterAccount);
+
+		uiAdminChannels.twitterPassword.sendKeys(twitterPassword);
+
+		SimplifyUtils.s360sleep(3000);
+
+		uiAdminChannels.authorizeApp.click();
+
+		SimplifyUtils.switchToOldWindow();
+
+	}
+
+	public void deactivateAdminTwitterAccount(String twitterAccount){
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		for (int i = 1; i <= uiAdminChannels.countOfAddedChannels.size(); i++) {
+
+			//Checking if the twitter account is added
+			if(driver.findElement(By.xpath("//tr["+i+"]/td[1]//h6")).getText().equalsIgnoreCase("@ "+twitterAccount))
+
+			{
+				//If channel is deactivated
+				if (driver.findElement(By.xpath("//tr["+ i+"]/td[5]/div/span[3]//span[@data-original-title=\"Deactivate\"]")).isDisplayed()) 
+
+				{
+
+					driver.findElement(By.xpath("//tr["+ i+"]/td[5]/div/span[3]")).click();
+
+					break;
+				}
+			}
+		}
+	}
+
+	public void activateAdminTwitterAccount(String twitterAccount){
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		for (int i = 1; i <= uiAdminChannels.countOfAddedChannels.size(); i++) {
+
+			//Checking if the twitter account is added
+			if(driver.findElement(By.xpath("//tr["+i+"]/td[1]//h6")).getText().equalsIgnoreCase("@ "+twitterAccount))
+
+			{
+				//If channel is deactivated
+				if (driver.findElement(By.xpath("//tr["+ i+"]/td[5]/div/span[3]//span[@data-original-title=\"Activate\"]")).isDisplayed()) 
+
+				{	
+
+					driver.findElement(By.xpath("//tr["+ i+"]/td[5]/div/span[3]")).click();
+
+					break;
+				}
+			}
+		}
+	}
+
+	public String getUserEmailToShareChannel(){
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		String emailToBeShared = null; 
+
+		int counOfUsers = uiAdminChannels.countOfUsersInCurrentPage.size();
+
+		for (int i = 1; i <= counOfUsers; i++) {
+
+			boolean canShareChannel = driver.findElement(By.xpath("//*[@id='shareUsersTable']//tr["+i+"]/td[3]/input")).isEnabled();
+
+			if (canShareChannel == true){
+
+				emailToBeShared = driver.findElement(By.xpath("//*[@id='shareUsersTable']//tr["+ i +"]/td[2]")).getText();
+
+				break;
+
+			}
+		}
+
+		return emailToBeShared;
+
+	}
+
+	public void shareChannelWithUser(String userEmail){
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		int counOfUsers = uiAdminChannels.countOfUsersInCurrentPage.size();
+
+		String userEmailToShare = userEmail;
+
+		for (int i = 1; i <= counOfUsers; i++) 
+		{
+
+			String currentuserEmail = driver.findElement(By.xpath("//*[@id='shareUsersTable']//tr["+i+"]/td[2]")).getText();
+
+			if (userEmailToShare.equalsIgnoreCase(currentuserEmail))
+			{
+
+				driver.findElement(By.xpath("//*[@id='shareUsersTable']//tr["+i+"]/td[3]/input")).click();
+
+				uiAdminChannels.saveChannelShare.click();
+
+				break;
+			}
+		}
+	}
+
+	public boolean checkAdminTwitterChannelIsShared(String emailToCheck, String channelName)
+
+	{
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		int countOfAddedAdminChannels =  uiAdminChannels.countOfAddedChannels.size();
+
+		String userEmailToCheck = emailToCheck;
+
+		Boolean channelIsShared = null ;
+
+		for (int addedAdminChannelRowNumber = 1; addedAdminChannelRowNumber <= countOfAddedAdminChannels; addedAdminChannelRowNumber++) 
+		{
+
+			if (driver.findElement(By.xpath("//tr[" + addedAdminChannelRowNumber + "]/td[1]//h6")).getText().equalsIgnoreCase("@ " + channelName)) 
+
+			{
+
+				clickOnShareChannelOptionAdminTwitter(channelName);
+
+				int counOfUsers = uiAdminChannels.countOfUsersInCurrentPage.size();
+
+				for (int j = 1; j <= counOfUsers; j++) 
+				{
+
+					String currentuserEmail = driver.findElement(By.xpath("//*[@id='shareUsersTable']/tbody/tr["+j+"]/td[2]")).getText();
+
+					if (userEmailToCheck.equalsIgnoreCase(currentuserEmail)) 
+
+					{
+
+						channelIsShared = true;
+
+						break;
+					}
+
+					else
+
+					{
+						channelIsShared = false;
+
+					}
+				}
+			}
+		}
+		return channelIsShared;
+	}
+
+	public void clickOnShareChannelOptionAdminTwitter(String channelName)
+
+	{
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		for (int i = 1; i <= uiAdminChannels.countOfAddedChannels.size(); i++) 
+		{
+
+			//Checking if the twitter account is added
+			if(driver.findElement(By.xpath("//tr["+i+"]/td[1]//h6")).getText().equalsIgnoreCase("@ "+channelName))
+
+			{
+				driver.findElement(By.xpath("//tr["+i+"]/td[5]/div/span[2]")).click();
+
+				break;
+			}
+		}
+	}
+
+	public String emailIdOfUserAddedTheChannel(String adminTwitterChannelName){
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		String addedUserEmail = null;
+
+		for (int i = 1; i <= uiAdminChannels.countOfAddedChannels.size(); i++) 
+		{
+
+			//Checking if the twitter account is added
+			if(driver.findElement(By.xpath("//tr["+i+"]/td[1]//h6")).getText().equalsIgnoreCase("@ "+adminTwitterChannelName))
+
+			{
+				addedUserEmail = driver.findElement(By.xpath("//tr["+i+"]/td[3]//h6")).getText();
+
+				break;
+			}
+		}
+
+		return addedUserEmail;
+	}
+
+	public boolean checkTwitterInsightsEnabled(String adminTwitterChannelName){
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		Boolean insightsStatus = null ;
+
+		//getting the total channels added
+		for (int i = 1; i <= uiAdminChannels.countOfAddedChannels.size(); i++) 
+		{
+
+			//checing if the element is added
+			if(driver.findElement(By.xpath("//tr["+i+"]/td[1]//h6")).getText().equalsIgnoreCase("@ "+adminTwitterChannelName))
+
+			{
+				//checking if insights are disabled
+				boolean insightsDisabled = driver.findElement(By.xpath("//tr[" + i + "]/td[4]/div[1]/div/div/div[2]")).isDisplayed();
+
+				boolean insightsEnabled = driver.findElement(By.xpath("//tr[" + i + "]/td[4]/div[1]/div/div/div[1]")).isDisplayed();
+
+				if (insightsDisabled == true) 
+
+				{
+					insightsStatus = false;
+
+					break;
+
+				}
+
+				else if(insightsEnabled == true)
+
+				{
+
+					insightsStatus = true;
+
+					break;
+
+				}
+			}
+		}
+
+		return insightsStatus;
+
+	}
+
+	public void enableTwitterInsights(String adminTwitterChannelName){
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		//if twitter insights are not enabled for this account
+		if (checkTwitterInsightsEnabled(Config.twitterAccount) == false)
+
+		{
+			//getting the total channels added
+			for (int i = 1; i <= uiAdminChannels.countOfAddedChannels.size(); i++) 
+			{
+				//checing if the element is added
+				if(driver.findElement(By.xpath("//tr["+i+"]/td[1]//h6")).getText().equalsIgnoreCase("@ "+adminTwitterChannelName))
+
+				{
+					driver.findElement(By.xpath("//tr["+i+"]/td[4]/div[1]/div/div")).click();
+				} 
+			}
+		}
+	}
+
+	public void disableTwitterInsights(String adminTwitterChannelName){
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		//if twitter insights are not enabled for this account
+		if (checkTwitterInsightsEnabled(Config.twitterAccount) == true)
+
+		{
+			//getting the total channels added
+			for (int i = 1; i <= uiAdminChannels.countOfAddedChannels.size(); i++) 
+			{
+				//checing if the element is added
+				if(driver.findElement(By.xpath("//tr["+i+"]/td[1]//h6")).getText().equalsIgnoreCase("@ "+adminTwitterChannelName))
+
+				{
+					driver.findElement(By.xpath("//tr["+i+"]/td[4]/div[1]/div/div")).click();
+				} 
+			}
+		}
+	}
+
+}
+

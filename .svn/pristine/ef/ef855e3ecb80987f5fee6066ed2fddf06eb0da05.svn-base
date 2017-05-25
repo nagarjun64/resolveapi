@@ -1,0 +1,81 @@
+package baseHelper;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+
+public class BrowserLauncher {
+
+	public static WebDriver driver ;
+
+	@BeforeMethod
+	public void LaunchBrowser() {
+
+		if (Config.browser.equals("firefox")){
+
+			//Mac Driver
+			System.setProperty("webdriver.gecko.driver", "src/test/resources/mac_geckodriver");
+
+
+			//Windows 64 Driver
+			//System.setProperty("webdriver.gecko.driver", "src/test/resources/win64_geckodriver.exe");
+
+			driver = new FirefoxDriver();
+
+
+		}
+
+		if (Config.browser.equals("chrome")){
+
+			//Mac Driver
+			System.setProperty("webdriver.chrome.driver", "src/test/resources/mac_chromedriver");
+
+			//Windows Driver
+			//			System.setProperty("webdriver.chrome.driver", "src/test/resources/win32_chromedriver.exe");
+
+
+			//For MAC:**
+
+			ChromeOptions chromeOptions = new ChromeOptions();
+			chromeOptions.addArguments("--kiosk");
+
+			//For WINDOWS:**
+
+			/*ChromeOptions chromeOptions = new ChromeOptions();
+					chromeOptions.addArguments("--start-maximized");*/
+
+			driver = new ChromeDriver(chromeOptions);
+//			driver = new ChromeDriver();
+			
+			driver.manage().window().maximize();
+			
+
+		}
+
+		driver.get(Config.baseURL);
+
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+	}
+
+	/*@AfterMethod
+	public void QuitBrowser() {
+
+		try {
+			
+			driver.close();
+
+			driver.quit();
+
+		} catch (Exception e) {
+
+		}
+
+	}*/
+
+}

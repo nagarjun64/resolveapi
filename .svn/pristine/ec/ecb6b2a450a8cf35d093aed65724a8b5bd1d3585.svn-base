@@ -1,0 +1,184 @@
+
+package uiMap.admin;
+
+import java.util.List;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
+
+public class UIAdminChannels {
+
+	public UIAdminChannels (WebDriver driver) {
+
+		PageFactory.initElements(driver, this);
+
+	}
+
+
+	//Add Twitter Account
+	@FindBy(id = "addTwtAccnt")
+	public WebElement addAdminTwitter;
+
+	//Count of added channels for each channel
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[@id='users-wrapper']/div[1]/div/table/tbody/tr/td/div//img"))
+	public List<WebElement> countOfAddedChannels;
+
+	//AddedChannels
+	@FindAll(@FindBy(how = How.XPATH, using = "//tr/td[1]//h6"))
+	public List<WebElement> addedChannels;
+
+	//AddedChannels
+	@FindBy(xpath = "//tr/td[1]//h6")
+	public WebElement addedChannelScreenName;
+
+	//Rows in Channels OR First Part
+	@FindBy(xpath = "//*[@id='users-wrapper']/div[1]/div/table/tbody/tr[")
+	public List<WebElement> requiredChannelFirstPath;
+
+	//Re-Associate Second Part
+	@FindBy(xpath = "]/td[5]/div/span[1]")
+	public List<WebElement> reAssociateTwitterSecondPath;
+
+
+	//Confirm Delete Twitter Account
+	@FindBy(className = "jqidefaultbutton")
+	public WebElement deleteAdminTwitterChannel;
+
+
+	//Successfull Re-Associate Twitter Account message //div[class='messenger-message-inner']
+	@FindBy(xpath = "html/body/ul/li[1]/div/div")
+	public WebElement successReAssocAdminTwitterAccountNotification;
+
+	//Successfull Re-Associate Twitter Account message //div[class='messenger-message-inner']
+	@FindBy(xpath = "html/body/ul/li[1]/div/div")
+	public WebElement unSuccessReAssocAdminTwitterAccountNotification;
+
+	@FindBy(xpath = "html/body/ul/li/div/div")
+	public WebElement successChannelActivated;
+
+	@FindBy(css = "ios-switch on")
+	public WebElement turnOnTwitterInsights;
+
+	@FindBy(css = "ios-switch on")
+	public WebElement turnOffTwitterInsights;
+
+
+
+
+
+	//=========================Twitter Login Screen==================//
+
+
+	@FindBy(id = "username_or_email")
+	public WebElement twitterScreenName;
+
+	@FindBy(id = "password")
+	public WebElement twitterPassword;
+
+	@FindBy(id = "allow")
+	public WebElement authorizeApp;
+
+	@FindBys({@FindBy(className = "ls-extended-due-date-icon")})
+	List<WebElement> visualIndicatorForDueDate;//visual indicator for due date in Assignment response page
+	public List<WebElement> getVisualIndicatorForDueDate() {
+		return visualIndicatorForDueDate;
+	}
+
+	@FindBy(css = "div[class='ls-assignment-date-block extended-due-date-popup']")
+	WebElement visualIndicatorToolTip;//extended due date field in Current Assignments page
+	public WebElement getVisualIndicatorToolTip() {
+		return visualIndicatorToolTip;
+	}
+
+	@FindBy(className = "idb-gradebook-question-content")
+	WebElement viewResponse_link; //view Response link
+	public WebElement getViewResponse_link(){
+		return viewResponse_link;
+	}
+
+	//=========================Facebook Login Screen==================//
+
+	@FindBy(xpath = "//*[@id='email']")
+	public WebElement facebookLoginEmail;
+
+	@FindBy(xpath = "//*[@id='pass']")
+	public WebElement facebookLoginPassword;
+
+	@FindBy(id = "loginbutton")
+	public WebElement facebookLoginButton;
+
+	//add facebook page in the facebook page popup list
+	@FindBy(xpath = "//div[starts-with(@class,'table-responsive')]//tr[1]/td[3]/a")
+	public WebElement facebookPageAdd;
+
+	//add facebook page in the facebook page popup list
+	@FindBy(xpath = "//div[starts-with(@class,'table-responsive')]//tr[1]/td[2]")
+	public WebElement facebookPageBeingAdded;
+
+	//Done Adding the admin facebook pages
+	@FindBy(xpath = "//input[@value='Done']")
+	public WebElement finishAddingFbAdminpage;
+
+	//skip Adding the admin facebook pages
+	@FindBy(xpath = "//input[@value='Skip']")
+	public WebElement skipAddingFbAdminpage;
+
+	
+	//=====================Sharer Users Table=====================//
+	@FindBy(xpath = "//*[@id='shareUsersTable']/tbody/tr")
+	public List<WebElement> countOfUsersInCurrentPage;
+
+	@FindBy(xpath = "//input[@value='Save']")
+	public WebElement saveChannelShare;
+
+
+	//=====================Tabs in Manage Channels =====================//
+
+
+	//Twitter Tab
+	@FindBy(xpath = "//*[@id='tabs-Twitter']")
+	public WebElement twitterAdmin;
+
+	//Facebook Account Tab
+	@FindBy(xpath = "//a[@data-original-title=\"Facebook Account\"]")
+	public WebElement facebookAccountAdmin;
+
+	//Facebook Pages Tab
+	@FindBy(xpath = "//a[@data-original-title=\"Facebook Pages\"]")
+	public WebElement facebookPageAdmin;
+
+	//Facebook Groups Tab
+	@FindBy(xpath = "//a[@data-original-title=\"Facebook Groups\"]")
+	public WebElement facebookGroupAdmin;
+
+	//Linkedin Account Tab
+	@FindBy(xpath = "//a[@data-original-title=\"Linkedin Account\"]")
+	public WebElement linkedinAccountAdmin;
+
+	//Linkedin Company Tab
+	@FindBy(xpath = "//a[@data-original-title=\"LinkedIn Company Pages\"]")
+	public WebElement linkedinCompanyAdmin;
+
+	//YouTube Channel Tab
+	@FindBy(xpath = "//a[@data-original-title=\"Youtube Accounts\"]")
+	public WebElement youtubeChannelAdmin;
+
+	//Google Plus Pages Tab
+	@FindBy(xpath = "//a[@data-original-title=\"Google+ Pages\"]")
+	public WebElement googlePlusAdmin;
+
+	//Tumblr Blogs Tab
+	@FindBy(xpath = "//a[@data-original-title=\"Tumblr Accounts\"]")
+	public WebElement tumblrBlogsAdmin;
+
+	//InstagramTab
+	@FindBy(xpath = "//a[@data-original-title=\"Instagram Accounts\"]")
+	public WebElement instagramChannelAdmin;
+
+
+}

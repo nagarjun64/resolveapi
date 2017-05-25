@@ -1,0 +1,15 @@
+package uiMap.admin;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+
+public class UICompetitorChannels {
+
+	public UICompetitorChannels (WebDriver driver) {
+
+		PageFactory.initElements(driver, this);
+
+	}
+	
+	
+}

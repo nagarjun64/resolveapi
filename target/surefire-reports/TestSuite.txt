@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 432.295 sec <<< FAILURE! - in TestSuite
+verifyPostinFirstPostToGetStarted(tcAutoPost.TCAutoFanPost)  Time elapsed: 76.184 sec  <<< FAILURE!
+org.openqa.selenium.NoSuchElementException: 
+Unable to locate element: //*[@id='PageComposerPagelet_']//button[contains(., 'Post')]
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.4.0', revision: 'unknown', time: 'unknown'
+System info: host: 'nagarjunaMBP.local', ip: 'fe80:0:0:0:1091:7b48:cb5a:156b%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_60'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=/var/folders/g4/dylg4g7s7wbdtg_f6mtzj8m00000gn/T/rust_mozprofile.GQFPFqhdOWOO, rotatable=false, timeouts={implicit=0.0, pageLoad=300000.0, script=30000.0}, pageLoadStrategy=normal, platform=ANY, specificationLevel=0.0, moz:accessibilityChecks=false, acceptInsecureCerts=false, browserVersion=53.0.3, platformVersion=16.5.0, moz:processID=72818.0, browserName=firefox, javascriptEnabled=true, platformName=darwin}]
+Session ID: 783e85af-ca60-ae47-b668-a3c0dd75252b
+*** Element info: {Using=xpath, value=//*[@id='PageComposerPagelet_']//button[contains(., 'Post')]}
+	at tcAutoPost.TCAutoFanPost.verifyPostinFirstPostToGetStarted(TCAutoFanPost.java:50)
+

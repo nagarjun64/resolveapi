@@ -1,0 +1,128 @@
+package baseHelper;
+
+import java.io.File;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+public class Config {
+	
+	public static String baseURL;
+	public static String loginOwnerEmail;
+	public static String loginOwnerPassword;
+	public static String loginAdminEmail;
+	public static String loginAdminPassword;
+	public static String browser;
+	public static String twitterAccount;
+	public static String fbPage;
+	public static String fbAccount;
+	public static String fbAccountPassword;
+	public static String twitterAccountPassword;
+	public static String secondTwitterAccount;
+	public static String secondTwitterAccountPassword;
+	public static String dbconnecturl;
+	public static String dbName;
+	public static String dbdriver;
+	public static String dbuserName;
+	public static String dbPassword;
+	public static String imageToUpload;
+	public static String twtVideoPath;
+	public static String twitterIdentifier;
+	public static String fbPageIdentifier; 
+    
+	static {
+		
+		readconfiguration();
+		
+	}
+	
+	public static void readconfiguration()
+	{
+		 try {
+//			String workingDir = System.getProperty("user.dir");
+			
+			File fXmlFile = new File("src/test/resources/config.xml");
+
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(fXmlFile);
+
+			// optional, but recommendedread this -
+			// http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
+			
+			doc.getDocumentElement().normalize();
+
+			// System.out.println("root of xml file" +doc.getDocumentElement().getNodeName());
+			
+			NodeList nList = doc.getElementsByTagName("config");
+			
+			for (int temp = 0; temp < nList.getLength(); temp++) {
+		 
+				Node nNode = nList.item(temp);
+		 
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+		 
+					Element eElement = (Element) nNode;	 
+					
+					baseURL = eElement.getElementsByTagName("baseURL").item(0).getTextContent();
+					
+				
+					browser = eElement.getElementsByTagName("browser").item(0).getTextContent();
+					
+					String local = "http://dev.simplify360.com/";
+					if (baseURL.equalsIgnoreCase("http://dev.simplify360.com/")) {
+						
+						System.err.println(baseURL);
+						loginOwnerEmail = eElement.getElementsByTagName("localLoginOwnerEmail").item(0).getTextContent();
+						System.err.println(loginOwnerEmail);
+						loginOwnerPassword = eElement.getElementsByTagName("localLoginOwnerPassword").item(0).getTextContent();
+						loginAdminEmail = eElement.getElementsByTagName("localLoginAdminEmail").item(0).getTextContent();
+						loginAdminPassword = eElement.getElementsByTagName("localLoginAdminPassword").item(0).getTextContent();
+						twitterAccount = eElement.getElementsByTagName("twitterAccount").item(0).getTextContent();
+						twitterAccountPassword = eElement.getElementsByTagName("twitterAccountPassword").item(0).getTextContent();
+						fbPage = eElement.getElementsByTagName("fbPage").item(0).getTextContent();
+						fbAccount = eElement.getElementsByTagName("fbAccount").item(0).getTextContent();
+						fbAccountPassword = eElement.getElementsByTagName("fbAccountPassword").item(0).getTextContent();
+						secondTwitterAccount = eElement.getElementsByTagName("secondTwitterAccount").item(0).getTextContent();
+						secondTwitterAccountPassword = eElement.getElementsByTagName("secondTwitterAccountPassword").item(0).getTextContent();
+						dbconnecturl = eElement.getElementsByTagName("dbconnecturl").item(0).getTextContent();
+						dbName = eElement.getElementsByTagName("dbName").item(0).getTextContent();
+						dbdriver = eElement.getElementsByTagName("dbdriver").item(0).getTextContent();
+						dbuserName = eElement.getElementsByTagName("dbuserName").item(0).getTextContent();
+						dbPassword = eElement.getElementsByTagName("dbPassword").item(0).getTextContent();
+						imageToUpload = eElement.getElementsByTagName("imageToUpload").item(0).getTextContent();
+						twtVideoPath = eElement.getElementsByTagName("twtVideoPath").item(0).getTextContent();
+						twitterIdentifier = eElement.getElementsByTagName("twitterIdentifier").item(0).getTextContent();
+						fbPageIdentifier = eElement.getElementsByTagName("fbPageIdentifier").item(0).getTextContent();
+						
+					}else if (baseURL.equalsIgnoreCase("http://suite.simplify360.com") ) {
+						
+						loginOwnerEmail = eElement.getElementsByTagName("suiteLoginOwnerEmail").item(0).getTextContent();
+						loginOwnerPassword = eElement.getElementsByTagName("suiteLoginOwnerPassword").item(0).getTextContent();
+						loginAdminEmail = eElement.getElementsByTagName("suiteLoginAdminEmail").item(0).getTextContent();
+						loginAdminPassword = eElement.getElementsByTagName("suiteLoginAdminPassword").item(0).getTextContent();
+						
+					}else if (baseURL.equalsIgnoreCase("http://betasocio.techmahindra.com/")) {
+						
+						loginOwnerEmail = eElement.getElementsByTagName("suiteLoginOwnerEmail").item(0).getTextContent();
+						loginOwnerPassword = eElement.getElementsByTagName("suiteLoginOwnerPassword").item(0).getTextContent();
+						loginAdminEmail = eElement.getElementsByTagName("suiteLoginAdminEmail").item(0).getTextContent();
+						loginAdminPassword = eElement.getElementsByTagName("suiteLoginAdminPassword").item(0).getTextContent();
+							
+						}
+					}
+				}
+		 }
+		 catch(Exception e)
+		 {
+			 e.printStackTrace();
+		 }
+		   
+		 }
+
+}

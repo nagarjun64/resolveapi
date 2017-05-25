@@ -1,0 +1,510 @@
+package uiMap.listen;
+
+import java.util.List;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
+
+public class UIProfileMgmt {
+
+	public UIProfileMgmt (WebDriver driver) {
+
+		PageFactory.initElements(driver, this);
+
+	}
+
+	//ProfileName
+	@FindBy(xpath = "//input[@id='dashboardName']")
+	public WebElement profileName;
+
+	//Volume Slider 
+	@FindBy(xpath="//div[@class='slider-handle min-slider-handle round']")
+	public WebElement volumeSlider;
+
+	//Manual Input 
+	@FindBy(id="amountVal")
+	public WebElement volumeManualInput;
+
+	//Create profile Button in profile creation screen
+	@FindBy(xpath="//*[@id='moose']//button[contains(text(),'Create')]")
+	public WebElement createProfile;
+
+	//=====================================Menu on the left list=====================================//
+
+	//KeyWord Set Up  
+	@FindBy(xpath="//*[@id='profileCreateMenu']//li[3]/a")
+	public WebElement keyWordSetUp;
+
+	//KeyWord Set Up  
+	@FindBy(xpath="//*[@id='profileCreateMenu']//li[4]/a")
+	public WebElement addSocialChannels;
+
+	//Share Profile in Menu
+	@FindBy(xpath="//*[@id='profileCreateMenu']//a[contains(text(),'Share With')]")
+	public WebElement shareProfileWith;
+
+
+
+	//=====================================Profile Settings=====================================//
+
+	//Case Association  
+	@FindBy(xpath="//*[@id='bear']//*[starts-with(@class,'ios-switch')]")
+	public WebElement caseAssociation;
+
+	//Case Association Enabled
+	@FindBy(xpath="//*[@id='bear']//div[starts-with(@class,'on-background')]")
+	public WebElement caseAssociationEnabled;
+
+	//Case Association Disabled
+	@FindBy(xpath="//*[@id='bear']//div[starts-with(@class,'state-background')]")
+	public WebElement caseAssociationDisabled;
+
+
+	//Case Association Duration  
+	@FindBy(id="reassignPeriodMins") 
+	public WebElement caseAssociationDuration;
+
+	//Reply Settings  
+	@FindBy(id="replySetting")
+	public WebElement replySetting;
+
+	//Save Profile Settings  
+	@FindBy(xpath="//*[@id='bear']//button[contains(text(),'Save')]")
+	public WebElement saveProfileSettings;
+
+	//Skip Profile Settings  
+	@FindBy(xpath="//*[@id='bear']//button[contains(text(),'Skip')]")
+	public WebElement skipProfileSettings;
+
+	//Update Profile Settings while editing profile  
+	@FindBy(xpath="//*[@id='bear']//button[contains(text(),'Update')]")
+	public WebElement updateProfileSettings;
+
+	//=====================================Keyword Combination Setup=====================================//
+
+	//Yes button in are you sure you want to add keyword setup  
+	@FindBy(xpath="//*[@id='subquery_keyword']//button[contains(text(),'Yes')]")
+	public WebElement yesWouldLikeToAddSubquery;
+
+	//skip button in are you sure you want to add keyword setup  
+	@FindBy(xpath="//*[@id='subquery_keyword']//button[contains(text(),'Skip')]")
+	public WebElement skipAddingSubquery;
+
+	//Add another sub query in profile creation or editing  
+	@FindBy(xpath="//*[@id='subquery_keyword']//button[contains(text(),'Add Another')]")
+	public WebElement addAnotherSubquery;
+
+	//=====================================First Keyword Combination Setup=====================================//
+
+	//First Subquery Set up Subqeury name  
+	@FindBy(xpath="//*[@id='panelBody_']//input[@class='wordtext']")
+	public WebElement firstSubqueryName;
+
+	//First Words to track  
+	@FindBy(xpath="//*[@id='panelBody_']//textarea[@name='word']")
+	public WebElement firstSetUpWordToTrack;
+
+	//First Containig all words  
+	@FindBy(xpath="//*[@id='panelBody_']//textarea[@name='allword']")
+	public WebElement firstSetUpAllWords;
+
+	//First Containig any words  
+	@FindBy(xpath="//*[@id='panelBody_']//textarea[@name='anyword']")
+	public WebElement firstSetUpAnyWords;
+
+	//First not Containig  words  
+	@FindBy(xpath="//*[@id='panelBody_']//textarea[@name='noneword']")
+	public WebElement firstSetUpNoneWords;
+
+	//First Sub query Select Country drop down  
+	@FindBy(xpath="//*[@id='panelBody_']//*[@id='selectcountry']")
+	public WebElement firstSetUpSelectCountry;
+
+	//Invert Location Selected for the profile  
+	@FindBy(xpath="//*[@id='panelBody_']//div[9]//*[starts-with(@class,'ios-switch')]")
+	public WebElement firstSetUpInvertLocation;
+
+	//Invert Location Selected for the profile ENABLED
+	@FindBy(xpath="//*[@id='panelBody_']//div[9]//div[starts-with(@class,'on-background')]")
+	public WebElement firstSetUpInvertLocationEnabled;
+
+	//Invert Location Selected for the profile DISABLED
+	@FindBy(xpath="//*[@id='panelBody_']//div[9]//div[starts-with(@class,'state-background')]")
+	public WebElement firstSetUpInvertLocationDisabled;
+
+	//First Sub query Select Language drop down  
+	@FindBy(xpath="//*[@id='panelBody_']//*[@id='s2id_selectlanguage']")
+	public WebElement fistSetUpSelectLanguage;
+
+	//Apply Location Selected for the profile  
+	@FindBy(xpath="//*[@id='panelBody_']//div[10]//*[starts-with(@class,'ios-switch')]")
+	public WebElement firstSetUpApplyLocation;
+
+	//Apply Location Selected for the profile ENABLED
+	@FindBy(xpath="//*[@id='panelBody_']//div[10]//div[starts-with(@class,'on-background')]")
+	public WebElement firstSetUpApplyLocationEnabled;
+
+	//Apply Location Selected for the profile DISABLED
+	@FindBy(xpath="//*[@id='panelBody_']//div[10]//div[starts-with(@class,'state-background')]")
+	public WebElement firstSetUpApplyLocationDisabled;
+
+	//=====================================First Public Source Locators=====================================//
+
+	//Public Twitter for first set up
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[1]/div[1]//div[starts-with(@class,'ios-switch')]")
+	public WebElement firstSetUpPublicTwitter;
+
+	//Public Twitter for first set up ENABLED
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[1]/div[1]//div[starts-with(@class,'on-background')]")
+	public WebElement firstSetUpPublicTwitterEnabled;
+
+	//Public Twitter for first set up ENABLED
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[1]/div[1]//div[starts-with(@class,'state-background')]")
+	public WebElement firstSetUpPublicTwitterDisabled;
+
+	//Public Blogs for first set up
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[1]/div[2]//div[starts-with(@class,'ios-switch')]")
+	public WebElement firstSetUpPublicBlog;
+
+	//Public Blogs for first set up Enabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[1]/div[2]//div[starts-with(@class,'on-background')]")
+	public WebElement firstSetUpPublicBlogEnabled;
+
+	//Public Blogs for first set up Disabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[1]/div[2]//div[starts-with(@class,'state-background')]")
+	public WebElement firstSetUpPublicBlogDisabled;
+
+	//Public News for first set up
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[1]/div[3]//div[starts-with(@class,'ios-switch')]")
+	public WebElement firstSetUpPublicNews;
+
+	//Public News for first set up Enabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[1]/div[3]//div[starts-with(@class,'on-background')]")
+	public WebElement firstSetUpPublicNewsEnabled;
+
+	//Public News for first set up Disabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[1]/div[3]//div[starts-with(@class,'state-background')]")
+	public WebElement firstSetUpPublicNewsDisabled;
+
+	//Public Videos for first set up
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[1]/div[4]//div[starts-with(@class,'ios-switch')]")
+	public WebElement firstSetUpPublicVideos;
+
+	//Public Videos for first set up Enabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[1]/div[4]//div[starts-with(@class,'on-background')]")
+	public WebElement firstSetUpPublicVideosEnabled;
+
+	//Public Videos for first set up Disabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[1]/div[4]//div[starts-with(@class,'state-background')]")
+	public WebElement firstSetUpPublicVideosDisabled;
+
+	//Public Discussions for first set up
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[2]/div[1]//div[starts-with(@class,'ios-switch')]")
+	public WebElement firstSetUpPublicDiscussions;
+
+	//Public Discussions for first set up Enabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[2]/div[1]//div[starts-with(@class,'on-background')]")
+	public WebElement firstSetUpPublicDiscussionsEnabled;
+
+	//Public Discussions for first set up Disabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[2]/div[1]//div[starts-with(@class,'state-background')]")
+	public WebElement firstSetUpPublicDiscussionsDisabled;
+
+	//Public Instagram for first set up
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[2]/div[2]//div[starts-with(@class,'ios-switch')]")
+	public WebElement firstSetUpPublicInstagram;
+
+	//Public Instagram for first set up Enabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[2]/div[2]//div[starts-with(@class,'on-background')]")
+	public WebElement firstSetUpPublicInstagramEnabled;
+
+	//Public Instagram for first set up Disabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[2]/div[2]//div[starts-with(@class,'state-background')]")
+	public WebElement firstSetUpPublicInstagramDisabled;
+
+	//Public GooglePlus for first set up
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[2]/div[3]//div[starts-with(@class,'ios-switch')]")
+	public WebElement firstSetUpPublicGooglePlus;
+
+	//Public GooglePlus for first set up Enabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[2]/div[3]//div[starts-with(@class,'on-background')]")
+	public WebElement firstSetUpPublicGooglePlusEnabled;
+
+	//Public GooglePlus for first set up Disabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[2]/div[3]//div[starts-with(@class,'state-background')]")
+	public WebElement firstSetUpPublicGooglePlusDisabled;
+
+	//Public Tumblr for first set up
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[2]/div[3]//div[starts-with(@class,'ios-switch')]")
+	public WebElement firstSetUpPublicTumblr;
+
+	//Public Tumblr for first set up Enabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[2]/div[3]//div[starts-with(@class,'on-background')]")
+	public WebElement firstSetUpPublicTumblrEnabled;
+
+	//Public Tumblr for first set up Disabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[2]/div[3]//div[starts-with(@class,'state-background')]")
+	public WebElement firstSetUpPublicTumblrDisabled;
+
+
+	//=====================================Second Keyword Combination Setup=====================================//
+
+	//Second Subquery Set up Subqeury name  
+	@FindBy(xpath="//*[@id='panelBody_1']//input[@class='wordtext']")
+	public WebElement secondSubqueryName;
+
+	//Second Words to track  
+	@FindBy(xpath="//*[@id='panelBody_1']//textarea[@name='word']")
+	public WebElement secondSetUpWordToTrack;
+
+	//Second Containig all words  
+	@FindBy(xpath="//*[@id='panelBody_1']//textarea[@name='allword']")
+	public WebElement secondSetUpAllWords;
+
+	//Second Containig any words  
+	@FindBy(xpath="//*[@id='panelBody_1']//textarea[@name='anyword']")
+	public WebElement secondSetUpAnyWords;
+
+	//Second not Containig  words  
+	@FindBy(xpath="//*[@id='panelBody_1']//textarea[@name='noneword']")
+	public WebElement secondSetUpNoneWords;
+
+	//Second Sub query Select Country drop down  
+	@FindBy(xpath="//*[@id='panelBody_1']//*[@id='selectcountry']")
+	public WebElement secondSetUpSelectCountry;
+
+	//Invert Location Selected for the profile  
+	@FindBy(xpath="//*[@id='panelBody_1']//div[9]//*[starts-with(@class,'ios-switch')]")
+	public WebElement secondSetUpInvertLocation;
+
+	//Invert Location Selected for the profile ENABLED
+	@FindBy(xpath="//*[@id='panelBody_1']//div[9]//div[starts-with(@class,'on-background')]")
+	public WebElement secondSetUpInvertLocationEnabled;
+
+	//Invert Location Selected for the profile DISABLED
+	@FindBy(xpath="//*[@id='panelBody_1']//div[9]//div[starts-with(@class,'state-background')]")
+	public WebElement secondSetUpInvertLocationDisabled;
+
+	//Second Sub query Select Language drop down  
+	@FindBy(xpath="//*[@id='panelBody_1']//*[@id='s2id_selectlanguage']")
+	public WebElement secondSetUpSelectLanguage;
+
+	//Apply Location Selected for the profile  
+	@FindBy(xpath="//*[@id='panelBody_1']//div[10]//*[starts-with(@class,'ios-switch')]")
+	public WebElement secondSetUpApplyLocation;
+
+	//Apply Location Selected for the profile ENABLED
+	@FindBy(xpath="//*[@id='panelBody_1']//div[10]//div[starts-with(@class,'on-background')]")
+	public WebElement secondSetUpApplyLocationEnabled;
+
+	//Apply Location Selected for the profile DISABLED
+	@FindBy(xpath="//*[@id='panelBody_1']//div[10]//div[starts-with(@class,'state-background')]")
+	public WebElement secondSetUpApplyLocationDisabled;
+
+	//=====================================Second Public Source Locators=====================================//
+
+	//Public Twitter for second set up
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[1]/div[1]//div[starts-with(@class,'ios-switch')]")
+	public WebElement secondSetUpPublicTwitter;
+
+	//Public Twitter for second set up ENABLED
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[1]/div[1]//div[starts-with(@class,'on-background')]")
+	public WebElement secondSetUpPublicTwitterEnabled;
+
+	//Public Twitter for second set up ENABLED
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[1]/div[1]//div[starts-with(@class,'state-background')]")
+	public WebElement secondSetUpPublicTwitterDisabled;
+
+	//Public Blogs for second set up
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[1]/div[2]//div[starts-with(@class,'ios-switch')]")
+	public WebElement secondSetUpPublicBlog;
+
+	//Public Blogs for second set up Enabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[1]/div[2]//div[starts-with(@class,'on-background')]")
+	public WebElement secondSetUpPublicBlogEnabled;
+
+	//Public Blogs for second set up Disabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[1]/div[2]//div[starts-with(@class,'state-background')]")
+	public WebElement secondSetUpPublicBlogDisabled;
+
+	//Public News for second set up
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[1]/div[3]//div[starts-with(@class,'ios-switch')]")
+	public WebElement secondSetUpPublicNews;
+
+	//Public News for second set up Enabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[1]/div[3]//div[starts-with(@class,'on-background')]")
+	public WebElement secondSetUpPublicNewsEnabled;
+
+	//Public News for second set up Disabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[1]/div[3]//div[starts-with(@class,'state-background')]")
+	public WebElement secondSetUpPublicNewsDisabled;
+
+	//Public Videos for second set up
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[1]/div[4]//div[starts-with(@class,'ios-switch')]")
+	public WebElement secondSetUpPublicVideos;
+
+	//Public Videos for second set up Enabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[1]/div[4]//div[starts-with(@class,'on-background')]")
+	public WebElement secondSetUpPublicVideosEnabled;
+
+	//Public Videos for second set up Disabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[1]/div[4]//div[starts-with(@class,'state-background')]")
+	public WebElement secondSetUpPublicVideosDisabled;
+
+	//Public Discussions for second set up
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[2]/div[1]//div[starts-with(@class,'ios-switch')]")
+	public WebElement secondSetUpPublicDiscussions;
+
+	//Public Discussions for second set up Enabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[2]/div[1]//div[starts-with(@class,'on-background')]")
+	public WebElement secondSetUpPublicDiscussionsEnabled;
+
+	//Public Discussions for second set up Disabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[2]/div[1]//div[starts-with(@class,'state-background')]")
+	public WebElement secondSetUpPublicDiscussionsDisabled;
+
+	//Public Instagram for second set up
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[2]/div[2]//div[starts-with(@class,'ios-switch')]")
+	public WebElement secondSetUpPublicInstagram;
+
+	//Public Instagram for second set up Enabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[2]/div[2]//div[starts-with(@class,'on-background')]")
+	public WebElement secondSetUpPublicInstagramEnabled;
+
+	//Public Instagram for second set up Disabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[2]/div[2]//div[starts-with(@class,'state-background')]")
+	public WebElement secondSetUpPublicInstagramDisabled;
+
+	//Public GooglePlus for second set up
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[2]/div[3]//div[starts-with(@class,'ios-switch')]")
+	public WebElement secondSetUpPublicGooglePlus;
+
+	//Public GooglePlus for second set up Enabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[2]/div[3]//div[starts-with(@class,'on-background')]")
+	public WebElement secondSetUpPublicGooglePlusEnabled;
+
+	//Public GooglePlus for second set up Disabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[2]/div[3]//div[starts-with(@class,'state-background')]")
+	public WebElement secondSetUpPublicGooglePlusDisabled;
+
+	//Public Tumblr for second set up
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[2]/div[3]//div[starts-with(@class,'ios-switch')]")
+	public WebElement secondSetUpPublicTumblr;
+
+	//Public Tumblr for second set up Enabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[2]/div[3]//div[starts-with(@class,'on-background')]")
+	public WebElement secondSetUpPublicTumblrEnabled;
+
+	//Public Tumblr for second set up Disabled
+	@FindBy(xpath="//*[@id='panelBody_']//div[13]/div[2]/div[3]//div[starts-with(@class,'state-background')]")
+	public WebElement secondSetUpPublicTumblrDisabled;
+
+
+	//=====================================Add Admin Facebook pages=====================================//
+
+	//Facebook Accordion
+	@FindBy(xpath="//*[@id='bobcat']//*[@id='accordion']/div[1]/div[1]/h4/a")
+	public WebElement fbPageAccordion;
+
+	//Import admin Facebook Pages for profile
+	@FindBy(xpath="//*[@id='collapseOne']//button[contains(text(),'Import')]")
+	public WebElement importFbpage;
+
+	//Add Admin Facebook Page
+	@FindBy(xpath="//*[@id='collapseOne']//button[contains(text(),'Add as admin')]")
+	public WebElement addAdminFbpage;
+
+	//Add Non-Admin Facebook Page
+	@FindBy(xpath="//*[@id='collapseOne']//button[contains(text(),'Add as non-admin')]")
+	public WebElement addNonAdminFbpage;
+
+	//no Facebook Pages added for the profile
+	@FindBy(xpath="//*[@id='social-channel-FACEBOOK']//div[starts-with(@class,'col-md-12')]//p")
+	public WebElement noFbPagesAdded;
+
+	//Non-Admin Fb page search Box
+	@FindBy(xpath="//*[@id='cmpPageName']")
+	public WebElement nonAdminFbPageSearchBox;
+
+	//Non-Admin Search button
+	@FindBy(xpath="//*[@id='collapseOne']//button[contains(text(),'Search')]")
+	public WebElement nonAdminFbSearchButton;
+
+	//Facebook page Name first in the results
+	@FindBy(xpath="//*[@id='social-channel-nonadmin-FACEBOOK']//span/a")
+	public WebElement nonAdminFirstFbPageFromSearch;
+
+	//add Facebook page button for first in the results
+	@FindBy(xpath="//*[@id='social-channel-nonadmin-FACEBOOK']//i")
+	public WebElement addNonAdminFirstFbPageFromSearch;
+
+	//Facebook Done Button
+	@FindBy(xpath="//*[@id='social-channel-nonadmin-FACEBOOK']//button[contains(.,'Done')]")
+	public WebElement fbPageNonAdminAdditionDone;
+
+	//Import First Facebook page
+	@FindBy(xpath="	//*[@id='social-channel-import-FACEBOOK']//a/i")
+	public WebElement importFirstFbPage;
+
+	//First Facebook Page Name to import
+	@FindBy(xpath="//*[@id='social-channel-import-FACEBOOK']//span/a")
+	public WebElement firstFbPageToImport;
+
+	//Facebook Done Button
+	@FindBy(xpath="//*[@id='social-channel-import-FACEBOOK']//button[contains(.,'Done')]")
+	public WebElement fbPageImportDone;
+
+	//Facebook Pages added for the profile -- important locator
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[@id='social-channel-FACEBOOK']//span/a"))
+	public List<WebElement> fbPagesAddedForProfile;
+
+	//Type of Facebook Page added for the profile i.e either Admin or Non-Admin
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[@id='social-channel-FACEBOOK']//div[4]/span"))
+	public List<WebElement> typeOfFbPagesAddedForProfile;
+
+	//Removing the Facebook Page added from the profile
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[@id='social-channel-FACEBOOK']//div[1]/a"))
+	public List<WebElement> removeFbPageFromProfile;
+
+	//marking the fb page channel based
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[@id='social-channel-FACEBOOK']//div[2]/input"))
+	public List<WebElement> markFbPageChannelBased;
+
+	//marking the fb page channel based
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[@id='social-channel-FACEBOOK']//div[3]/input"))
+	public List<WebElement> markFbPageExcludeBrandConversation;
+
+	//=====================================Share Profile with user settings=====================================//
+	
+	//Count of user in One page
+	@FindBy(xpath="	//*[@id='share_user_length']/label/select")
+	public WebElement userSizeInOnePage;
+
+	//User search box
+	@FindBy(xpath="//*[@id='share_user_filter']//input")
+	public WebElement userSearch;
+
+	//First user's check in the table
+	@FindBy(xpath="//*[@id='share_user']/tbody/tr[1]/td[1]/div")
+	public WebElement firstUserShareCheckBox;
+
+	//First user's email in the table
+	@FindBy(xpath="//*[@id='share_user']/tbody/tr[1]/td[2]//span")
+	public WebElement firstUserEmail;
+
+	//first row role drop down of the user 
+	@FindBy(xpath="//*[@id='share_user']/tbody/tr[1]/td[3]//select")
+	public WebElement firstUserRoleDropDown;
+	
+	//pages present in user share, reduce the count by two as this includes previous and next 
+	@FindBy(xpath="//*[@id='share_user_wrapper']//li//a")
+	public WebElement pagesInUserShare;
+	
+
+
+
+}

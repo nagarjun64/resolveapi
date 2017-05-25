@@ -1,0 +1,85 @@
+package uiMap.publish;
+
+import java.util.List;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
+
+public class UIPublish {
+
+	public UIPublish (WebDriver driver) {
+
+		PageFactory.initElements(driver, this);
+
+	}
+
+	//=============================Common Elements in All tabs===================================//
+
+	//Total Page Number
+	@FindBy(xpath = "//*[@id='totalPages']")
+	public WebElement totalPages;
+
+	//Current Page Number
+	@FindBy(xpath = "//*[@id='currentPage']")
+	public WebElement currentPageNumber;
+
+	//Message Text for all messages in the selected tab i.e in scheduled/sent etc
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[@id='inbox-wrapper']//td[3]/div[1]"))
+	public List <WebElement> listOfTextInMessages;
+
+	//Channel Name for all messages in the selected tab i.e in scheduled/sent etc
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[@id='inbox-wrapper']//td[2]//div[@class='profile-pic']"))
+	public List <WebElement> channelName;
+
+
+	//Navigatet to Next page
+	@FindBy(xpath = "//*[@id='page-content']//li[4]/i")
+	public WebElement navigateToNextPage;
+
+	//Filter
+	@FindBy(xpath = "//div[starts-with(@class,'filter-icon')]")
+	public WebElement filter;
+
+
+
+	//td[2]//img[@class='account-profile']
+
+	//*[@id='inbox-wrapper']//td[2]//div[@class='profile-pic']
+
+	//td[2]//span[starts-with(@class,'social-icon-twitter')]
+
+
+	//=============================Scheduled Tab=================================================//
+
+	//Scheduled Messages Tab
+	@FindBy(xpath = "//a[@id='publishSch']")
+	public WebElement scheduledMessages;
+
+
+
+	//=============================Sent Tab=======================================================//
+
+	//Sent Messages Tab
+	@FindBy(xpath = "//a[@id='publishSent']")
+	public WebElement sentMessages;
+
+	//list Of sent messages text
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[@id='inbox-wrapper']//td[3]/div[1]"))
+	public List <WebElement> listOfTextInSentMessages;
+
+
+	//=============================Failed messages Tab=================================================//
+
+	//Failed Messages Tab
+	@FindBy(xpath = "//a[@id='publishFailed']")
+	public WebElement FailedMessages;
+
+
+
+
+
+}

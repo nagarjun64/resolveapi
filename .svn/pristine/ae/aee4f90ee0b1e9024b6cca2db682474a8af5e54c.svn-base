@@ -1,0 +1,271 @@
+package actions;
+
+import uiMap.admin.UIAdminChannels;
+import uiMap.menu.UIMenu;
+import baseHelper.BrowserLauncher;
+import baseHelper.SimplifyUtils;
+
+public class OpenModule extends BrowserLauncher {
+
+	//================ Listen =========================//
+	public void openListenHome(){
+
+		UIMenu uiMenu = new UIMenu(driver);
+		
+		SimplifyUtils.waitTillElementFound(uiMenu.listen, 60);
+
+		uiMenu.listen.click();
+		
+		uiMenu.listenHome.click();
+
+	}
+
+	//================ Publish =========================//
+	
+	public void openScheduledMessage(){
+
+		UIMenu uiMenu = new UIMenu(driver);
+		
+		SimplifyUtils.waitTillElementFound(uiMenu.publish, 60);
+
+		uiMenu.publish.click();
+
+		uiMenu.scheduledMessage.click();
+
+	}
+	
+	//================= Admin Section==================//
+	
+	public void openManageAdminChannels(){
+
+		UIMenu uiMenu = new UIMenu(driver);
+		
+		SimplifyUtils.waitTillElementFound(uiMenu.admin, 60);
+
+		uiMenu.admin.click();
+
+		uiMenu.manageAdminChannels.click();
+
+	}
+
+	public void openAdminTwitterChannels(){
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+		
+		openManageAdminChannels(); 
+
+		uiAdminChannels.twitterAdmin.click();
+
+	}
+
+	public void openAdminFacebookAccounts(){
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		openManageAdminChannels(); 
+
+		uiAdminChannels.facebookAccountAdmin.click();
+
+	}
+
+	public void openAdminFacebookPages(){
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		openManageAdminChannels(); 
+
+		uiAdminChannels.facebookPageAdmin.click();
+
+	}
+
+	public void openAdminFacebookGroups(){
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		openManageAdminChannels(); 
+
+		uiAdminChannels.facebookGroupAdmin.click();
+
+	}
+
+	public void openAdminLinkedinAccount(){
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		openManageAdminChannels(); 
+
+		uiAdminChannels.linkedinAccountAdmin.click();
+
+	}
+
+	public void openAdminLinkedinCompany(){
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		openManageAdminChannels(); 
+
+		uiAdminChannels.linkedinCompanyAdmin.click();
+
+	}
+
+	public void openAdminYouTube(){
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		openManageAdminChannels(); 
+
+		uiAdminChannels.youtubeChannelAdmin.click();
+
+	}
+
+	public void openAdminGooglePlusPages(){
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		openManageAdminChannels(); 
+
+		uiAdminChannels.googlePlusAdmin.click();
+
+	}
+
+	public void openAdminTumblrBlogs(){
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		openManageAdminChannels(); 
+
+		uiAdminChannels.tumblrBlogsAdmin.click();
+
+	}
+
+	public void openAdminInstagramChannels(){
+
+		UIAdminChannels uiAdminChannels = new UIAdminChannels(driver);
+
+		openManageAdminChannels(); 
+
+		uiAdminChannels.instagramChannelAdmin.click();
+
+	}
+
+	public void openManageCompChannels(){
+
+		UIMenu uiMenu = new UIMenu(driver);
+
+		uiMenu.admin.click();
+
+		uiMenu.manageCompChannels.click();
+
+	}
+
+	public void openManageIPAddress(){
+
+		UIMenu uiMenu = new UIMenu(driver);
+
+		uiMenu.admin.click();
+
+		uiMenu.manageIPAddress.click();
+
+	}
+
+	public void openManageSite(){
+
+		UIMenu uiMenu = new UIMenu(driver);
+
+		uiMenu.admin.click();
+
+		uiMenu.manageSite.click();
+
+	}
+
+	public void openManagePublish(){
+
+		UIMenu uiMenu = new UIMenu(driver);
+
+		uiMenu.admin.click();
+
+		uiMenu.managePublish.click();
+
+	}
+
+	public void openPackaging(){
+
+		UIMenu uiMenu = new UIMenu(driver);
+
+		uiMenu.admin.click();
+
+		uiMenu.packaging.click();
+
+	}
+
+	public void openManageContacs(){
+
+		UIMenu uiMenu = new UIMenu(driver);
+
+		uiMenu.admin.click();
+
+		uiMenu.manageContacts.click();
+
+	}
+
+	public void openManageUsers(){
+
+		UIMenu uiMenu = new UIMenu(driver);
+
+		uiMenu.admin.click();
+
+		uiMenu.manageUsers.click();
+
+	}
+
+	public void openManageRolesPermission(){
+
+		UIMenu uiMenu = new UIMenu(driver);
+
+		uiMenu.admin.click();
+
+		uiMenu.manageRolesPermissions.click();
+
+	}
+
+	public void openManageTeams(){
+
+		UIMenu uiMenu = new UIMenu(driver);
+
+		uiMenu.admin.click();
+
+		uiMenu.manageTeams.click();
+
+	}
+
+	public void openIntegration(){
+
+		UIMenu uiMenu = new UIMenu(driver);
+
+		uiMenu.admin.click();
+
+		uiMenu.integration.click();
+
+	}
+
+	public void openNewsBlogPush(){
+
+		UIMenu uiMenu = new UIMenu(driver);
+
+		uiMenu.admin.click();
+
+		uiMenu.newsBlogPush.click();
+
+	}
+
+	public void openManageFAQ(){
+
+		UIMenu uiMenu = new UIMenu(driver);
+
+		uiMenu.admin.click();
+
+		uiMenu.manageFAQ.click();
+
+	}
+
+}

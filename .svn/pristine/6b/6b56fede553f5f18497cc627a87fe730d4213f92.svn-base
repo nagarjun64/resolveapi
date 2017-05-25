@@ -1,0 +1,16 @@
+package uiMap.admin;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+
+public class UIManagePublish {
+	
+	public UIManagePublish (WebDriver driver) {
+
+		PageFactory.initElements(driver, this);
+
+	}
+	
+	
+
+}

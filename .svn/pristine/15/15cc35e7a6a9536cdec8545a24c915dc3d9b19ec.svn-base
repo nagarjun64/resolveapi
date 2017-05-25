@@ -1,0 +1,758 @@
+package actions.publish;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import uiMap.publish.UINewMessage;
+import baseHelper.BrowserLauncher;
+import baseHelper.Config;
+import baseHelper.SimplifyUtils;
+
+public class PublishNewMsg extends BrowserLauncher {
+
+
+	public void openNewScheduleWindow(){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		uiNewMessage.newMessageFromPublish.click();
+
+		SimplifyUtils.waitTillElementFound(uiNewMessage.shrinkURL, 60);
+		
+		SimplifyUtils.waitTillElementFound(uiNewMessage.sendNowButton, 60);
+
+	}
+
+	public void selectChannelsToPublish(){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		SimplifyUtils.waitTillElementFound(uiNewMessage.shrinkURL, 60);
+
+		SimplifyUtils.s360sleep(3000);
+
+		if (uiNewMessage.selectAllChannelsToPublishList.size()>0) 
+		{
+			for (int i = 0 ; i < uiNewMessage.selectAllChannelsToPublishList.size(); i++) 
+			{
+				WebElement ele = uiNewMessage.selectAllChannelsToPublishList.get(i);
+
+				if (ele.isSelected()==false)
+
+					ele.click();
+			}
+		}
+	}
+
+	public void selectTwitterChannelsToPublish(int maxChannelsToSelect){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		SimplifyUtils.waitTillElementFound(uiNewMessage.shrinkURL, 60);
+
+		SimplifyUtils.s360sleep(3000);
+
+		if (uiNewMessage.selectAllChannelsToPublishList.size()>0) 
+		{
+			for (int i = 0 ; i < uiNewMessage.listOfAdminTwitterChannelsToPost.size(); i++) 
+			{
+				WebElement ele = uiNewMessage.listOfAdminTwitterChannelsToPost.get(i);
+
+				if (ele.isSelected()==false )
+				{
+
+					ele.click();
+
+					if ( (maxChannelsToSelect -1) == i)
+					{
+
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	public void selectTwitterAccountToPublish(String channelNameToSelect){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		SimplifyUtils.waitTillElementFound(uiNewMessage.shrinkURL, 60);
+
+		SimplifyUtils.s360sleep(3000);
+
+		if (uiNewMessage.selectAllChannelsToPublishList.size()>0) 
+		{
+			for (int i = 0 ; i < uiNewMessage.listOfAdminTwitterChannelsToPost.size(); i++) 
+			{
+				WebElement channelToSelect = uiNewMessage.listOfAdminTwitterChannelsToPost.get(i); //which channel to select
+
+				WebElement currentChannelName = uiNewMessage.twtChannelName.get(i); //select one channel at a time, one at a time to get the name 
+
+				//getting the channel name
+				if (currentChannelName.getAttribute("data-original-title").equalsIgnoreCase(channelNameToSelect))
+
+				{
+					if (channelToSelect.isSelected()==false )
+					{
+						channelToSelect.click();
+
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	public void selectFacebookAccountToPublish(int maxChannelsToSelect){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		SimplifyUtils.waitTillElementFound(uiNewMessage.shrinkURL, 60);
+
+		SimplifyUtils.s360sleep(3000);
+
+		if (uiNewMessage.selectAllChannelsToPublishList.size()>0) 
+		{
+			System.err.println(uiNewMessage.listOfFacebookAccountToPost.size());
+
+			for (int i = 0 ; i < uiNewMessage.listOfFacebookAccountToPost.size(); i++) 
+
+			{
+				WebElement ele = uiNewMessage.listOfFacebookAccountToPost.get(i);
+
+				if (ele.isSelected()==false )
+				{
+					ele.click();
+
+					if ( (maxChannelsToSelect -1) == i)
+					{
+
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	public void selectFacebookPagesToPublish(int maxChannelsToSelect){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		SimplifyUtils.waitTillElementFound(uiNewMessage.shrinkURL, 60);
+
+		SimplifyUtils.s360sleep(3000);
+
+		if (uiNewMessage.selectAllChannelsToPublishList.size()>0) 
+		{
+			for (int i = 0 ; i < uiNewMessage.listOfAdminFacebookPageToPost.size(); i++) 
+			{
+				WebElement ele = uiNewMessage.listOfAdminFacebookPageToPost.get(i);
+
+				if (ele.isSelected()==false )
+				{
+
+					System.err.println("page name "+driver.findElement(By.xpath("//*[starts-with(@id,'6Id')]//*[@class='social-profile-pic']")).getAttribute("data-original-title"));
+
+					ele.click();
+
+					if ( (maxChannelsToSelect -1) == i)
+					{
+
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	public void selectFbPageToPublish(String channelNameToSelect){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		SimplifyUtils.waitTillElementFound(uiNewMessage.shrinkURL, 60);
+
+		SimplifyUtils.s360sleep(3000);
+
+		if (uiNewMessage.selectAllChannelsToPublishList.size()>0) 
+		{
+			for (int i = 0 ; i < uiNewMessage.listOfAdminFacebookPageToPost.size(); i++) 
+			{
+				WebElement channelToSelect = uiNewMessage.listOfAdminFacebookPageToPost.get(i); //facebook check box to select
+
+				WebElement currentChannelName = uiNewMessage.fbPageName.get(i); //select one fb page, one at a time to get the name 
+
+				//getting the channel name
+				if (currentChannelName.getAttribute("data-original-title").equalsIgnoreCase(channelNameToSelect))
+
+				{
+					if (channelToSelect.isSelected()==false )
+					{
+						channelToSelect.click();
+
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	public void selectFacebookGroupsToPublish(int maxChannelsToSelect){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		SimplifyUtils.waitTillElementFound(uiNewMessage.shrinkURL, 60);
+
+		SimplifyUtils.s360sleep(3000);
+
+		if (uiNewMessage.selectAllChannelsToPublishList.size()>0) 
+		{
+			for (int i = 0 ; i < uiNewMessage.listOfFacebookGroupToPost.size(); i++) 
+			{
+				WebElement ele = uiNewMessage.listOfFacebookGroupToPost.get(i);
+
+				if (ele.isSelected()==false )
+				{
+					ele.click();
+
+					if ( (maxChannelsToSelect -1) == i)
+					{
+
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	public void selectLinkedinAccountToPublish(int maxChannelsToSelect){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		SimplifyUtils.waitTillElementFound(uiNewMessage.shrinkURL, 60);
+
+		SimplifyUtils.s360sleep(3000);
+
+		if (uiNewMessage.selectAllChannelsToPublishList.size()>0) 
+		{
+			for (int i = 0 ; i < uiNewMessage.listOfLinkedinAccountToPost.size(); i++) 
+			{
+				WebElement ele = uiNewMessage.listOfLinkedinAccountToPost.get(i);
+
+				if (ele.isSelected()==false )
+				{
+					ele.click();
+
+					if ( (maxChannelsToSelect -1) == i)
+					{
+
+						break;
+					}
+				}			
+			}
+		}
+	}
+
+	public void selectLinkedinCompToPublish(int maxChannelsToSelect){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		SimplifyUtils.waitTillElementFound(uiNewMessage.shrinkURL, 60);
+
+		SimplifyUtils.s360sleep(3000);
+
+		if (uiNewMessage.selectAllChannelsToPublishList.size()>0) 
+		{
+			for (int i = 0 ; i < uiNewMessage.listOfLinkedinCompToPost.size(); i++) 
+			{
+				WebElement ele = uiNewMessage.listOfLinkedinCompToPost.get(i);
+
+				if (ele.isSelected()==false )
+				{
+					ele.click();
+
+					if ( (maxChannelsToSelect -1) == i)
+					{
+
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	public void selectYouTubeChannelsToPublish(int maxChannelsToSelect){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		SimplifyUtils.waitTillElementFound(uiNewMessage.shrinkURL, 60);
+
+		SimplifyUtils.s360sleep(3000);
+
+		if (uiNewMessage.selectAllChannelsToPublishList.size()>0) 
+		{
+			for (int i = 0 ; i < uiNewMessage.listOfYouTubeChannelsToPost.size(); i++) 
+			{
+				WebElement ele = uiNewMessage.listOfYouTubeChannelsToPost.get(i);
+
+				if (ele.isSelected()==false )
+				{
+					ele.click();
+
+					if ( (maxChannelsToSelect -1) == i)
+					{
+
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	public void selectGooglePlusPagesToPublish(int maxChannelsToSelect){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		SimplifyUtils.waitTillElementFound(uiNewMessage.shrinkURL, 60);
+
+		SimplifyUtils.s360sleep(3000);
+
+		if (uiNewMessage.selectAllChannelsToPublishList.size()>0) 
+		{
+			for (int i = 0 ; i < uiNewMessage.listOfGooglePlusToPost.size(); i++) 
+			{
+				WebElement ele = uiNewMessage.listOfGooglePlusToPost.get(i);
+
+				if (ele.isSelected()==false )
+				{
+					ele.click();
+
+					if ( (maxChannelsToSelect -1) == i)
+					{
+
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	public void selectTumblrBlogsToPublish(int maxChannelsToSelect){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		SimplifyUtils.waitTillElementFound(uiNewMessage.shrinkURL, 60);
+
+		SimplifyUtils.s360sleep(3000);
+
+		if (uiNewMessage.selectAllChannelsToPublishList.size()>0) 
+		{
+			for (int i = 0 ; i < uiNewMessage.listOfTumblrBlogs.size(); i++) 
+			{
+				WebElement ele = uiNewMessage.listOfTumblrBlogs.get(i);
+
+				if (ele.isSelected()==false )
+				{
+					ele.click();
+
+					if ( (maxChannelsToSelect -1) == i)
+					{
+
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	//========================================Message to publish===============================================//
+
+	public String generateMessageToPublish(){
+
+		String messageToPublish = "Source: Auto " + SimplifyUtils.dateGenerator() + " Message: How's your day?";
+
+		return messageToPublish;
+
+	}
+
+	public void enterMessageToPublish(String messageToPublish){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+		
+		SimplifyUtils.s360sleep(5000);
+
+		SimplifyUtils.waitTillElementFound(uiNewMessage.shrinkURL, 60);
+
+		uiNewMessage.messageToPublish.sendKeys(messageToPublish);
+
+	}
+
+	public void enterMessageTitle(String messageToPublish){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		SimplifyUtils.waitTillElementFound(uiNewMessage.shrinkURL, 60);
+
+		uiNewMessage.messageTitle.sendKeys(messageToPublish);
+
+	}
+
+	public void enterURLToPublish(){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		SimplifyUtils.waitTillElementFound(uiNewMessage.shrinkURL, 60);
+
+		uiNewMessage.urlToShrink.sendKeys("http://www.telegraph.co.uk/");
+
+	}
+
+	public void shrinkURL(){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		SimplifyUtils.waitTillElementFound(uiNewMessage.shrinkURL, 60);
+
+		uiNewMessage.shrinkURL.click();
+
+	}
+
+	public int messageLength(WebElement sourceSpecificCounterElement){
+
+		String length = sourceSpecificCounterElement.getText();
+
+		int messageLength = Integer.parseInt(length);
+
+		return messageLength;
+	}
+
+	//========================================Media Upload===============================================//
+
+	public void uploadPicture(){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		uiNewMessage.pictureVideoTab.click();
+
+		SimplifyUtils.s360sleep(1000);
+
+		uiNewMessage.uploadPicture.sendKeys(Config.imageToUpload);
+
+		SimplifyUtils.s360sleep(5000);
+
+	}
+
+	public void waitForImageUploadToComplete(){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		SimplifyUtils.waitTillElementFound(uiNewMessage.imageUploadedDefaultThumbnail, 60);
+
+	}
+
+	public void uploadVideo(){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		uiNewMessage.pictureVideoTab.click();
+
+		SimplifyUtils.s360sleep(1000);
+
+		uiNewMessage.uploadVideo.sendKeys(Config.twtVideoPath);
+
+		SimplifyUtils.s360sleep(5000);
+	}
+
+	public void waitForVideoUploadToComplete(){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		SimplifyUtils.waitTillElementFound(uiNewMessage.videoUploadedDefaultThumbnail, 60);
+
+	}
+
+	public void createFbPageAlbum(String fbAlbumName , String fbAlbumDescription){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		uiNewMessage.createFbPageAlbum.click();
+
+		uiNewMessage.FbPageAlbumName.sendKeys(fbAlbumName);
+
+		uiNewMessage.FbPageAlbumNameDescription.sendKeys(fbAlbumDescription);
+
+		uiNewMessage.saveFbAlbum.click();
+
+	}
+
+	public Boolean isFbPageAlbumCreated(String fbAlbum){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		uiNewMessage.changeAlbum.click();
+
+		Boolean albumIsPresent = null ; 
+
+		if (uiNewMessage.albumsList.size()>0)
+
+		{
+			for (int i = 0 ; i < uiNewMessage.albumsList.size(); i++) 
+			{
+				WebElement ele = uiNewMessage.albumsList.get(i);
+
+				if(ele.getText().equalsIgnoreCase(fbAlbum))
+				{
+					albumIsPresent = true ; //return true if present
+
+					break;
+				}
+
+				else
+				{
+					albumIsPresent = false ; //return false if not present
+				}
+			}
+		}
+
+		return albumIsPresent;
+
+	}
+
+
+	//========================================Target Option===============================================//
+
+	public int countOfTargetValuesFbPage(){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		int targetOptions = 0;
+
+		if (uiNewMessage.targetBlock.isDisplayed()) {
+
+			targetOptions = SimplifyUtils.getCounOfAllValuesInDropDwown(uiNewMessage.targetDropDownFBPage);
+		}
+
+		System.err.println(targetOptions);
+
+		return targetOptions;
+
+	}
+
+	public void selectFbPageTargetOptions(String FbPageTargetOption){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		SimplifyUtils.selectElementByVisibleText(uiNewMessage.targetDropDownFBPage, FbPageTargetOption);
+
+		if (uiNewMessage.targetBlock.isDisplayed() && SimplifyUtils.getCounOfAllValuesInDropDwown(uiNewMessage.targetDropDownFBPage) > 0) {
+
+			if (FbPageTargetOption.equalsIgnoreCase("Gender"))
+			{
+				SimplifyUtils.selectElementByValue(uiNewMessage.fbPageTargetOptionGender, "1");
+
+				SimplifyUtils.selectElementByValue(uiNewMessage.fbPageTargetOptionGender, "2");
+			}
+			else if(FbPageTargetOption.equalsIgnoreCase("Target By Interests"))
+			{
+				uiNewMessage.fbPageTargetOptionSelectInterests.click();
+
+				SimplifyUtils.s360sleep(4000);
+
+				uiNewMessage.enterFbPageTargetInterests.sendKeys("bangalore");
+
+				uiNewMessage.searchFbPageInterests.click();
+
+				SimplifyUtils.s360sleep(4000);
+
+				//selecting all facebook interests
+				if (uiNewMessage.listOfFbPageInterests.size()>0) 
+				{
+					for (int i = 0 ; i < uiNewMessage.listOfFbPageInterests.size(); i++) 
+					{
+						WebElement ele = uiNewMessage.listOfFbPageInterests.get(i);
+
+						if (ele.isSelected()==false )
+
+							ele.click();
+					}
+				}
+
+				uiNewMessage.saveFbPageTargetInterests.click();
+
+			}
+			else if(FbPageTargetOption.equalsIgnoreCase("Relationship Status"))
+			{
+
+			}
+			else if(FbPageTargetOption.equalsIgnoreCase("Educational Status"))
+			{
+
+			}
+			else if(FbPageTargetOption.equalsIgnoreCase("Interested In"))
+			{
+
+			}
+			else if(FbPageTargetOption.equalsIgnoreCase("Age"))
+			{
+
+			}
+			else if(FbPageTargetOption.equalsIgnoreCase("Location"))
+			{
+
+			}
+			else if(FbPageTargetOption.equalsIgnoreCase("Language"))
+			{
+
+			}
+		}
+
+	}
+
+	public int countOfTargetValuesLinkedinComp(){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		int targetOptions = 0;
+
+		uiNewMessage.targetTab.click();
+
+		if (uiNewMessage.targetBlock.isDisplayed()) {
+
+			targetOptions = SimplifyUtils.getCounOfAllValuesInDropDwown(uiNewMessage.targetDropDownLinkedinComp);
+		}
+
+		System.err.println(targetOptions);
+
+		return targetOptions;
+
+	}
+
+	public void selectLinkedinCompTargetOption(String lkTargetOption){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		uiNewMessage.targetTab.click();
+
+		SimplifyUtils.selectElementByVisibleText(uiNewMessage.targetDropDownLinkedinComp, lkTargetOption);
+
+		if (lkTargetOption.equalsIgnoreCase("Industry"))
+		{
+			SimplifyUtils.selectElementByVisibleText(uiNewMessage.lkCompTargetOptionIndustry, "Accounting");
+
+			SimplifyUtils.selectElementByVisibleText(uiNewMessage.lkCompTargetOptionIndustry, "Biotechnology");
+		}
+		else if(lkTargetOption.equalsIgnoreCase("Job Function"))
+		{
+			SimplifyUtils.selectElementByVisibleText(uiNewMessage.lkCompTargetOptionJobFunction, "Research");
+
+			SimplifyUtils.selectElementByVisibleText(uiNewMessage.lkCompTargetOptionJobFunction, "Education");
+
+		}
+		else if(lkTargetOption.equalsIgnoreCase("Seniority"))
+		{
+			SimplifyUtils.selectElementByValue(uiNewMessage.lkCompTargetOptionSeniority, "tr");
+
+			SimplifyUtils.selectElementByValue(uiNewMessage.lkCompTargetOptionSeniority, "ic");
+
+		}else if(lkTargetOption.equalsIgnoreCase("Geography"))
+		{
+			SimplifyUtils.selectElementByValue(uiNewMessage.lkCompTargetOptionGeography, "as.in");
+
+			SimplifyUtils.selectElementByValue(uiNewMessage.lkCompTargetOptionGeography, "as");
+
+		}
+	}
+
+
+	//========================================Scheduling Option===============================================//
+
+	public void clickScheduleOptionsTab(){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		uiNewMessage.schedulingOptions.click();
+
+	}
+
+	public void selectSendNowOption(){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		uiNewMessage.schedulingOptions.click();
+
+		SimplifyUtils.radiobutton_Select(uiNewMessage.sendNowOption);
+
+	}
+
+	public void sendMessageNow(){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		SimplifyUtils.s360sleep(2000);
+
+		uiNewMessage.schedulingOptions.click();
+
+		SimplifyUtils.radiobutton_Select(uiNewMessage.sendNowOption);
+
+		uiNewMessage.sendNowButton.click();
+
+
+	}
+
+	public void selectScheduleLaterOptionWithTime(){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		//		SimplifyUtils.scrolltoElementUsingCoordinates(uiNewMessage.scheduleNow);
+
+		uiNewMessage.schedulingOptions.click();
+
+		SimplifyUtils.radiobutton_Select(uiNewMessage.scheduleLater);
+
+		uiNewMessage.scheduleTimer.clear();
+
+		uiNewMessage.scheduleTimer.sendKeys(scheduleTime());
+
+	}
+
+	public void clickScheduleButton(){
+
+		UINewMessage uiNewMessage = new UINewMessage(driver);
+
+		SimplifyUtils.s360sleep(2000);
+
+		uiNewMessage.scheduleButton.click();
+
+
+	}
+
+	public String scheduleTime(){
+
+		//String date = "2016-12-09 03:43 PM";
+
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd hh:mm aa");
+
+		//Date d = f.parse(date);
+
+		Date d = new Date();
+
+		Long millis = d.getTime() + 15 * 60 * 1000; // epoch time / unix time 
+
+		Long mins = millis / 1000 / 60;
+
+		Long round5 = mins / 5 + 1;
+
+		Date d5 = new Date(round5 * 5 * 60 * 1000);
+
+		String Time = f.format(d5);
+
+		return Time;
+
+	}
+
+
+
+}

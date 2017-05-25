@@ -1,0 +1,32 @@
+package actions;
+
+import uiMap.login.UILoginHome;
+import baseHelper.BrowserLauncher;
+import baseHelper.Config;
+
+public class LoginToApplication extends BrowserLauncher {
+	
+	
+	public void loginAsOwner(){
+
+		UILoginHome loginHome = new UILoginHome(driver);
+		
+		loginHome.userName.sendKeys(Config.loginOwnerEmail);
+
+		loginHome.userPassword.sendKeys(Config.loginOwnerPassword);
+		
+		loginHome.loginButton.submit();
+	}
+
+	public void loginAsAdmin(){
+
+		UILoginHome loginHome = new UILoginHome(driver);
+		
+		loginHome.userName.sendKeys(Config.loginAdminEmail);
+
+		loginHome.userPassword.sendKeys(Config.loginAdminPassword);
+
+		loginHome.loginButton.click();
+	}
+
+}

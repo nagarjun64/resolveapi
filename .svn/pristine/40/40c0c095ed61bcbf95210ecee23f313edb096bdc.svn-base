@@ -1,0 +1,204 @@
+package tc.Listen;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import uiMap.listen.UIListenMessages;
+import uiMap.listen.UIListenProfileMenu;
+import uiMap.listen.UIProfileMgmt;
+import actions.LoginToApplication;
+import actions.OpenModule;
+import actions.listen.ProfileHome;
+import actions.listen.ProfileMgmt;
+import baseHelper.BrowserLauncher;
+import baseHelper.SimplifyUtils;
+
+public class TCProfileCreation extends BrowserLauncher{
+
+	@Test
+	public void verifyAddingAdminFbPage() {
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		ProfileMgmt profileMgmt = new ProfileMgmt();
+		UIProfileMgmt uiProfileMgmt = new UIProfileMgmt(driver);
+
+		String profileName = SimplifyUtils.generateEpocTime();
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openListenHome();
+
+		profileMgmt.openProfileCreationScreen();
+
+		uiProfileMgmt.profileName.sendKeys(profileName);
+
+		uiProfileMgmt.volumeManualInput.sendKeys("100");
+
+		uiProfileMgmt.createProfile.click();
+
+		SimplifyUtils.waitForElementToBeClickable(uiProfileMgmt.saveProfileSettings, 30);
+
+		uiProfileMgmt.saveProfileSettings.click();
+
+		SimplifyUtils.waitForElementToBeClickable(uiProfileMgmt.yesWouldLikeToAddSubquery, 30);
+
+		uiProfileMgmt.skipAddingSubquery.click();
+
+		SimplifyUtils.waitForElementToBeClickable(uiProfileMgmt.fbPageAccordion,30);
+
+		String addedPage = profileMgmt.addAdminFacebookPage();
+
+		Assert.assertTrue(profileMgmt.isFbPageAddedToProfile(addedPage));
+
+	}
+
+	@Test
+	public void verifyAddingNonAdminFbPage() {
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		ProfileMgmt profileMgmt = new ProfileMgmt();
+		UIProfileMgmt uiProfileMgmt = new UIProfileMgmt(driver);
+
+		String profileName = SimplifyUtils.generateEpocTime();
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openListenHome();
+
+		profileMgmt.openProfileCreationScreen();
+
+		uiProfileMgmt.profileName.sendKeys(profileName);
+
+		uiProfileMgmt.volumeManualInput.sendKeys("100");
+
+		uiProfileMgmt.createProfile.click();
+
+		SimplifyUtils.waitForElementToBeClickable(uiProfileMgmt.saveProfileSettings, 30);
+
+		uiProfileMgmt.saveProfileSettings.click();
+
+		SimplifyUtils.waitForElementToBeClickable(uiProfileMgmt.yesWouldLikeToAddSubquery, 30);
+
+		uiProfileMgmt.skipAddingSubquery.click();
+
+		SimplifyUtils.waitForElementToBeClickable(uiProfileMgmt.fbPageAccordion,30);
+
+		String addedPage = profileMgmt.addNonAdminFacebookPage();
+
+		Assert.assertTrue(profileMgmt.isFbPageAddedToProfile(addedPage));
+
+	}
+
+	@Test
+	public void verifyImportingFbPageForProfile() {
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		ProfileMgmt profileMgmt = new ProfileMgmt();
+		UIProfileMgmt uiProfileMgmt = new UIProfileMgmt(driver);
+
+		String profileName = SimplifyUtils.generateEpocTime();
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openListenHome();
+
+		profileMgmt.openProfileCreationScreen();
+
+		uiProfileMgmt.profileName.sendKeys(profileName);
+
+		uiProfileMgmt.volumeManualInput.sendKeys("100");
+
+		uiProfileMgmt.createProfile.click();
+
+		SimplifyUtils.waitForElementToBeClickable(uiProfileMgmt.saveProfileSettings, 30);
+
+		uiProfileMgmt.saveProfileSettings.click();
+
+		SimplifyUtils.waitForElementToBeClickable(uiProfileMgmt.yesWouldLikeToAddSubquery, 30);
+
+		uiProfileMgmt.skipAddingSubquery.click();
+
+		SimplifyUtils.waitForElementToBeClickable(uiProfileMgmt.fbPageAccordion,30);
+
+		String addedPage = profileMgmt.importFacebookPage();
+
+		Assert.assertTrue(profileMgmt.isFbPageAddedToProfile(addedPage));
+
+	}
+
+	@Test
+	public void verifyShareProfileWithUser() {
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		ProfileMgmt profileMgmt = new ProfileMgmt();
+		ProfileHome profileHome = new ProfileHome();
+		UIProfileMgmt uiProfileMgmt = new UIProfileMgmt(driver);
+
+		String profileName = SimplifyUtils.generateEpocTime();
+
+		System.err.println("====> "+profileName);
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openListenHome();
+
+		profileMgmt.openProfileCreationScreen();
+
+		uiProfileMgmt.profileName.sendKeys(profileName);
+
+		uiProfileMgmt.volumeManualInput.sendKeys("100");
+
+		uiProfileMgmt.createProfile.click();
+
+		SimplifyUtils.waitForElementToBeClickable(uiProfileMgmt.saveProfileSettings, 30);
+
+		uiProfileMgmt.saveProfileSettings.click();
+
+		SimplifyUtils.waitForElementToBeClickable(uiProfileMgmt.yesWouldLikeToAddSubquery, 30);
+
+		uiProfileMgmt.skipAddingSubquery.click();
+
+		SimplifyUtils.waitForElementToBeClickable(uiProfileMgmt.fbPageAccordion,30);
+
+		profileMgmt.importFacebookPage();
+
+		openModule.openListenHome();
+
+		profileHome.editProfile(profileName);
+
+		profileMgmt.shareProfile("alexxm360@gmail.com");
+
+		profileMgmt.isProfileShared("alexxm360@gmail.com");
+
+
+	}
+
+	@Test
+	public void verifyOpenMessages() {
+
+		LoginToApplication loginToApplication = new LoginToApplication();
+		OpenModule openModule = new  OpenModule();
+		ProfileMgmt profileMgmt = new ProfileMgmt();
+		ProfileHome profileHome = new ProfileHome();
+		UIProfileMgmt uiProfileMgmt = new UIProfileMgmt(driver);
+		UIListenProfileMenu uiListenProfileMenu = new UIListenProfileMenu(driver);
+		UIListenMessages uiListenMessages = new UIListenMessages(driver);
+
+		loginToApplication.loginAsOwner();
+
+		openModule.openListenHome();
+
+		profileHome.openMessagesOfProfile("1482911482723");
+		
+		SimplifyUtils.waitForElementToBeClickable(uiListenMessages.showMessageStatistics, 30);
+		
+		Assert.assertEquals("1482911482723", uiListenProfileMenu.profileEditButtonInsideProfile.getText());
+
+	}
+
+
+}
