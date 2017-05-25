@@ -43,7 +43,7 @@ public class BrowserLauncher {
 				}
 				else if(OS.contains("linux")||OS.contains("ubuntu"))
 				{
-					System.setProperty("webdriver.gecko.driver", "src/test/resources/linux_geckodriver");
+					System.setProperty("webdriver.gecko.driver", "src/test/resources/linux_Firefox_gecko");
 				}
 
 				else if(OS.contains("windows"))
