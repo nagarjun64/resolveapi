@@ -33,7 +33,7 @@ public class BrowserLauncher {
 
 			if (ReadPropertiesFile.browser.equals("firefox"))
 			{
-
+				log.info("Inside firefox");
 				//Currently using v0.16.1 geckodriver
 				System.err.println(ReadPropertiesFile.browser);
 
@@ -43,6 +43,7 @@ public class BrowserLauncher {
 				}
 				else if(OS.contains("linux")||OS.contains("ubuntu"))
 				{
+					log.info("Inside firefox + linux");
 					System.setProperty("webdriver.gecko.driver", "src/test/resources/linux_Firefox_gecko");
 				}
 
@@ -93,6 +94,7 @@ public class BrowserLauncher {
 			}
 			else if (ReadPropertiesFile.browser.equals("headless"))
 			{
+				log.info("Inside HeadLess Browser");
 
 				if(OS.contains("mac"))
 				{
@@ -110,6 +112,8 @@ public class BrowserLauncher {
 				}
 				else if(OS.contains("linux")||OS.contains("ubuntu"))
 				{
+					log.info("Inside Linux + HeadLess Browser");
+
 					File src = new File("src/test/resources/phantomjs_linux");
 
 					System.setProperty("phantomjs.binary.path", src.getAbsolutePath());
