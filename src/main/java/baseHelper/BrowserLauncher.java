@@ -95,7 +95,9 @@ public class BrowserLauncher {
 			else if (ReadPropertiesFile.browser.equals("headless"))
 			{
 				log.info("Inside HeadLess Browser");
-
+				
+				//phantomjs-2.1.1
+				
 				if(OS.contains("mac"))
 				{
 
@@ -132,7 +134,11 @@ public class BrowserLauncher {
 
 			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		} catch (Exception e) {
+
 			log.error("Browser Launcher"+e);
+
+			e.printStackTrace();
+
 		}
 
 	}
